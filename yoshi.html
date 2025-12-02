@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoshi 3D Driving Simulator</title>
+    <style>
+        body { margin: 0; overflow: hidden; font-family: 'Segoe UI', sans-serif; }
+        #ui-layer {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            text-shadow: 2px 2px 0 #000;
+            pointer-events: none;
+            user-select: none;
+            z-index: 10;
+        }
+        h1 { margin: 0; font-size: 24px; }
+        p { margin: 5px 0 0 0; font-size: 16px; }
+        .key {
+            display: inline-block;
+            background: #fff;
+            color: #333;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            box-shadow: 0 2px 0 #ccc;
+            margin: 0 2px;
+            text-shadow: none;
+        }
+        #message {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 18px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 10;
+        }
+    </style>
+    <!-- Import Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+    <div id="ui-layer">
+        <h1>Yoshi's 3D Drive</h1>
+        <p>Use <span class="key">Arrow Keys</span> to move</p>
+        <p>Press <span class="key">F</span> to Enter/Exit Car</p>
+        <p>Press <span class="key">SPACE</span> to Shoot</p>
+        <p><strong>Click & Drag</strong> to Rotate Camera</p>
+    </div>
+
+    <div id="message">Press 'F' to Drive</div>
+
+    <script>
+        // --- Game Constants & State ---
+        let scene, camera, renderer;
+        let yoshiGroup, carGroup, yoshiHeadInCar;
+        let ground, track;
+        let keys = {};
+        
+        let bullets = [];
+        let destructibles = [];
+        let particles = [];
+        let debris = []; // For car parts explosion
+        let lastShotTime = 0;
+
+        // Camera State
+        let isDragging = false;
+        let previousMousePosition = { x: 0, y: 0 };
+        let cameraState = {
+            angleH: 0,      // Horizontal angle
+            angleV: 0.5,    // Vertical angle
+            distance: 15
+        };
+
+        const state = {
+            inCar: false,
+            speed: 0,
+            angle: 0, // Car angle
+            yoshiAngle: 0, // ROLLBACK: Reset to 0 (was Math.PI)
+            maxSpeed: 1.5,
+            acceleration: 0.03,
+            friction: 0.96,
+            turnSpeed: 0.04,
+            carHealth: 10,
+            carDestroyed: false
+        };
+
+        // --- Init Function ---
+        function init() {
+            // Scene Setup
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x87CEEB);
+            scene.fog = new THREE.Fog(0x87CEEB, 20, 100);
+
+            // Camera
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+            
+            // Renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.shadowMap.enabled = true;
+            document.body.appendChild(renderer.domElement);
+
+            // Lights
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+
+            const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            dirLight.position.set(50, 100, 50);
+            dirLight.castShadow = true;
+            dirLight.shadow.camera.left = -50;
+            dirLight.shadow.camera.right = 50;
+            dirLight.shadow.camera.top = 50;
+            dirLight.shadow.camera.bottom = -50;
+            dirLight.shadow.mapSize.width = 2048;
+            dirLight.shadow.mapSize.height = 2048;
+            scene.add(dirLight);
+
+            // --- World Creation ---
+            createEnvironment();
+            createCar();
+            createYoshi();
+            createDestructibles();
+
+            // Initial positions
+            yoshiGroup.position.set(0, 0, 5);
+            carGroup.position.set(10, 0.5, 0); 
+
+            // Event Listeners
+            window.addEventListener('keydown', onKeyDown);
+            window.addEventListener('keyup', onKeyUp);
+            window.addEventListener('resize', onWindowResize);
+            
+            // Mouse Listeners for Camera
+            document.addEventListener('mousedown', onMouseDown);
+            document.addEventListener('mouseup', onMouseUp);
+            document.addEventListener('mousemove', onMouseMove);
+
+            // Start Loop
+            animate();
+        }
+
+        // --- Asset Generators ---
+
+        function createEnvironment() {
+            // Grass
+            const planeGeometry = new THREE.PlaneGeometry(500, 500);
+            const planeMaterial = new THREE.MeshLambertMaterial({ color: 0x4a9c2d });
+            ground = new THREE.Mesh(planeGeometry, planeMaterial);
+            ground.rotation.x = -Math.PI / 2;
+            ground.receiveShadow = true;
+            scene.add(ground);
+
+            // Track (Torus flattened)
+            const trackGeo = new THREE.RingGeometry(35, 55, 64);
+            const trackMat = new THREE.MeshLambertMaterial({ color: 0x555555 });
+            track = new THREE.Mesh(trackGeo, trackMat);
+            track.rotation.x = -Math.PI / 2;
+            track.position.y = 0.05; 
+            track.receiveShadow = true;
+            scene.add(track);
+
+            // Trees
+            for(let i=0; i<30; i++) {
+                createTree(
+                    (Math.random() - 0.5) * 200, 
+                    (Math.random() - 0.5) * 200
+                );
+            }
+        }
+
+        function createTree(x, z) {
+            const dist = Math.sqrt(x*x + z*z);
+            if (dist > 30 && dist < 60) return; 
+
+            const treeGroup = new THREE.Group();
+            
+            const trunkGeo = new THREE.CylinderGeometry(0.5, 0.8, 3, 8);
+            const trunkMat = new THREE.MeshLambertMaterial({ color: 0x8B4513 });
+            const trunk = new THREE.Mesh(trunkGeo, trunkMat);
+            trunk.position.y = 1.5;
+            trunk.castShadow = true;
+            treeGroup.add(trunk);
+
+            const leavesGeo = new THREE.ConeGeometry(3, 6, 8);
+            const leavesMat = new THREE.MeshLambertMaterial({ color: 0x228B22 });
+            const leaves = new THREE.Mesh(leavesGeo, leavesMat);
+            leaves.position.y = 4.5;
+            leaves.castShadow = true;
+            treeGroup.add(leaves);
+
+            treeGroup.position.set(x, 0, z);
+            
+            // Mark as destructible
+            treeGroup.userData = { health: 5, type: 'tree' };
+            
+            scene.add(treeGroup);
+            destructibles.push(treeGroup);
+        }
+
+        function createDestructibles() {
+            const boxGeo = new THREE.BoxGeometry(2, 2, 2);
+            const boxMat = new THREE.MeshLambertMaterial({ color: 0x8B4513 }); // Brown crate
+
+            for (let i = 0; i < 15; i++) {
+                const crate = new THREE.Mesh(boxGeo, boxMat.clone()); // Clone mat to allow color flashing
+                
+                // Random position avoiding center
+                let x, z;
+                do {
+                    x = (Math.random() - 0.5) * 80;
+                    z = (Math.random() - 0.5) * 80;
+                } while(Math.sqrt(x*x + z*z) < 10);
+
+                crate.position.set(x, 1, z);
+                crate.castShadow = true;
+                crate.receiveShadow = true;
+                
+                // Add custom properties
+                crate.userData = { health: 3, type: 'crate' };
+                
+                scene.add(crate);
+                destructibles.push(crate);
+            }
+        }
+
+        function createCar() {
+            carGroup = new THREE.Group();
+
+            // Main Body (Red Box)
+            const bodyGeo = new THREE.BoxGeometry(2, 1, 4);
+            const bodyMat = new THREE.MeshPhongMaterial({ color: 0xe74c3c });
+            const body = new THREE.Mesh(bodyGeo, bodyMat);
+            body.position.y = 0.7;
+            body.castShadow = true;
+            body.name = "carBody"; // For easy access
+            carGroup.add(body);
+
+            // Interior
+            const interiorGeo = new THREE.BoxGeometry(1.6, 0.5, 1.5);
+            const interiorMat = new THREE.MeshLambertMaterial({ color: 0x660000 });
+            const interior = new THREE.Mesh(interiorGeo, interiorMat);
+            interior.position.set(0, 0.9, -0.2);
+            carGroup.add(interior);
+
+            // Windshield
+            const windGeo = new THREE.PlaneGeometry(1.6, 0.8);
+            const windMat = new THREE.MeshPhongMaterial({ color: 0x8ecae6, transparent: true, opacity: 0.7, side: THREE.DoubleSide });
+            const windshield = new THREE.Mesh(windGeo, windMat);
+            windshield.position.set(0, 1.2, -1.0);
+            windshield.rotation.x = -Math.PI / 4;
+            carGroup.add(windshield);
+
+            // Wheels
+            const wheelGeo = new THREE.CylinderGeometry(0.4, 0.4, 0.3, 16);
+            const wheelMat = new THREE.MeshLambertMaterial({ color: 0x333333 });
+            
+            const positions = [
+                { x: -1.1, y: 0.4, z: -1.2 }, 
+                { x: 1.1, y: 0.4, z: -1.2 },
+                { x: -1.1, y: 0.4, z: 1.2 },
+                { x: 1.1, y: 0.4, z: 1.2 },
+            ];
+
+            positions.forEach(pos => {
+                const wheel = new THREE.Mesh(wheelGeo, wheelMat);
+                wheel.rotation.z = Math.PI / 2;
+                wheel.position.set(pos.x, pos.y, pos.z);
+                wheel.castShadow = true;
+                carGroup.add(wheel);
+            });
+
+            // Headlights
+            const lightGeo = new THREE.CylinderGeometry(0.2, 0.2, 0.1, 16);
+            const lightMat = new THREE.MeshBasicMaterial({ color: 0xffffaa });
+            
+            const lLight = new THREE.Mesh(lightGeo, lightMat);
+            lLight.rotation.x = Math.PI / 2;
+            lLight.position.set(-0.6, 0.8, -2.01);
+            carGroup.add(lLight);
+
+            const rLight = new THREE.Mesh(lightGeo, lightMat);
+            rLight.rotation.x = Math.PI / 2;
+            rLight.position.set(0.6, 0.8, -2.01);
+            carGroup.add(rLight);
+
+            // Yoshi Head in Car (Hidden by default)
+            yoshiHeadInCar = createYoshiHead();
+            yoshiHeadInCar.position.set(0, 1.0, 0); 
+            yoshiHeadInCar.scale.set(0.8, 0.8, 0.8);
+            yoshiHeadInCar.visible = false;
+            carGroup.add(yoshiHeadInCar);
+
+            scene.add(carGroup);
+        }
+
+        function createYoshi() {
+            yoshiGroup = new THREE.Group();
+
+            // Materials
+            const greenMat = new THREE.MeshLambertMaterial({ color: 0x76c442 });
+            const whiteMat = new THREE.MeshLambertMaterial({ color: 0xffffff });
+            const bootMat = new THREE.MeshLambertMaterial({ color: 0xe67e22 });
+            const shellMat = new THREE.MeshLambertMaterial({ color: 0xd32f2f });
+
+            // Body
+            const bodyGeo = new THREE.SphereGeometry(0.5, 16, 16);
+            const body = new THREE.Mesh(bodyGeo, greenMat);
+            body.position.y = 0.5;
+            body.castShadow = true;
+            yoshiGroup.add(body);
+
+            // Belly
+            const bellyGeo = new THREE.SphereGeometry(0.35, 16, 16);
+            const belly = new THREE.Mesh(bellyGeo, whiteMat);
+            belly.position.set(0, 0.5, -0.3);
+            belly.scale.set(1, 1, 0.5);
+            yoshiGroup.add(belly);
+
+            // Head
+            const head = createYoshiHead();
+            head.position.set(0, 0.9, 0);
+            yoshiGroup.add(head);
+
+            // Shell
+            const shellGeo = new THREE.SphereGeometry(0.3, 16, 16);
+            const shell = new THREE.Mesh(shellGeo, shellMat);
+            shell.position.set(0, 0.6, 0.3);
+            yoshiGroup.add(shell);
+
+            // Legs/Boots
+            const bootGeo = new THREE.SphereGeometry(0.25, 16, 16);
+            const leftBoot = new THREE.Mesh(bootGeo, bootMat);
+            leftBoot.position.set(-0.3, 0.25, 0);
+            leftBoot.castShadow = true;
+            yoshiGroup.add(leftBoot);
+
+            const rightBoot = new THREE.Mesh(bootGeo, bootMat);
+            rightBoot.position.set(0.3, 0.25, 0);
+            rightBoot.castShadow = true;
+            yoshiGroup.add(rightBoot);
+
+            // Gun
+            const gunGroup = new THREE.Group();
+            const gunBody = new THREE.Mesh(
+                new THREE.BoxGeometry(0.15, 0.2, 0.4),
+                new THREE.MeshLambertMaterial({ color: 0x333333 })
+            );
+            const gunBarrel = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.05, 0.05, 0.3),
+                new THREE.MeshLambertMaterial({ color: 0x111111 })
+            );
+            gunBarrel.rotation.x = Math.PI/2;
+            gunBarrel.position.set(0, 0.1, -0.25);
+            gunGroup.add(gunBody);
+            gunGroup.add(gunBarrel);
+            
+            // Attach gun to right side
+            gunGroup.position.set(0.5, 0.5, -0.2);
+            yoshiGroup.add(gunGroup);
+
+            scene.add(yoshiGroup);
+        }
+
+        function createYoshiHead() {
+            const headGroup = new THREE.Group();
+            const greenMat = new THREE.MeshLambertMaterial({ color: 0x76c442 });
+            const whiteMat = new THREE.MeshLambertMaterial({ color: 0xffffff });
+            const blackMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
+
+            const headGeo = new THREE.SphereGeometry(0.4, 16, 16);
+            const headMesh = new THREE.Mesh(headGeo, greenMat);
+            headGroup.add(headMesh);
+
+            const noseGeo = new THREE.SphereGeometry(0.35, 16, 16);
+            const noseMesh = new THREE.Mesh(noseGeo, greenMat);
+            noseMesh.position.set(0, 0, -0.35);
+            headGroup.add(noseMesh);
+
+            const eyeGeo = new THREE.SphereGeometry(0.15, 12, 12);
+            const leftEye = new THREE.Mesh(eyeGeo, whiteMat);
+            leftEye.position.set(-0.2, 0.3, -0.2);
+            headGroup.add(leftEye);
+            const rightEye = new THREE.Mesh(eyeGeo, whiteMat);
+            rightEye.position.set(0.2, 0.3, -0.2);
+            headGroup.add(rightEye);
+
+            const pupilGeo = new THREE.SphereGeometry(0.05, 8, 8);
+            const leftPupil = new THREE.Mesh(pupilGeo, blackMat);
+            leftPupil.position.set(-0.2, 0.35, -0.3);
+            headGroup.add(leftPupil);
+            const rightPupil = new THREE.Mesh(pupilGeo, blackMat);
+            rightPupil.position.set(0.2, 0.35, -0.3);
+            headGroup.add(rightPupil);
+
+            const spikeGeo = new THREE.ConeGeometry(0.05, 0.2, 8);
+            const spikeMat = new THREE.MeshLambertMaterial({ color: 0xd32f2f });
+            const spike1 = new THREE.Mesh(spikeGeo, spikeMat);
+            spike1.rotation.x = -Math.PI/2;
+            spike1.position.set(0, 0.2, 0.35);
+            headGroup.add(spike1);
+
+            return headGroup;
+        }
+
+        function createParticle(x, y, z, color) {
+            const geo = new THREE.BoxGeometry(0.2, 0.2, 0.2);
+            const mat = new THREE.MeshBasicMaterial({ color: color });
+            const mesh = new THREE.Mesh(geo, mat);
+            mesh.position.set(x, y, z);
+            
+            // Random velocity
+            const vel = new THREE.Vector3(
+                (Math.random() - 0.5) * 0.5,
+                (Math.random() - 0.5) * 0.5 + 0.2,
+                (Math.random() - 0.5) * 0.5
+            );
+
+            scene.add(mesh);
+            particles.push({ mesh: mesh, vel: vel, life: 1.0 });
+        }
+
+        function createExplosion(x, y, z, count = 10, color = 0xffaa00) {
+            for(let i=0; i<count; i++) {
+                createParticle(x, y, z, color);
+            }
+        }
+        
+        // NEW: Explode the actual car parts
+        function explodeCar() {
+            createExplosion(carGroup.position.x, carGroup.position.y, carGroup.position.z, 50, 0xff5500);
+            
+            // Turn all children of car group into debris
+            while(carGroup.children.length > 0) {
+                const part = carGroup.children[0];
+                
+                // Convert position to world space for the part
+                part.position.applyMatrix4(carGroup.matrixWorld);
+                part.rotation.setFromRotationMatrix(carGroup.matrixWorld);
+                
+                // Add to scene directly
+                scene.add(part);
+                carGroup.remove(part); // Remove from car group
+                
+                // Give it velocity
+                const vel = new THREE.Vector3(
+                    (Math.random() - 0.5) * 0.8,
+                    (Math.random() * 0.8) + 0.2, // Upward bias
+                    (Math.random() - 0.5) * 0.8
+                );
+                
+                // Add rotation velocity
+                const rotVel = {
+                    x: Math.random() * 0.2,
+                    y: Math.random() * 0.2,
+                    z: Math.random() * 0.2
+                };
+                
+                debris.push({ mesh: part, vel: vel, rotVel: rotVel, life: 3.0 });
+            }
+        }
+
+        // --- Logic ---
+
+        function onKeyDown(e) {
+            keys[e.key] = true;
+            if (e.key.toLowerCase() === 'f') toggleCar();
+            if (e.key === ' ') shoot();
+        }
+        function onKeyUp(e) {
+            keys[e.key] = false;
+        }
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // Mouse Controls
+        function onMouseDown(e) {
+            isDragging = true;
+            previousMousePosition = { x: e.clientX, y: e.clientY };
+        }
+        function onMouseUp(e) {
+            isDragging = false;
+        }
+        function onMouseMove(e) {
+            if (isDragging) {
+                const deltaX = e.clientX - previousMousePosition.x;
+                const deltaY = e.clientY - previousMousePosition.y;
+
+                cameraState.angleH -= deltaX * 0.01;
+                cameraState.angleV += deltaY * 0.01;
+
+                // Limit vertical angle (don't go under ground or flip over)
+                cameraState.angleV = Math.max(0.1, Math.min(Math.PI / 2 - 0.1, cameraState.angleV));
+
+                previousMousePosition = { x: e.clientX, y: e.clientY };
+            }
+        }
+
+        function shoot() {
+            if (state.inCar) return; // Can't shoot while driving
+            
+            const now = Date.now();
+            if (now - lastShotTime < 200) return; // Fire rate limit
+            lastShotTime = now;
+
+            const bulletGeo = new THREE.SphereGeometry(0.15, 8, 8);
+            const bulletMat = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+            const bullet = new THREE.Mesh(bulletGeo, bulletMat);
+
+            // Start at Yoshi's gun pos
+            const offset = new THREE.Vector3(0.5, 0.5, -0.5);
+            offset.applyAxisAngle(new THREE.Vector3(0,1,0), state.yoshiAngle);
+            bullet.position.copy(yoshiGroup.position).add(offset);
+            
+            // Velocity
+            const speed = 0.8;
+            const velocity = new THREE.Vector3(Math.sin(state.yoshiAngle), 0, Math.cos(state.yoshiAngle)).multiplyScalar(speed);
+
+            scene.add(bullet);
+            bullets.push({ mesh: bullet, vel: velocity, life: 2.0 });
+        }
+
+        function toggleCar() {
+            if (state.carDestroyed) {
+                // Flash message
+                const msgEl = document.getElementById('message');
+                msgEl.innerText = "Car is destroyed!";
+                msgEl.style.opacity = 1;
+                setTimeout(() => msgEl.style.opacity = 0, 1000);
+                return;
+            }
+
+            const dist = yoshiGroup.position.distanceTo(carGroup.position);
+            
+            if (state.inCar) {
+                // Exit
+                state.inCar = false;
+                yoshiGroup.visible = true;
+                yoshiHeadInCar.visible = false;
+                
+                const offset = new THREE.Vector3(2, 0, 0);
+                offset.applyAxisAngle(new THREE.Vector3(0, 1, 0), state.angle);
+                yoshiGroup.position.copy(carGroup.position).add(offset);
+                yoshiGroup.position.y = 0; 
+                
+                state.yoshiAngle = state.angle;
+            } else {
+                // Enter
+                if (dist < 4) {
+                    state.inCar = true;
+                    yoshiGroup.visible = false;
+                    yoshiHeadInCar.visible = true;
+                    state.speed = 0; 
+                }
+            }
+        }
+
+        function updateGameLogic() {
+            const msgEl = document.getElementById('message');
+            
+            // --- Update Bullets ---
+            for (let i = bullets.length - 1; i >= 0; i--) {
+                const b = bullets[i];
+                b.mesh.position.add(b.vel);
+                b.life -= 0.05;
+
+                let hit = false;
+
+                // Check collision with crates OR trees
+                for (let j = destructibles.length - 1; j >= 0; j--) {
+                    const target = destructibles[j];
+                    const hitDist = target.userData.type === 'tree' ? 2.5 : 1.5;
+
+                    if (b.mesh.position.distanceTo(target.position) < hitDist) {
+                        // Hit
+                        const isTree = target.userData.type === 'tree';
+                        const debrisColor = isTree ? 0x228B22 : 0x8B4513;
+
+                        createExplosion(b.mesh.position.x, b.mesh.position.y, b.mesh.position.z, 3, debrisColor);
+                        target.userData.health--;
+                        
+                        // Flash White Effect
+                        if (isTree) {
+                            // Flash all children for group
+                            target.children.forEach(child => {
+                                if (child.material) {
+                                    const oldC = child.material.color.getHex();
+                                    child.material.color.setHex(0xffffff);
+                                    setTimeout(() => { if(child) child.material.color.setHex(oldC); }, 50);
+                                }
+                            });
+                        } else {
+                            // Flash mesh
+                            target.material.color.setHex(0xffffff);
+                            setTimeout(() => { if(target) target.material.color.setHex(0x8B4513); }, 50);
+                        }
+
+                        if (target.userData.health <= 0) {
+                            createExplosion(target.position.x, target.position.y + 2, target.position.z, 20, debrisColor);
+                            scene.remove(target);
+                            destructibles.splice(j, 1);
+                        }
+                        
+                        hit = true;
+                        break;
+                    }
+                }
+
+                // Check collision with Car (Only if not in car)
+                if (!hit && !state.carDestroyed) {
+                    if (b.mesh.position.distanceTo(carGroup.position) < 2.5) {
+                        hit = true;
+                        state.carHealth--;
+                        createExplosion(b.mesh.position.x, b.mesh.position.y, b.mesh.position.z, 5, 0xff0000);
+                        
+                        // Car Flash
+                        const body = carGroup.getObjectByName("carBody");
+                        if(body) {
+                            const oldC = body.material.color.getHex();
+                            body.material.color.setHex(0xffffff);
+                            setTimeout(() => { if(body) body.material.color.setHex(oldC); }, 50);
+                        }
+
+                        if (state.carHealth <= 0) {
+                            state.carDestroyed = true;
+                            // NEW: Call the explode car function
+                            explodeCar();
+                            
+                            if (state.inCar) toggleCar();
+                        }
+                    }
+                }
+
+                if (hit || b.life <= 0) {
+                    scene.remove(b.mesh);
+                    bullets.splice(i, 1);
+                }
+            }
+
+            // --- Update Particles ---
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.mesh.position.add(p.vel);
+                p.vel.y -= 0.02; // Gravity
+                p.life -= 0.02;
+                p.mesh.rotation.x += 0.1;
+                p.mesh.rotation.z += 0.1;
+                p.mesh.scale.multiplyScalar(0.95);
+
+                if (p.life <= 0) {
+                    scene.remove(p.mesh);
+                    particles.splice(i, 1);
+                }
+            }
+            
+            // --- Update Debris (Exploded Car Parts) ---
+            for (let i = debris.length - 1; i >= 0; i--) {
+                const p = debris[i];
+                p.mesh.position.add(p.vel);
+                p.vel.y -= 0.02; // Gravity
+                p.mesh.rotation.x += p.rotVel.x;
+                p.mesh.rotation.y += p.rotVel.y;
+                p.mesh.rotation.z += p.rotVel.z;
+                
+                // Ground collision for debris
+                if (p.mesh.position.y < 0.2) {
+                    p.mesh.position.y = 0.2;
+                    p.vel.y *= -0.5; // Bounce
+                    p.vel.x *= 0.8; // Friction
+                    p.vel.z *= 0.8;
+                }
+                
+                p.life -= 0.01;
+                if(p.life <= 0) {
+                    p.mesh.scale.multiplyScalar(0.95);
+                    if(p.mesh.scale.x < 0.01) {
+                         scene.remove(p.mesh);
+                         debris.splice(i, 1);
+                    }
+                }
+            }
+
+            // --- Movement Physics ---
+            if (state.inCar) {
+                // Car Physics
+                msgEl.innerText = "Press 'F' to Exit";
+                msgEl.style.opacity = 1;
+
+                if (keys['ArrowUp'] || keys['w']) state.speed += state.acceleration;
+                if (keys['ArrowDown'] || keys['s']) state.speed -= state.acceleration;
+
+                if (Math.abs(state.speed) > 0.01) {
+                    if (keys['ArrowLeft'] || keys['a']) state.angle += state.turnSpeed * Math.sign(state.speed);
+                    if (keys['ArrowRight'] || keys['d']) state.angle -= state.turnSpeed * Math.sign(state.speed);
+                }
+
+                state.speed *= state.friction;
+                if (Math.abs(state.speed) < 0.001) state.speed = 0;
+
+                carGroup.rotation.y = state.angle;
+                carGroup.position.x -= Math.sin(state.angle) * state.speed;
+                carGroup.position.z -= Math.cos(state.angle) * state.speed;
+
+                yoshiGroup.position.copy(carGroup.position);
+
+            } else {
+                // Yoshi Physics
+                const dist = yoshiGroup.position.distanceTo(carGroup.position);
+                
+                if (state.carDestroyed) {
+                     if (dist < 4) {
+                        msgEl.innerText = "Car Destroyed";
+                        msgEl.style.opacity = 1;
+                     } else {
+                        msgEl.style.opacity = 0;
+                     }
+                } else if (dist < 4) {
+                    msgEl.innerText = "Press 'F' to Drive";
+                    msgEl.style.opacity = 1;
+                } else {
+                    msgEl.style.opacity = 0;
+                }
+
+                let moveSpeed = 0.08; // SLOWED DOWN from 0.15
+                let moved = false;
+                let dx = 0;
+                let dz = 0;
+
+                if (keys['ArrowUp'] || keys['w']) { dz = -1; moved = true; }
+                if (keys['ArrowDown'] || keys['s']) { dz = 1; moved = true; }
+                if (keys['ArrowLeft'] || keys['a']) { dx = -1; moved = true; }
+                if (keys['ArrowRight'] || keys['d']) { dx = 1; moved = true; }
+
+                if (moved) {
+                    // ROLLBACK: Removed + Math.PI so he faces the original direction again
+                    const targetAngle = Math.atan2(dx, dz);
+                    
+                    let angleDiff = targetAngle - state.yoshiAngle;
+                    while (angleDiff > Math.PI) angleDiff -= Math.PI * 2;
+                    while (angleDiff < -Math.PI) angleDiff += Math.PI * 2;
+                    
+                    state.yoshiAngle += angleDiff * 0.2;
+
+                    yoshiGroup.position.x += Math.sin(state.yoshiAngle) * moveSpeed;
+                    yoshiGroup.position.z += Math.cos(state.yoshiAngle) * moveSpeed;
+                    
+                    yoshiGroup.position.y = Math.abs(Math.sin(Date.now() * 0.01)) * 0.2;
+                } else {
+                    yoshiGroup.position.y = 0;
+                }
+                
+                yoshiGroup.rotation.y = state.yoshiAngle;
+            }
+        }
+
+        function updateCamera() {
+            let target = state.inCar ? carGroup : yoshiGroup;
+            
+            // New Orbit Logic
+            // Calculate Camera Position based on Angles and Distance
+            const offsetX = cameraState.distance * Math.sin(cameraState.angleH) * Math.cos(cameraState.angleV);
+            const offsetZ = cameraState.distance * Math.cos(cameraState.angleH) * Math.cos(cameraState.angleV);
+            const offsetY = cameraState.distance * Math.sin(cameraState.angleV);
+
+            // Special handling if car is destroyed and removed from scene
+            if(state.carDestroyed && state.inCar) {
+                // Should have exited already, but just in case fallback to Yoshi
+                target = yoshiGroup;
+            }
+
+            const targetCenter = target.position.clone().add(new THREE.Vector3(0, 1.5, 0)); // Look at slightly above target
+            const desiredPos = targetCenter.clone().add(new THREE.Vector3(offsetX, offsetY, offsetZ));
+
+            // Lerp for smoothness
+            camera.position.lerp(desiredPos, 0.1);
+            camera.lookAt(targetCenter);
+        }
+
+        // --- Main Loop ---
+        function animate() {
+            requestAnimationFrame(animate);
+            updateGameLogic();
+            updateCamera();
+            renderer.render(scene, camera);
+        }
+
+        // Start
+        init();
+
+    </script>
+</body>
+</html>
