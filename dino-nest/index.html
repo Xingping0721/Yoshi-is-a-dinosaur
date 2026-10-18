@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Dino Nest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+    <header class="bar">
+        <button class="pill" id="menuBtn" type="button" aria-label="レベル選択を開く">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="3" width="5.5" height="5.5" rx="1.5"/><rect x="11.5" y="3" width="5.5" height="5.5" rx="1.5"/><rect x="3" y="11.5" width="5.5" height="5.5" rx="1.5"/><rect x="11.5" y="11.5" width="5.5" height="5.5" rx="1.5"/></svg>
+            <span>レベル</span>
+        </button>
+        <div class="title">
+            <span class="lv" id="lvNum">LEVEL 1</span>
+            <h1 id="lvName">はじめの一歩</h1>
+        </div>
+        <div class="counter" aria-live="polite">
+            <b id="moves">0</b>
+            <span>手 ／ 目標 <span id="par">0</span></span>
+        </div>
+    </header>
+
+    <main class="board-wrap" id="boardWrap">
+        <canvas id="board" aria-label="パズル盤面"></canvas>
+        <p class="tip" id="tip" hidden></p>
+        <div class="toast" id="toast" role="status" hidden></div>
+    </main>
+
+    <footer class="controls">
+        <div class="actions">
+            <button class="act" id="undoBtn" type="button"><span>戻す</span><kbd>Z</kbd></button>
+            <button class="act" id="hintBtn" type="button"><span>ヒント</span><kbd>H</kbd></button>
+            <button class="act" id="resetBtn" type="button"><span>やり直し</span><kbd>R</kbd></button>
+            <button class="act icon" id="muteBtn" type="button" aria-label="サウンドを切り替え"></button>
+        </div>
+        <div class="dpad" aria-label="移動ボタン">
+            <button type="button" data-dir="U" aria-label="上">▲</button>
+            <button type="button" data-dir="L" aria-label="左">◀</button>
+            <button type="button" data-dir="D" aria-label="下">▼</button>
+            <button type="button" data-dir="R" aria-label="右">▶</button>
+        </div>
+    </footer>
+
+    <div class="overlay" id="menuOv" hidden>
+        <div class="sheet">
+            <div class="sheet-head">
+                <div>
+                    <h2 class="brand">DINO NEST</h2>
+                    <p class="sheet-sub">火山の噴火でちらばったタマゴを、巣に戻してあげよう。</p>
+                </div>
+                <div class="total"><b id="starTotal">0</b><span>／ <span id="starMax">0</span> ★</span></div>
+            </div>
+            <div class="grid" id="levelGrid"></div>
+            <button class="ghost" id="closeMenu" type="button">閉じる</button>
+        </div>
+    </div>
+
+    <div class="overlay" id="clearOv" hidden>
+        <div class="sheet small">
+            <h2 class="brand big">CLEAR!</h2>
+            <div class="stars" id="clearStars" aria-label="獲得した星"></div>
+            <p class="result" id="clearText"></p>
+            <div class="row">
+                <button class="ghost" id="againBtn" type="button">もう一度</button>
+                <button class="primary" id="nextBtn" type="button">次のレベルへ</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="levels.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
