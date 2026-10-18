@@ -1,0 +1,869 @@
+{
+  "source": "D-01",
+  "dataset": "https://data.gov.sg/datasets/d_b4cf557f8750260d229c49fd768e11ed/view",
+  "api": "https://data.gov.sg/api/action/datastore_search?resource_id=d_b4cf557f8750260d229c49fd768e11ed",
+  "licence": "Singapore Open Data Licence",
+  "indicator": "24-hr PSI",
+  "method": "Highest hourly 24-hr PSI reading of any of the five regions on each calendar day (Singapore time).",
+  "range": {
+    "from": "2015-08-01",
+    "to": "2015-11-30"
+  },
+  "generated": "2026-10-18",
+  "days": [
+    {
+      "date": "2015-08-01",
+      "max": 63,
+      "region": "north",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-02",
+      "max": 58,
+      "region": "north",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-03",
+      "max": 54,
+      "region": "west",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-04",
+      "max": 56,
+      "region": "north",
+      "hour": 23,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-05",
+      "max": 58,
+      "region": "west",
+      "hour": 17,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-06",
+      "max": 58,
+      "region": "north",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-07",
+      "max": 64,
+      "region": "west",
+      "hour": 19,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-08",
+      "max": 64,
+      "region": "west",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-09",
+      "max": 60,
+      "region": "west",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-10",
+      "max": 64,
+      "region": "west",
+      "hour": 14,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-11",
+      "max": 63,
+      "region": "west",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-12",
+      "max": 60,
+      "region": "west",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-13",
+      "max": 69,
+      "region": "west",
+      "hour": 13,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-14",
+      "max": 63,
+      "region": "west",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-15",
+      "max": 63,
+      "region": "west",
+      "hour": 1,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-16",
+      "max": 59,
+      "region": "north",
+      "hour": 1,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-17",
+      "max": 62,
+      "region": "west",
+      "hour": 23,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-18",
+      "max": 62,
+      "region": "west",
+      "hour": 16,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-19",
+      "max": 76,
+      "region": "west",
+      "hour": 23,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-20",
+      "max": 83,
+      "region": "west",
+      "hour": 18,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-21",
+      "max": 84,
+      "region": "west",
+      "hour": 10,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-22",
+      "max": 89,
+      "region": "west",
+      "hour": 23,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-23",
+      "max": 90,
+      "region": "west",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-24",
+      "max": 79,
+      "region": "west",
+      "hour": 14,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-25",
+      "max": 90,
+      "region": "west",
+      "hour": 21,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-26",
+      "max": 87,
+      "region": "west",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-27",
+      "max": 75,
+      "region": "west",
+      "hour": 7,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-28",
+      "max": 70,
+      "region": "south",
+      "hour": 19,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-29",
+      "max": 76,
+      "region": "south",
+      "hour": 10,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-30",
+      "max": 74,
+      "region": "west",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-08-31",
+      "max": 63,
+      "region": "west",
+      "hour": 21,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-01",
+      "max": 73,
+      "region": "north",
+      "hour": 23,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-02",
+      "max": 84,
+      "region": "north",
+      "hour": 18,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-03",
+      "max": 96,
+      "region": "east",
+      "hour": 23,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-04",
+      "max": 96,
+      "region": "east",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-05",
+      "max": 97,
+      "region": "south",
+      "hour": 23,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-06",
+      "max": 106,
+      "region": "west",
+      "hour": 20,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-07",
+      "max": 105,
+      "region": "west",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-08",
+      "max": 106,
+      "region": "west",
+      "hour": 17,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-09",
+      "max": 103,
+      "region": "north",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-10",
+      "max": 148,
+      "region": "south",
+      "hour": 23,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-11",
+      "max": 182,
+      "region": "south",
+      "hour": 5,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-12",
+      "max": 119,
+      "region": "south",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-13",
+      "max": 157,
+      "region": "south",
+      "hour": 23,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-14",
+      "max": 173,
+      "region": "west",
+      "hour": 3,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-15",
+      "max": 155,
+      "region": "west",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-16",
+      "max": 129,
+      "region": "west",
+      "hour": 3,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-17",
+      "max": 115,
+      "region": "west",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-18",
+      "max": 97,
+      "region": "west",
+      "hour": 23,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-19",
+      "max": 148,
+      "region": "west",
+      "hour": 14,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-20",
+      "max": 139,
+      "region": "south",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-21",
+      "max": 90,
+      "region": "west",
+      "hour": 20,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-22",
+      "max": 114,
+      "region": "west",
+      "hour": 20,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-23",
+      "max": 137,
+      "region": "west",
+      "hour": 23,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-24",
+      "max": 279,
+      "region": "south",
+      "hour": 23,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-25",
+      "max": 322,
+      "region": "south",
+      "hour": 8,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-26",
+      "max": 219,
+      "region": "west",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-27",
+      "max": 108,
+      "region": "south",
+      "hour": 23,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-28",
+      "max": 197,
+      "region": "west",
+      "hour": 19,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-29",
+      "max": 214,
+      "region": "west",
+      "hour": 12,
+      "readings": 120
+    },
+    {
+      "date": "2015-09-30",
+      "max": 200,
+      "region": "west",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-01",
+      "max": 202,
+      "region": "south",
+      "hour": 13,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-02",
+      "max": 182,
+      "region": "south",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-03",
+      "max": 191,
+      "region": "west",
+      "hour": 19,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-04",
+      "max": 181,
+      "region": "west",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-05",
+      "max": 165,
+      "region": "south",
+      "hour": 23,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-06",
+      "max": 184,
+      "region": "south",
+      "hour": 8,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-07",
+      "max": 165,
+      "region": "south",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-08",
+      "max": 94,
+      "region": "south",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-09",
+      "max": 95,
+      "region": "west",
+      "hour": 17,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-10",
+      "max": 92,
+      "region": "south",
+      "hour": 5,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-11",
+      "max": 95,
+      "region": "south",
+      "hour": 23,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-12",
+      "max": 117,
+      "region": "west",
+      "hour": 21,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-13",
+      "max": 139,
+      "region": "south",
+      "hour": 16,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-14",
+      "max": 137,
+      "region": "south",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-15",
+      "max": 97,
+      "region": "west",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-16",
+      "max": 119,
+      "region": "north",
+      "hour": 22,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-17",
+      "max": 118,
+      "region": "north",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-18",
+      "max": 140,
+      "region": "west",
+      "hour": 23,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-19",
+      "max": 162,
+      "region": "west",
+      "hour": 11,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-20",
+      "max": 171,
+      "region": "west",
+      "hour": 6,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-21",
+      "max": 127,
+      "region": "west",
+      "hour": 23,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-22",
+      "max": 127,
+      "region": "west",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-23",
+      "max": 174,
+      "region": "south",
+      "hour": 23,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-24",
+      "max": 229,
+      "region": "south",
+      "hour": 10,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-25",
+      "max": 185,
+      "region": "west",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-26",
+      "max": 170,
+      "region": "south",
+      "hour": 14,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-27",
+      "max": 167,
+      "region": "east",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-28",
+      "max": 143,
+      "region": "west",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-29",
+      "max": 85,
+      "region": "south",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-30",
+      "max": 58,
+      "region": "west",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-10-31",
+      "max": 58,
+      "region": "south",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-01",
+      "max": 65,
+      "region": "south",
+      "hour": 16,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-02",
+      "max": 65,
+      "region": "south",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-03",
+      "max": 63,
+      "region": "west",
+      "hour": 19,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-04",
+      "max": 69,
+      "region": "east",
+      "hour": 23,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-05",
+      "max": 89,
+      "region": "east",
+      "hour": 22,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-06",
+      "max": 94,
+      "region": "east",
+      "hour": 21,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-07",
+      "max": 92,
+      "region": "east",
+      "hour": 2,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-08",
+      "max": 82,
+      "region": "south",
+      "hour": 23,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-09",
+      "max": 93,
+      "region": "south",
+      "hour": 22,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-10",
+      "max": 92,
+      "region": "west",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-11",
+      "max": 68,
+      "region": "west",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-12",
+      "max": 71,
+      "region": "south",
+      "hour": 18,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-13",
+      "max": 75,
+      "region": "west",
+      "hour": 10,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-14",
+      "max": 69,
+      "region": "west",
+      "hour": 2,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-15",
+      "max": 61,
+      "region": "west",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-16",
+      "max": 52,
+      "region": "south",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-17",
+      "max": 52,
+      "region": "east",
+      "hour": 23,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-18",
+      "max": 64,
+      "region": "central",
+      "hour": 11,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-19",
+      "max": 61,
+      "region": "west",
+      "hour": 23,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-20",
+      "max": 63,
+      "region": "west",
+      "hour": 1,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-21",
+      "max": 54,
+      "region": "east",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-22",
+      "max": 58,
+      "region": "central",
+      "hour": 14,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-23",
+      "max": 71,
+      "region": "central",
+      "hour": 23,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-24",
+      "max": 73,
+      "region": "central",
+      "hour": 1,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-25",
+      "max": 79,
+      "region": "east",
+      "hour": 13,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-26",
+      "max": 70,
+      "region": "east",
+      "hour": 0,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-27",
+      "max": 44,
+      "region": "east",
+      "hour": 2,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-28",
+      "max": 51,
+      "region": "east",
+      "hour": 11,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-29",
+      "max": 58,
+      "region": "west",
+      "hour": 8,
+      "readings": 120
+    },
+    {
+      "date": "2015-11-30",
+      "max": 56,
+      "region": "west",
+      "hour": 0,
+      "readings": 120
+    }
+  ]
+}
