@@ -110,7 +110,7 @@ export function act1Scenes({ psiDays, assumptions }) {
         };
         return {
             type: 'day',
-            chrome: { meter: true, extinguish: true, money: true },
+            chrome: { meter: 's_psi', extinguish: true, money: 'act1' },
             date: day.date,
             psi: psi.max,
             story: t(`act1.days.${day.date}.story`),
@@ -123,24 +123,24 @@ export function act1Scenes({ psiDays, assumptions }) {
     const lastDay = byDate.get(DAYS[DAYS.length - 1].date);
 
     return [
-        { type: 'card', chrome: { meter: false }, ...t('act1.card') },
+        { type: 'card', chrome: {}, ...t('act1.card') },
         ...t('act1.intro').map(block => ({
             type: 'paras',
-            chrome: { meter: true, extinguish: true },
+            chrome: { meter: 's_psi', extinguish: true },
             paras: block.paras,
             vars: () => ({ money: money(A.budget) }),
         })),
         ...DAYS.map(dayScene),
         ...t('act1.end').map(block => ({
             type: 'paras',
-            chrome: { meter: true, extinguish: true },
+            chrome: { meter: 's_psi', extinguish: true },
             psi: lastDay.max,
             paras: state => block.paras.filter(p => !p.when || (p.when === 'tried') === state.tries > 0),
             vars: state => ({ days: stats.unhealthyAfterNotice, tries: state.tries }),
         })),
         {
             type: 'breath',
-            chrome: { meter: false },
+            chrome: {},
             ...t('act1.breath'),
             vars: () => ({ peak: formatNumber(stats.peak.max), days: stats.unhealthySepOct }),
         },

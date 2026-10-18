@@ -5,6 +5,11 @@ import { createMeter, clearHaze } from './meter.js';
 import { initSources, renderSourceList } from './sources.js';
 import { renderScene } from './scenes.js';
 import { act1Scenes, newAct1State } from './acts/act1.js';
+import { act2Scenes, newAct2State } from './acts/act2.js';
+import { act3Scenes, newAct3State } from './acts/act3.js';
+import { act4Scenes, newAct4State } from './acts/act4.js';
+import { endingScenes } from './acts/ending.js';
+import { epilogueScenes } from './acts/epilogue.js';
 
 const PROGRESS_KEY = 'psi-progress-v1';
 const $ = id => document.getElementById(id);
@@ -12,8 +17,23 @@ const $ = id => document.getElementById(id);
 const app = {
     data: null,
     meter: null,
+    meterKey: null,
     current: null,      // { screen, index, state }
 };
+
+// The acts, in order. Each builds its scenes from the loaded data.
+const ACTS = [
+    { key: 'act1', scenes: d => act1Scenes({ psiDays: d.psi.days, assumptions: d.assumptions }), state: d => newAct1State(d.assumptions) },
+    { key: 'act2', scenes: d => act2Scenes({ psiDays: d.psi.days }), state: () => newAct2State() },
+    { key: 'act3', scenes: d => act3Scenes({ assumptions: d.assumptions }), state: d => newAct3State(d.assumptions) },
+    { key: 'act4', scenes: d => act4Scenes({ assumptions: d.assumptions }), state: () => newAct4State() },
+    { key: 'ending', scenes: () => endingScenes(), state: () => ({}) },
+    {
+        key: 'epilogue',
+        scenes: d => epilogueScenes({ now: d.now }, { onSources: showSources, onRestart: restart }),
+        state: () => ({}),
+    },
+];
 
 async function loadJSON(path) {
     const res = await fetch(path);
@@ -29,25 +49,47 @@ function mount(node) {
     main.focus({ preventScroll: true });
 }
 
+function moneyText(key, n) {
+    return key === 'act1' ? t('common.money', { n: formatNumber(n) }) : formatNumber(n);
+}
+
 // Header, footer and the extinguish button follow what each scene asks for.
 function applyChrome(scene, state) {
     const chrome = scene.chrome || {};
-    $('top').hidden = !chrome.meter;
-    $('extinguish').hidden = !chrome.extinguish;
-    if (!chrome.meter) clearHaze();
-    if (scene.psi !== undefined) app.meter.set(scene.psi);
-    $('date').textContent = scene.date ? formatDate(scene.date) : '';
+    const reading = scene.reading !== undefined ? scene.reading : scene.psi;
 
-    const money = $('money');
+    if (chrome.meter && chrome.meter !== app.meterKey) {
+        app.meter.configure(chrome.meter);
+        app.meterKey = chrome.meter;
+    }
+    $('meter').hidden = !chrome.meter;
+    if (!chrome.meter) clearHaze();
+    else if (reading !== undefined) app.meter.set(reading);
+
+    $('extinguish').hidden = !chrome.extinguish;
+    $('date').textContent = scene.date ? formatDate(scene.date) : '';
+    $('date').hidden = !scene.date;
+
+    const sub = $('money');
     if (chrome.money) {
-        money.replaceChildren(
-            `${t('act1.moneyLabel')} ${t('common.money', { n: formatNumber(state.money) })}　`,
+        sub.replaceChildren(
+            `${t(`${chrome.money}.moneyLabel`)} ${moneyText(chrome.money, state.money)}　`,
             assumptionTag(),
         );
-        money.hidden = false;
+        sub.hidden = false;
+    } else if (scene.counter) {
+        sub.replaceChildren(
+            el('span', {}, `${scene.counter.label}　`),
+            el('b', {}, scene.counter.text),
+            '　',
+            sourceChip(scene.counter.source),
+        );
+        sub.hidden = false;
     } else {
-        money.hidden = true;
+        sub.hidden = true;
     }
+
+    $('top').hidden = !(chrome.meter || chrome.money || scene.date || scene.counter || chrome.extinguish);
 
     const footer = $('event');
     if (scene.event) {
@@ -91,35 +133,30 @@ function playScenes(screen, scenes, index, state, onFinish) {
     }));
 }
 
-function startAct1(index = 0, state = newAct1State(app.data.assumptions)) {
-    app.meter.configure('s_psi');
-    const scenes = act1Scenes({ psiDays: app.data.psi.days, assumptions: app.data.assumptions });
-    playScenes('act1', scenes, Math.min(index, scenes.length - 1), state, () => showWip());
+function startAct(i, index = 0, state) {
+    const act = ACTS[i];
+    const scenes = act.scenes(app.data);
+    const s = state || act.state(app.data);
+    playScenes(act.key, scenes, Math.min(index, scenes.length - 1), s, () => {
+        if (i + 1 < ACTS.length) startAct(i + 1);
+    });
 }
 
-function showWip() {
-    hideChrome();
-    app.current = { screen: 'wip', index: 0, state: {} };
-    save(PROGRESS_KEY, app.current);
-    mount(el('section', { class: 'scene' },
-        el('h1', { class: 'breath-title' }, t('wip.title')),
-        el('p', { class: 'para' }, t('wip.body')),
-        el('div', { class: 'stack' },
-            el('button', { class: 'btn primary wide', type: 'button', onclick: () => { remove(PROGRESS_KEY); startAct1(); } }, t('wip.restart')),
-            el('button', { class: 'btn wide', type: 'button', onclick: showSources }, t('title.sources')),
-            el('button', { class: 'btn wide', type: 'button', onclick: showTitle }, t('common.close')),
-        ),
-    ));
+function restart() {
+    remove(PROGRESS_KEY);
+    app.meterKey = null;
+    startAct(0);
 }
 
 function showSources() {
     hideChrome();
-    mount(renderSourceList(showTitle));
+    mount(renderSourceList({ assumptions: app.data.assumptions, accessed: app.data.psi.generated }, showTitle));
 }
 
 function resume(progress) {
-    if (progress.screen === 'act1') startAct1(progress.index, progress.state);
-    else showWip();
+    const i = ACTS.findIndex(a => a.key === progress.screen);
+    if (i < 0) restart();
+    else startAct(i, progress.index, progress.state);
 }
 
 function showTitle() {
@@ -134,9 +171,9 @@ function showTitle() {
     const buttons = progress
         ? [
             el('button', { class: 'btn primary wide', type: 'button', onclick: () => resume(progress) }, t('title.resume')),
-            el('button', { class: 'btn wide', type: 'button', onclick: () => { remove(PROGRESS_KEY); startAct1(); } }, t('title.restart')),
+            el('button', { class: 'btn wide', type: 'button', onclick: restart }, t('title.restart')),
         ]
-        : [el('button', { class: 'btn primary wide', type: 'button', onclick: () => startAct1() }, t('title.start'))];
+        : [el('button', { class: 'btn primary wide', type: 'button', onclick: () => startAct(0) }, t('title.start'))];
 
     mount(el('section', { class: 'scene title-screen' },
         el('h1', { class: 'wordmark' }, t('title.heading'), el('small', {}, t('title.sub'))),
@@ -153,11 +190,9 @@ function showTitle() {
 
 function setupExtinguish() {
     const btn = $('extinguish');
-    btn.replaceChildren(
-        el('span', { 'aria-hidden': 'true', class: 'ext-icon' }),
-        t('extinguish.label'),
-    );
-    btn.querySelector('.ext-icon').innerHTML = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="6" height="9.5" rx="2"/><path d="M7 5V3h2v2M9 3h3l1 1.5"/></svg>';
+    const icon = el('span', { 'aria-hidden': 'true', class: 'ext-icon' });
+    icon.innerHTML = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="6" height="9.5" rx="2"/><path d="M7 5V3h2v2M9 3h3l1 1.5"/></svg>';
+    btn.replaceChildren(icon, t('extinguish.label'));
     // Looks pressable, but never does anything except say so.
     btn.addEventListener('click', () => {
         if (app.current && app.current.state && 'tries' in app.current.state) {
@@ -170,7 +205,6 @@ function setupExtinguish() {
 
 async function boot() {
     const main = $('main');
-    main.textContent = '';
     try {
         setDict(await loadJSON('i18n/ja.json'));
     } catch (err) {

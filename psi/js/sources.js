@@ -1,4 +1,4 @@
-// Source sheet (one source) and the full list of data and sources.
+// Source sheet (one source) and the full "data and sources" screen.
 import { el } from './ui.js';
 import { t } from './i18n.js';
 
@@ -29,7 +29,7 @@ export const allSources = () => [...byId.values()];
 
 function linkBlock(item) {
     return el('div', { class: 'orig-block' },
-        item.title ? el('p', { class: 'orig-title', lang: 'en' }, item.title) : null,
+        item.title ? el('p', { class: 'orig-title' }, item.title) : null,
         el('p', { class: 'orig-pub' }, [item.publisher, item.date].filter(Boolean).join('　')),
         el('a', { class: 'orig-link', href: item.url, target: '_blank', rel: 'noopener noreferrer' }, `${t('common.openSource')} ↗`),
     );
@@ -68,17 +68,45 @@ export function closeSource() {
     if (lastFocus && document.contains(lastFocus)) lastFocus.focus();
 }
 
-// Minimal list, in id order (full screen comes in step 5).
-export function renderSourceList(onBack) {
+// Full list in id order, with licences and the game settings.
+export function renderSourceList({ accessed }, onBack) {
+    const T = t('sourcesScreen');
     const items = allSources().sort((a, b) => a.id.localeCompare(b.id));
-    return el('section', { class: 'scene' },
-        el('h1', { class: 'breath-title' }, t('title.sources')),
-        el('ul', { class: 'src-list' }, items.map(s => el('li', { class: 'src-item' },
+    const d01 = byId.get('D-01');
+    const licenceUrl = 'https://data.gov.sg/open-data-licence';
+
+    return el('section', { class: 'scene sources-screen' },
+        el('h1', { class: 'breath-title' }, T.title),
+        el('p', { class: 'para small' }, T.lead),
+
+        el('h2', { class: 'section-title' }, T.licenceTitle),
+        el('div', { class: 'orig-block' },
+            el('p', { class: 'orig-pub', lang: 'en' }, `[${t('sourcesScreen.licenceD01', { date: (d01 && d01.accessed) || accessed })} `,
+                el('a', { href: licenceUrl, target: '_blank', rel: 'noopener noreferrer' }, licenceUrl), ']'),
+        ),
+        el('p', { class: 'para small' }, T.licenceD02),
+
+        el('h2', { class: 'section-title' }, T.listTitle),
+        el('ul', { class: 'src-list' }, items.map(s => el('li', { class: 'src-item', id: `src-${s.id}` },
             el('h3', {}, s.id),
-            el('p', {}, s.label),
-            el('p', { class: 'orig' }, [s.title, s.publisher].filter(Boolean).join(' — ')),
-            el('a', { href: s.url, target: '_blank', rel: 'noopener noreferrer' }, `${t('common.openSource')} ↗`),
+            el('p', { class: 'src-label' }, s.label),
+            s.note ? el('p', { class: 'src-note' }, s.note) : null,
+            ...[s, ...(s.more || [])].map(link => el('div', { class: 'src-link' },
+                link.title ? el('p', { class: 'orig-title' }, link.title) : null,
+                el('p', { class: 'orig-pub' }, [link.publisher, link.date].filter(Boolean).join('　')),
+                el('a', { class: 'orig-link', href: link.url, target: '_blank', rel: 'noopener noreferrer' }, link.url),
+            )),
+            el('p', { class: 'meta-line' }, s.used && s.used.length ? t('sourcesScreen.usedIn', { where: s.used.join('・') }) : T.notUsed),
+            el('p', { class: 'meta-line' }, `${t('sheet.statusLabel')}：${t('sheet.status')[s.status] || s.status}`),
+            s.check ? el('p', { class: 'meta-line' }, t('sourcesScreen.check', { text: s.check })) : null,
+            s.accessed ? el('p', { class: 'meta-line' }, t('sheet.accessed', { date: s.accessed })) : null,
+            s.licence ? el('p', { class: 'meta-line' }, t('sheet.licence', { licence: s.licence })) : null,
         ))),
-        el('div', { class: 'actions' }, el('button', { class: 'btn', type: 'button', onclick: onBack }, t('common.close'))),
+
+        el('h2', { class: 'section-title' }, T.assumptionsTitle),
+        el('p', { class: 'para small' }, T.assumptionsLead),
+        el('ul', { class: 'plain-list' }, T.assumptions.map(a => el('li', {}, a))),
+
+        el('div', { class: 'actions' }, el('button', { class: 'btn', type: 'button', onclick: onBack }, T.back)),
     );
 }

@@ -32,10 +32,11 @@ export function rich(str, vars) {
     return frag;
 }
 
+// A link (not a button) so long phrases wrap like the text around them.
 export function numButton(text, id) {
-    return el('button', {
+    return el('a', {
         class: 'num',
-        type: 'button',
+        href: `#${id}`,
         'data-source': id,
         'aria-label': `${text}（${t('common.source')} ${id}）`,
     }, text, el('span', { class: 'sid', 'aria-hidden': 'true' }, id));
