@@ -67,7 +67,7 @@
         line-height: 1.6;
     }
     .wrap {
-        max-width: 1080px;
+        max-width: 960px;
         margin: 0 auto;
         padding-block: 56px 64px;
         padding-left: max(16px, env(safe-area-inset-left, 0px));
@@ -94,7 +94,7 @@
 
     .shelf {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
         gap: 24px;
     }
     .game {
@@ -393,6 +393,46 @@
         border-bottom: 12px solid transparent;
     }
 
+    /* Scene: Dino Beat — disco ball over a neon note highway */
+    .beat { background: linear-gradient(#0c0518, #2a0f45 60%, #4a1a5c); }
+    .beat .ball {
+        position: absolute;
+        left: calc(50% - 34px);
+        top: 6%;
+        width: 68px;
+        height: 68px;
+        border-radius: 50%;
+        background: repeating-conic-gradient(#ffe9a8 0 25%, #ffc46b 0 50%) 0 0 / 14px 14px;
+        box-shadow: 0 0 40px 10px rgba(255, 210, 63, 0.35);
+    }
+    .beat .road {
+        position: absolute;
+        left: 18%;
+        right: 18%;
+        top: 30%;
+        bottom: 0;
+        background:
+            linear-gradient(90deg, transparent 24.5%, rgba(255, 255, 255, 0.18) 25%, transparent 25.5%, transparent 49.5%, rgba(255, 255, 255, 0.18) 50%, transparent 50.5%, transparent 74.5%, rgba(255, 255, 255, 0.18) 75%, transparent 75.5%),
+            rgba(20, 8, 40, 0.8);
+        clip-path: polygon(38% 0, 62% 0, 100% 100%, 0 100%);
+    }
+    .beat .note {
+        position: absolute;
+        width: 34px;
+        height: 22px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.7);
+    }
+    .beat .line {
+        position: absolute;
+        left: 20%;
+        right: 20%;
+        bottom: 16%;
+        height: 3px;
+        background: #ffffff;
+        box-shadow: 0 0 12px #ffffff;
+    }
+
     footer { font-size: 13px; color: var(--muted); }
 
     @media (prefers-reduced-motion: reduce) {
@@ -486,6 +526,32 @@
                 </ul>
                 <div class="play">
                     <span>キーボード・タッチ対応・進み具合を保存</span>
+                    <span class="btn">あそぶ</span>
+                </div>
+            </div>
+        </a>
+
+        <a class="game" href="dino-beat/index.html">
+            <div class="scene beat" aria-hidden="true">
+                <div class="ball"></div>
+                <div class="road"></div>
+                <div class="note" style="left: calc(50% - 40px); top: 40%; background: #ffd23f; transform: scale(0.6);"></div>
+                <div class="note" style="left: calc(50% + 6px); top: 52%; background: #3ff0c2; transform: scale(0.8);"></div>
+                <div class="note" style="left: calc(50% - 70px); top: 66%; background: #ff4fa3;"></div>
+                <div class="note" style="left: calc(50% + 40px); top: 68%; background: #4fa8ff;"></div>
+                <div class="line"></div>
+            </div>
+            <div class="body">
+                <div class="kicker">恐竜ディスコの音ゲー</div>
+                <h2>Dino Beat</h2>
+                <p class="desc">ブラウザで鳴らすオリジナル曲にあわせて、4つのレーンに落ちてくるタマゴを叩くリズムゲーム。2曲 × 3つのむずかしさ。</p>
+                <ul class="keys" aria-label="操作">
+                    <li>D F J K で叩く</li>
+                    <li>スマホは4分割タップ</li>
+                    <li>タイミング補正つき</li>
+                </ul>
+                <div class="play">
+                    <span>音が出ます・キーボード・タッチ対応</span>
                     <span class="btn">あそぶ</span>
                 </div>
             </div>

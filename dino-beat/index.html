@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Dino Beat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=M+PLUS+1:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="stage" aria-label="Dino Beat のゲーム画面"></canvas>
+
+<div class="hud" id="hud" hidden>
+    <div class="hud-song">
+        <span class="diff-tag" id="hudDiff">NORMAL</span>
+        <span id="hudTitle">Volcano Groove</span>
+    </div>
+    <div class="hud-progress"><div id="hudBar"></div></div>
+    <div class="hud-score">
+        <b id="hudScore">0000000</b>
+        <span id="hudAcc">100.00%</span>
+    </div>
+    <button class="round" id="pauseBtn" type="button" aria-label="一時停止">
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><rect x="4" y="3" width="4" height="14" rx="1.5"/><rect x="12" y="3" width="4" height="14" rx="1.5"/></svg>
+    </button>
+</div>
+
+<div class="overlay" id="titleOv">
+    <div class="card title-card">
+        <h1 class="logo"><span>DINO</span><span>BEAT</span></h1>
+        <p class="tag">恐竜ディスコへようこそ。落ちてくるタマゴを、ビートにあわせて叩こう。</p>
+
+        <div class="group">
+            <div class="label">曲をえらぶ</div>
+            <div class="songs" id="songList" role="radiogroup" aria-label="曲"></div>
+        </div>
+
+        <div class="group">
+            <div class="label">むずかしさ</div>
+            <div class="diffs" id="diffList" role="radiogroup" aria-label="むずかしさ"></div>
+        </div>
+
+        <button class="start" id="startBtn" type="button">START <kbd>Enter</kbd></button>
+
+        <details class="settings">
+            <summary>設定</summary>
+            <label class="setting" for="speedInput">
+                <span>ノーツの速さ</span>
+                <input id="speedInput" type="range" min="1" max="4.5" step="0.1">
+                <output id="speedOut">2.2</output>
+            </label>
+            <label class="setting" for="offsetInput">
+                <span>タイミング補正</span>
+                <input id="offsetInput" type="range" min="-150" max="150" step="1">
+                <output id="offsetOut">0 ms</output>
+            </label>
+            <label class="setting" for="volumeInput">
+                <span>音量</span>
+                <input id="volumeInput" type="range" min="0" max="1" step="0.05">
+                <output id="volumeOut">80%</output>
+            </label>
+            <label class="setting check" for="hitSoundInput">
+                <span>叩いた音を鳴らす</span>
+                <input id="hitSoundInput" type="checkbox">
+            </label>
+            <p class="note">いつも「SLOW」（遅れ）と判定されるなら補正をプラスに、「FAST」（早い）ならマイナスにします。リザルト画面でおすすめの値も出ます。</p>
+        </details>
+
+        <p class="guide"><kbd>D</kbd><kbd>F</kbd><kbd>J</kbd><kbd>K</kbd> か <kbd>←</kbd><kbd>↓</kbd><kbd>↑</kbd><kbd>→</kbd> で叩く。スマホは画面を左右4つに分けてタップ。</p>
+    </div>
+</div>
+
+<div class="overlay" id="pauseOv" hidden>
+    <div class="card small">
+        <h2 class="big-word">PAUSE</h2>
+        <div class="stack">
+            <button class="start" id="resumeBtn" type="button">つづける</button>
+            <button class="ghost" id="retryPauseBtn" type="button">最初から</button>
+            <button class="ghost" id="quitBtn" type="button">曲選択にもどる</button>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" id="resultOv" hidden>
+    <div class="card result-card">
+        <div class="result-head">
+            <div class="rank" id="rRank">S</div>
+            <div class="result-meta">
+                <div class="result-song" id="rSong">Volcano Groove</div>
+                <div class="result-score" id="rScore">0</div>
+                <div class="badges" id="rBadges"></div>
+            </div>
+        </div>
+        <div class="counts">
+            <div class="count perfect"><span>PERFECT</span><b id="rPerfect">0</b></div>
+            <div class="count great"><span>GREAT</span><b id="rGreat">0</b></div>
+            <div class="count good"><span>GOOD</span><b id="rGood">0</b></div>
+            <div class="count miss"><span>MISS</span><b id="rMiss">0</b></div>
+        </div>
+        <div class="result-line"><span>最大コンボ</span><b id="rCombo">0</b></div>
+        <div class="result-line"><span>精度</span><b id="rAcc">0%</b></div>
+        <div class="result-line"><span>平均のずれ</span><b id="rAvg">±0 ms</b></div>
+        <div class="offset-tip" id="offsetTip" hidden>
+            <span id="offsetTipText"></span>
+            <button class="ghost tiny" id="applyOffsetBtn" type="button">補正を適用</button>
+        </div>
+        <div class="row">
+            <button class="ghost" id="toTitleBtn" type="button">曲選択へ</button>
+            <button class="start" id="retryBtn" type="button">もう一回 <kbd>Enter</kbd></button>
+        </div>
+    </div>
+</div>
+
+<script src="songs.js"></script>
+<script src="engine.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
