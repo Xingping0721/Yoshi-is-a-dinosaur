@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Yoshi is a dinosaur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=M+PLUS+Rounded+1c:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+    /* Layout: a short title block over a two-up shelf of game cards; each card opens with a little painted scene of its game */
+    :root {
+        --bg: #f3f8ec;
+        --spot: #d6ecc6;
+        --card: #ffffff;
+        --fg: #1d2b1a;
+        --muted: #5c6e55;
+        --leaf: #4fb83a;
+        --leaf-deep: #2a7a2a;
+        --shell: #e8475b;
+        --sun: #ffb84d;
+        --line: rgba(29, 43, 26, 0.12);
+        --font-display: 'Lilita One', 'Arial Rounded MT Bold', 'Trebuchet MS', sans-serif;
+        --font-body: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic ProN', 'Yu Gothic UI', 'Meiryo', system-ui, sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+            --bg: #121a14;
+            --spot: #1b2a1d;
+            --card: #1c2620;
+            --fg: #eef5e8;
+            --muted: #a3b69b;
+            --leaf: #6fd85a;
+            --leaf-deep: #2f8a35;
+            --shell: #ff6b7a;
+            --sun: #ffc56b;
+            --line: rgba(238, 245, 232, 0.12);
+            color-scheme: dark;
+        }
+    }
+    :root[data-theme="dark"] {
+        --bg: #121a14;
+        --spot: #1b2a1d;
+        --card: #1c2620;
+        --fg: #eef5e8;
+        --muted: #a3b69b;
+        --leaf: #6fd85a;
+        --leaf-deep: #2f8a35;
+        --shell: #ff6b7a;
+        --sun: #ffc56b;
+        --line: rgba(238, 245, 232, 0.12);
+        color-scheme: dark;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        min-height: 100vh;
+        background-color: var(--bg);
+        background-image:
+            radial-gradient(circle at 20% 30%, var(--spot) 0 26px, transparent 27px),
+            radial-gradient(circle at 75% 70%, var(--spot) 0 18px, transparent 19px),
+            radial-gradient(circle at 60% 15%, var(--spot) 0 10px, transparent 11px);
+        background-size: 220px 220px;
+        color: var(--fg);
+        font-family: var(--font-body);
+        line-height: 1.6;
+    }
+    .wrap {
+        max-width: 960px;
+        margin: 0 auto;
+        padding-block: 56px 64px;
+        padding-left: max(16px, env(safe-area-inset-left, 0px));
+        padding-right: max(16px, env(safe-area-inset-right, 0px));
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    header { display: flex; flex-direction: column; gap: 8px; }
+    h1 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: clamp(44px, 9vw, 80px);
+        line-height: 0.95;
+        letter-spacing: 0.5px;
+        color: var(--leaf);
+        text-shadow: 0 5px 0 var(--leaf-deep);
+        text-wrap: balance;
+    }
+    h1 em { font-style: normal; color: var(--shell); text-shadow: 0 5px 0 #9c2a38; }
+    .lead { margin: 6px 0 0; font-size: 16px; color: var(--muted); max-width: 40em; }
+
+    .shelf {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+        gap: 24px;
+    }
+    .game {
+        display: flex;
+        flex-direction: column;
+        border-radius: 22px;
+        background: var(--card);
+        box-shadow: 0 1px 0 var(--line), 0 14px 34px rgba(20, 40, 20, 0.12);
+        overflow: hidden;
+        color: inherit;
+        text-decoration: none;
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .game:hover { transform: translateY(-4px); box-shadow: 0 1px 0 var(--line), 0 22px 44px rgba(20, 40, 20, 0.18); }
+    .game:focus-visible { outline: 3px solid var(--leaf); outline-offset: 4px; }
+
+    .scene { position: relative; aspect-ratio: 16 / 9; max-width: 100%; overflow: hidden; }
+    .body { display: flex; flex-direction: column; gap: 12px; padding: 20px 22px 22px; flex: 1; }
+    .kicker {
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+    }
+    h2 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 1;
+    }
+    .desc { margin: 0; font-size: 15px; }
+    .keys { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+    .keys li {
+        font-size: 12px;
+        font-weight: 700;
+        padding: 3px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        color: var(--muted);
+    }
+    .play {
+        margin-top: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+    }
+    .play span:first-child { font-size: 12px; color: var(--muted); }
+    .btn {
+        flex: none;
+        padding: 8px 20px;
+        border-radius: 999px;
+        background: var(--leaf);
+        color: #ffffff;
+        font-weight: 800;
+        font-size: 15px;
+        box-shadow: 0 3px 0 var(--leaf-deep);
+    }
+
+    /* Scene: Yoshi's 3D Drive — grass, a curving track with curbs, a red car */
+    .drive { background: linear-gradient(#7cc6f0 0 38%, #74c25a 38%); }
+    .drive .track {
+        position: absolute;
+        left: -20%;
+        right: -20%;
+        top: 52%;
+        height: 110%;
+        border-radius: 50%;
+        border: 34px solid #4b5059;
+        outline: 6px dashed #ffffff;
+        outline-offset: -20px;
+        box-shadow: 0 0 0 7px #e0453a;
+    }
+    .drive .tree {
+        position: absolute;
+        width: 46px;
+        height: 46px;
+        border-radius: 50% 50% 46% 54%;
+        background: #3f9e3a;
+        box-shadow: inset -8px -6px 0 rgba(0, 0, 0, 0.15);
+    }
+    .drive .tree::after {
+        content: "";
+        position: absolute;
+        left: 19px;
+        top: 40px;
+        width: 9px;
+        height: 22px;
+        border-radius: 3px;
+        background: #8a5a35;
+    }
+    .drive .crate {
+        position: absolute;
+        width: 34px;
+        height: 34px;
+        background: #c98d4f;
+        border: 4px solid #7e4b22;
+        border-radius: 3px;
+        transform: rotate(-8deg);
+    }
+    .drive .car {
+        position: absolute;
+        left: 46%;
+        top: 60%;
+        width: 92px;
+        height: 34px;
+        border-radius: 10px 14px 6px 6px;
+        background: #e8433a;
+        box-shadow: inset 0 -8px 0 rgba(0, 0, 0, 0.15);
+    }
+    .drive .car::before,
+    .drive .car::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: #2b2f36;
+        border: 5px solid #d9dde3;
+    }
+    .drive .car::before { left: 10px; }
+    .drive .car::after { right: 10px; }
+    .drive .head {
+        position: absolute;
+        left: 28px;
+        top: -22px;
+        width: 28px;
+        height: 26px;
+        border-radius: 50%;
+        background: #6cc644;
+    }
+    .drive .head::after {
+        content: "";
+        position: absolute;
+        left: 18px;
+        top: 6px;
+        width: 24px;
+        height: 18px;
+        border-radius: 50%;
+        background: #6cc644;
+    }
+
+    /* Scene: Dino Swing — dusk sky, sun, vine, flower, tongue, river */
+    .swing { background: linear-gradient(#141a42, #4b3b7c 45%, #ff8a65 80%, #ffc98a); }
+    .swing .sun {
+        position: absolute;
+        right: 12%;
+        bottom: 12%;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: #ffd38a;
+        box-shadow: 0 0 60px 20px rgba(255, 211, 138, 0.45);
+    }
+    .swing .hills {
+        position: absolute;
+        left: -10%;
+        right: -10%;
+        bottom: 6%;
+        height: 34%;
+        background: #24204a;
+        border-radius: 50% 50% 0 0 / 70% 70% 0 0;
+    }
+    .swing .river { position: absolute; left: 0; right: 0; bottom: 0; height: 14%; background: linear-gradient(#2a8a96, #0e2f45); }
+    .swing .vine { position: absolute; left: 34%; top: 0; width: 5px; height: 30%; background: #2f8a4a; border-radius: 3px; }
+    .swing .flower {
+        position: absolute;
+        left: calc(34% - 12px);
+        top: calc(30% - 10px);
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: radial-gradient(circle, #ffd34d 0 6px, #ff8fb8 7px);
+        box-shadow: 0 0 22px 8px rgba(255, 230, 150, 0.5);
+    }
+    .swing .tongue {
+        position: absolute;
+        left: 34%;
+        top: 33%;
+        width: 120px;
+        height: 6px;
+        border-radius: 3px;
+        background: #ff5c8a;
+        transform-origin: left center;
+        transform: rotate(58deg);
+    }
+    .swing .dino {
+        position: absolute;
+        left: calc(34% + 52px);
+        top: calc(33% + 96px);
+        width: 40px;
+        height: 36px;
+        border-radius: 50%;
+        background: #63d14e;
+        border: 3px solid #123a22;
+    }
+    .swing .dino::after {
+        content: "";
+        position: absolute;
+        left: 18px;
+        top: -20px;
+        width: 26px;
+        height: 22px;
+        border-radius: 50%;
+        background: #63d14e;
+        border: 3px solid #123a22;
+    }
+    .swing .berry {
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #ff4f7b;
+        border: 2px solid #7a1636;
+    }
+
+    footer { font-size: 13px; color: var(--muted); }
+
+    @media (prefers-reduced-motion: reduce) {
+        .game { transition: none; }
+        .game:hover { transform: none; }
+    }
+</style>
+</head>
+<body>
+<main class="wrap">
+    <header>
+        <h1>Yoshi is a <em>dinosaur</em></h1>
+        <p class="lead">ブラウザだけで遊べる、恐竜のミニゲーム集です。インストールは不要で、カードを選ぶとすぐ始まります。</p>
+    </header>
+
+    <section class="shelf" aria-label="ゲーム一覧">
+        <a class="game" href="yoshi.html">
+            <div class="scene drive" aria-hidden="true">
+                <div class="track"></div>
+                <div class="tree" style="left: 8%; top: 18%;"></div>
+                <div class="tree" style="left: 80%; top: 12%;"></div>
+                <div class="crate" style="left: 24%; top: 44%;"></div>
+                <div class="crate" style="left: 70%; top: 50%; transform: rotate(12deg);"></div>
+                <div class="car"><div class="head"></div></div>
+            </div>
+            <div class="body">
+                <div class="kicker">3D ドライブ ＆ シューティング</div>
+                <h2>Yoshi's 3D Drive</h2>
+                <p class="desc">歩いて、撃って、車に乗りこんでサーキットを爆走。コースに置かれた木箱をぜんぶ壊せばクリアです。</p>
+                <ul class="keys" aria-label="操作">
+                    <li>WASD / 矢印で移動</li>
+                    <li>Space で射撃</li>
+                    <li>F で乗り降り</li>
+                    <li>ドラッグでカメラ</li>
+                </ul>
+                <div class="play">
+                    <span>キーボードとマウス・要インターネット接続</span>
+                    <span class="btn">あそぶ</span>
+                </div>
+            </div>
+        </a>
+
+        <a class="game" href="dino-swing.html">
+            <div class="scene swing" aria-hidden="true">
+                <div class="sun"></div>
+                <div class="hills"></div>
+                <div class="river"></div>
+                <div class="vine"></div>
+                <div class="flower"></div>
+                <div class="tongue"></div>
+                <div class="dino"></div>
+                <div class="berry" style="left: 62%; top: 52%;"></div>
+                <div class="berry" style="left: 70%; top: 46%;"></div>
+                <div class="berry" style="left: 78%; top: 44%;"></div>
+            </div>
+            <div class="body">
+                <div class="kicker">ワンボタン・スイングアクション</div>
+                <h2>Dino Swing</h2>
+                <p class="desc">舌をのばして花につかまり、振り子の勢いで夕暮れの川を渡ります。ベリーを集めて、どこまで遠くへ行けるか挑戦。</p>
+                <ul class="keys" aria-label="操作">
+                    <li>長押しでつかまる</li>
+                    <li>はなしてジャンプ</li>
+                    <li>キノコで大ジャンプ</li>
+                </ul>
+                <div class="play">
+                    <span>マウス・タッチ・キーボード対応</span>
+                    <span class="btn">あそぶ</span>
+                </div>
+            </div>
+        </a>
+    </section>
+
+    <footer>どちらも HTML ファイル1つで動きます。フォルダごとダウンロードして、このページを開いても遊べます。</footer>
+</main>
+</body>
+</html>
