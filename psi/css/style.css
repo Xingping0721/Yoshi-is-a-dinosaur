@@ -524,3 +524,22 @@ a { color: var(--accent); }
 @media (prefers-reduced-motion: reduce) {
     .zoom-svg g { transition: none; }
 }
+
+/* Photos and illustrations inside scenes */
+.scene-figure { margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.scene-figure img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 46vh;
+    object-fit: cover;
+    border-radius: 12px;
+    background: var(--story);
+}
+.scene-figure figcaption { display: flex; flex-direction: column; gap: 2px; font-size: 13px; line-height: 1.6; color: var(--muted); }
+.scene-figure .credit { font-size: 11px; color: var(--faint); }
+.scene-figure .credit a { color: inherit; }
+.scene-figure.missing figcaption { padding: 10px 12px; border-radius: 12px; border: 1px dashed var(--line); }
+.tag.testimony { color: var(--accent); }
+.para.quote { padding-left: 14px; border-left: 3px solid var(--line); }

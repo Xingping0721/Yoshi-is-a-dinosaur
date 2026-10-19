@@ -15,6 +15,14 @@ export const INDICATORS = {
         source: 'D-01',
         haze: v => clamp01((v - 50) / 300),
     },
+    m_api: {
+        text: 'meter.m_api',
+        limits: [50, 100, 200, 300, Infinity],   // D-12, D-36
+        scaleMax: 400,
+        ticks: [0, 50, 100, 200, 300, 400],
+        source: 'D-36',
+        haze: v => clamp01((v - 50) / 300),
+    },
     p_pm10: {
         text: 'meter.p_pm10',
         limits: [49, 150, 250, 350, Infinity],   // D-15: below 50 good … above 350 hazardous
@@ -29,7 +37,7 @@ export const INDICATORS = {
 function normalise(reading, ind) {
     if (reading === null || reading === undefined) return null;
     if (typeof reading === 'number') return { value: reading, display: formatNumber(reading), source: ind.source };
-    return { display: formatNumber(reading.value), source: ind.source, ...reading };
+    return { display: reading.value === null ? '—' : formatNumber(reading.value), source: ind.source, ...reading };
 }
 
 function bandIndex(ind, v) {
@@ -67,6 +75,15 @@ function paint(ind, r, parts) {
         needle.style.left = '0%';
         over.hidden = true;
         chips.replaceChildren(sourceChip(ind.source));
+        return;
+    }
+    if (r.value === null) {
+        value.textContent = r.display;
+        band.textContent = t('meter.band', { band: '—' });
+        band.style.removeProperty('--band-color');
+        needle.style.left = '0%';
+        over.hidden = true;
+        chips.replaceChildren(sourceChip(r.source));
         return;
     }
     const i = bandIndex(ind, r.value);
@@ -114,7 +131,7 @@ export function createMeter(root) {
         if (!ind) return;
         const r = normalise(reading, ind);
         paint(ind, r, parts);
-        document.documentElement.style.setProperty('--haze', r ? String(ind.haze(r.value)) : '0');
+        document.documentElement.style.setProperty('--haze', r && r.value !== null ? String(ind.haze(r.value)) : '0');
     }
 
     return { configure, set };

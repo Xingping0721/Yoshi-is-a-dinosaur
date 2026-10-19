@@ -1,6 +1,7 @@
 // Source sheet (one source) and the full "data and sources" screen.
 import { el } from './ui.js';
 import { t } from './i18n.js';
+import { allImages } from './images.js';
 
 let byId = new Map();
 let lastFocus = null;
@@ -101,6 +102,21 @@ export function renderSourceList({ accessed }, onBack) {
             s.check ? el('p', { class: 'meta-line' }, t('sourcesScreen.check', { text: s.check })) : null,
             s.accessed ? el('p', { class: 'meta-line' }, t('sheet.accessed', { date: s.accessed })) : null,
             s.licence ? el('p', { class: 'meta-line' }, t('sheet.licence', { licence: s.licence })) : null,
+        ))),
+
+        el('h2', { class: 'section-title' }, T.creditsTitle),
+        el('p', { class: 'para small' }, T.creditsLead),
+        el('ul', { class: 'src-list' }, allImages().map(img => el('li', { class: 'src-item' },
+            el('h3', {}, t(`images.${img.id}`).caption),
+            img.kind === 'photo'
+                ? el('div', { class: 'src-link' },
+                    el('p', { class: 'orig-title' }, img.original),
+                    el('p', { class: 'orig-pub' }, [img.creator, img.taken].filter(Boolean).join('　')),
+                    el('p', { class: 'orig-pub' }, img.licenseUrl
+                        ? el('a', { href: img.licenseUrl, target: '_blank', rel: 'noopener noreferrer' }, img.license)
+                        : img.license),
+                    el('a', { class: 'orig-link', href: img.page, target: '_blank', rel: 'noopener noreferrer' }, img.page))
+                : el('p', { class: 'orig-pub' }, t('image.illustration')),
         ))),
 
         el('h2', { class: 'section-title' }, T.assumptionsTitle),

@@ -2,6 +2,9 @@
 import { t } from '../i18n.js';
 import { formatNumber } from '../ui.js';
 
+// Photos for the concession and peatland steps
+const ZOOM_PHOTOS = [undefined, undefined, 'act3-plantation', 'act3-burned-peat'];
+
 export function newAct3State(assumptions) {
     return { money: assumptions.act3.money, method: null };
 }
@@ -49,6 +52,7 @@ export function act3Scenes({ assumptions }) {
             kicker: t('act3.zoomKicker', { n: i + 1, total: zoom.length }),
             title: step.title,
             paras: step.paras,
+            photo: ZOOM_PHOTOS[i],
         })),
         ...t('act3.end').map(block => ({ type: 'paras', chrome: {}, paras: block.paras })),
         { type: 'breath', chrome: {}, ...t('act3.breath') },

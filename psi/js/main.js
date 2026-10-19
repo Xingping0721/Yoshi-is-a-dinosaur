@@ -8,7 +8,9 @@ import { act1Scenes, newAct1State } from './acts/act1.js';
 import { act2Scenes, newAct2State } from './acts/act2.js';
 import { act3Scenes, newAct3State } from './acts/act3.js';
 import { act4Scenes, newAct4State } from './acts/act4.js';
+import { act5Scenes, newAct5State } from './acts/act5.js';
 import { endingScenes } from './acts/ending.js';
+import { setImages } from './images.js';
 import { epilogueScenes } from './acts/epilogue.js';
 
 const PROGRESS_KEY = 'psi-progress-v1';
@@ -28,6 +30,7 @@ const ACTS = [
     { key: 'act3', scenes: d => act3Scenes({ assumptions: d.assumptions }), state: d => newAct3State(d.assumptions) },
     { key: 'act4', scenes: d => act4Scenes({ assumptions: d.assumptions }), state: () => newAct4State() },
     { key: 'ending', scenes: () => endingScenes(), state: () => ({}) },
+    { key: 'act5', scenes: () => act5Scenes(), state: () => newAct5State() },
     {
         key: 'epilogue',
         scenes: d => epilogueScenes({ now: d.now }, { onSources: showSources, onRestart: restart }),
@@ -214,13 +217,15 @@ async function boot() {
         return;
     }
     try {
-        const [sources, psi, assumptions, now] = await Promise.all([
+        const [sources, psi, assumptions, now, images] = await Promise.all([
             loadJSON('data/sources.json'),
             loadJSON('data/s_psi_2015.json'),
             loadJSON('data/assumptions.json'),
             loadJSON('data/now.json'),
+            loadJSON('data/images.json'),
         ]);
         app.data = { sources: sources.sources, psi, assumptions, now };
+        setImages(images.images);
     } catch (err) {
         console.error(err);
         main.textContent = t('common.loadError');

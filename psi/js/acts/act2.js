@@ -43,7 +43,7 @@ export function act2Scenes({ psiDays }) {
 
     return [
         { type: 'card', chrome: {}, ...t('act2.card') },
-        ...t('act2.intro').map(block => ({ type: 'paras', chrome: { meter: 'p_pm10' }, paras: block.paras })),
+        ...t('act2.intro').map((block, i) => ({ type: 'paras', chrome: { meter: 'p_pm10' }, paras: block.paras, photo: i === 0 ? 'act2-haze-mosque' : undefined })),
         dayScene(DAYS[0]),
         {
             type: 'compare',

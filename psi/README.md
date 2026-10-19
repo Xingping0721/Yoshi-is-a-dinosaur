@@ -1,12 +1,14 @@
 # PSI（仮題）
 
-2015年に東南アジアで起きた越境煙害（ヘイズ）を、実在の統計と研究にもとづいてたどる、短い体験ゲームです。プレイ時間は15〜25分。
+2015年に東南アジアで起きた越境煙害（ヘイズ）と、2026年のいまを、実在の統計と研究にもとづいてたどる、短い体験ゲームです。プレイ時間は20〜30分。
 
 - 第1幕：煙を受ける側（S国の親）
 - 第2幕：煙の向こう側（I国 K島の州都 P市の家族）
 - 第3幕：火をつける側（I国の小さな農家）と、そのまわりの構造
 - 第4幕：遠くの買い手（日本の消費者）
-- エンディング／エピローグ（2026年のいま）／データと出典
+- エンディング（2015年の煙のあとで）
+- 第5幕：2026年、遠いはずの煙が近づいてくる（M国 P州に住む人）
+- エピローグ（2026年のいま）／データと出典
 
 ゲーム本文では国を I国・S国・M国 と書き、実在の名前は「データと出典」の画面にだけ、元の資料のまま表示します。物語の部分は「ゲーム上の設定」と表示し、数字や出来事には出典 id（D-xx）がついています。
 
@@ -41,6 +43,8 @@ psi/
 ├─ .nojekyll
 ├─ README.md
 ├─ TODO.md              … 不明点・未確認事項・依頼書との食い違い
+├─ IMAGE_CREDITS.md     … 写真とイラストのクレジット
+├─ PLAN_PENANG_2026.md  … 第5幕の計画書
 ├─ css/style.css
 ├─ js/
 │   ├─ main.js          … 画面の流れと進み具合の保存
@@ -48,12 +52,15 @@ psi/
 │   ├─ meter.js         … 汚染メーター
 │   ├─ sources.js       … 出典シートと「データと出典」画面
 │   ├─ ui.js / i18n.js  … 共通の道具と文言
-│   └─ acts/act1.js 〜 act4.js, ending.js, epilogue.js
+│   ├─ images.js        … 場面の中の写真とイラスト
+│   └─ acts/act1.js 〜 act5.js, ending.js, epilogue.js
+├─ assets/img/          … 写真（Wikimedia Commons、幅960px）とイラスト（SVG）
 ├─ data/
 │   ├─ sources.json      … 出典の一覧（id、ゲームで見せる文、元の資料のタイトル・発行元・URL、確認したこと）
 │   ├─ s_psi_2015.json   … D-01 から作った2015年8〜11月の日別PSI
 │   ├─ now.json          … エピローグ用の数字（asOf つき）
-│   └─ assumptions.json  … ゲーム上の設定
+│   ├─ assumptions.json  … ゲーム上の設定
+│   └─ images.json       … 画像の一覧（ファイル、作者、ライセンス）
 ├─ i18n/ja.json          … 画面の文言すべて
 └─ scripts/build_psi.js  … D-01 から s_psi_2015.json を作るスクリプト
 ```
@@ -86,6 +93,7 @@ data.gov.sg の API から履歴データを読み、2015年8〜11月につい�
   Contains information from Historical 24-hr PSI accessed on 2026-10-18 from data.gov.sg which is made available under the terms of the Singapore Open Data Licence version 1.0 https://data.gov.sg/open-data-licence
 - **D-02**（M国の大気汚染物質の月平均濃度、OpenDOSM）は CC BY 4.0 です。このゲームでは数値を使っていません。
 - そのほかの資料は、数字を引用し、リンクで元の資料を示しています。資料そのものは再配布していません。
+- 写真は Wikimedia Commons のもので、ライセンスは写真ごとに違います（CC BY-SA 4.0、CC BY-SA 2.0、パブリックドメイン）。一覧は `IMAGE_CREDITS.md`。
 
 コード自体のライセンスはまだ決めていません（TODO.md）。
 

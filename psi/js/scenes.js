@@ -3,6 +3,9 @@
 import { el, rich, sourceChip, assumptionTag, reducedMotion } from './ui.js';
 import { t, fill } from './i18n.js';
 import { miniMeter } from './meter.js';
+import { figure } from './images.js';
+
+const photo = scene => (scene.photo ? figure(scene.photo) : null);
 
 const value = (v, state) => (typeof v === 'function' ? v(state) : v);
 
@@ -14,7 +17,8 @@ export function nextButton(label, onClick) {
 export function para(p, vars) {
     return el('div', { class: 'para-wrap' },
         p.assumption ? assumptionTag() : null,
-        el('p', { class: 'para' }, rich(p.text, vars)),
+        p.testimony ? el('span', { class: 'tag testimony' }, t('common.testimony')) : null,
+        el('p', { class: p.testimony ? 'para quote' : 'para' }, rich(p.text, vars)),
         p.source ? el('div', { class: 'para-src' }, sourceChip(p.source)) : null,
     );
 }
@@ -24,6 +28,7 @@ function card(scene, ctx) {
         el('p', { class: 'kicker' }, scene.kicker),
         el('h1', { class: 'card-title' }, scene.title),
         scene.period ? el('p', { class: 'period' }, scene.period) : el('p', { class: 'period' }),
+        photo(scene),
         nextButton(null, ctx.next),
     );
 }
@@ -33,6 +38,7 @@ function paras(scene, ctx) {
     const list = value(scene.paras, ctx.state);
     return el('section', { class: 'scene' },
         scene.title ? el('h1', { class: 'breath-title' }, scene.title) : null,
+        photo(scene),
         ...list.map(p => para(p, vars)),
         nextButton(scene.nextLabel, ctx.next),
     );
@@ -73,6 +79,7 @@ function day(scene, ctx) {
     });
 
     return el('section', { class: 'scene' },
+        photo(scene),
         el('div', { class: 'story para-wrap' }, assumptionTag(), el('p', { class: 'para' }, rich(scene.story))),
         list,
         resultBox,
@@ -170,6 +177,7 @@ function zoom(scene, ctx) {
         el('p', { class: 'kicker' }, scene.kicker),
         el('div', { class: 'zoom' }, svg, steps),
         el('h1', { class: 'breath-title' }, scene.title),
+        photo(scene),
         ...scene.paras.map(p => para(p, {})),
         nextButton(scene.nextLabel, ctx.next),
     );

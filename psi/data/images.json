@@ -1,0 +1,84 @@
+{
+  "note": "画像の一覧。表示する説明文（alt・キャプション）は i18n/ja.json の images にある。詳しいクレジットは IMAGE_CREDITS.md",
+  "images": [
+    {
+      "id": "act1-haze-city",
+      "file": "assets/img/act1-haze-city.jpg",
+      "width": 960,
+      "height": 1280,
+      "kind": "photo",
+      "creator": "Jacklee",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Haze_seen_from_Clementi_Road,_Singapore_-_20150924-02.jpg",
+      "taken": "2015-09-24",
+      "original": "Haze seen from Clementi Road, Singapore - 20150924-02.jpg"
+    },
+    {
+      "id": "act2-haze-mosque",
+      "file": "assets/img/act2-haze-mosque.jpg",
+      "width": 960,
+      "height": 567,
+      "kind": "photo",
+      "creator": "Franky Acil Zamzani",
+      "license": "Public domain",
+      "licenseUrl": "",
+      "page": "https://commons.wikimedia.org/wiki/File:Palangkaraya_Haze.jpg",
+      "taken": "2015-10-03",
+      "original": "Palangkaraya Haze.jpg"
+    },
+    {
+      "id": "act3-plantation",
+      "file": "assets/img/act3-plantation.jpg",
+      "width": 960,
+      "height": 540,
+      "kind": "photo",
+      "creator": "Firzafp",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Oil_Palm_plantation_in_Rupit,_North_Musi_Rawas,_South_Sumatra.jpg",
+      "taken": "2020-07-19",
+      "original": "Oil Palm plantation in Rupit, North Musi Rawas, South Sumatra.jpg"
+    },
+    {
+      "id": "act3-burned-peat",
+      "file": "assets/img/act3-burned-peat.jpg",
+      "width": 960,
+      "height": 1280,
+      "kind": "photo",
+      "creator": "Gambut Pratama",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Burned_Peatland_in_Indonesia.jpg",
+      "taken": "2016-11-22",
+      "original": "Burned Peatland in Indonesia.jpg"
+    },
+    {
+      "id": "act5-haze-tower",
+      "file": "assets/img/act5-haze-tower.jpg",
+      "width": 960,
+      "height": 638,
+      "kind": "photo",
+      "creator": "Marufish from Alor Setar, Malaysia",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Hazy_Penang_Komtar_(22461854354).jpg",
+      "taken": "2015-09-30",
+      "original": "Hazy Penang Komtar (22461854354).jpg",
+      "creatorShort": "Marufish"
+    },
+    {
+      "id": "act5-sky",
+      "file": "assets/img/act5-sky.svg",
+      "width": 960,
+      "height": 540,
+      "kind": "illustration",
+      "creator": "このゲームの制作者（作成）",
+      "license": "",
+      "licenseUrl": "",
+      "page": "",
+      "taken": "",
+      "original": ""
+    }
+  ]
+}

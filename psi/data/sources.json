@@ -11,12 +11,19 @@
       "publisher": "National Environment Agency（data.gov.sg）",
       "url": "https://data.gov.sg/datasets/d_b4cf557f8750260d229c49fd768e11ed/view",
       "more": [
-        { "title": "API (datastore_search)", "publisher": "data.gov.sg", "url": "https://data.gov.sg/api/action/datastore_search?resource_id=d_b4cf557f8750260d229c49fd768e11ed" }
+        {
+          "title": "API (datastore_search)",
+          "publisher": "data.gov.sg",
+          "url": "https://data.gov.sg/api/action/datastore_search?resource_id=d_b4cf557f8750260d229c49fd768e11ed"
+        }
       ],
       "licence": "Singapore Open Data Licence version 1.0",
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["第1幕", "第2幕"],
+      "used": [
+        "第1幕",
+        "第2幕"
+      ],
       "check": "APIから全108,864件のうち2015年8〜11月の122日分を取得（1日120件＝24時間×5地域、欠損なし）。データの収録期間は2014-04-01〜2026-08-31"
     },
     {
@@ -46,12 +53,24 @@
       "date": "2016-09-19",
       "url": "https://doi.org/10.1088/1748-9326/11/9/094023",
       "more": [
-        { "title": "Smoke from 2015 Indonesian fires may have caused 100,000 premature deaths", "publisher": "Harvard John A. Paulson School of Engineering and Applied Sciences", "date": "2016-09-19", "url": "https://seas.harvard.edu/news/2016/09/smoke-2015-indonesian-fires-may-have-caused-100000-premature-deaths" },
-        { "title": "100,300 deaths from Indonesia’s fires during 2015, new study estimates", "publisher": "Greenpeace Southeast Asia", "url": "https://www.greenpeace.org/southeastasia/press/3052/100300-deaths-from-indonesias-fires-during-2015-new-study-estimates/" }
+        {
+          "title": "Smoke from 2015 Indonesian fires may have caused 100,000 premature deaths",
+          "publisher": "Harvard John A. Paulson School of Engineering and Applied Sciences",
+          "date": "2016-09-19",
+          "url": "https://seas.harvard.edu/news/2016/09/smoke-2015-indonesian-fires-may-have-caused-100000-premature-deaths"
+        },
+        {
+          "title": "100,300 deaths from Indonesia’s fires during 2015, new study estimates",
+          "publisher": "Greenpeace Southeast Asia",
+          "url": "https://www.greenpeace.org/southeastasia/press/3052/100300-deaths-from-indonesias-fires-during-2015-new-study-estimates/"
+        }
       ],
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["第2幕", "エンディング"],
+      "used": [
+        "第2幕",
+        "エンディング"
+      ],
       "check": "論文の要旨で3か国合計100,300、本文3.4節で国別の内訳と2006年の値を確認。推計の対象は7〜10月の火災期（依頼書の例にあった「火災後の数か月の影響も含む」は確認できず、使っていない）"
     },
     {
@@ -65,11 +84,17 @@
       "date": "2016",
       "url": "https://doi.org/10.1038/srep37074",
       "more": [
-        { "title": "Indonesian fires exposed 69 million to 'killer haze'", "publisher": "Newcastle University", "url": "https://www.ncl.ac.uk/press/articles/archive/2016/11/wildfires" }
+        {
+          "title": "Indonesian fires exposed 69 million to 'killer haze'",
+          "publisher": "Newcastle University",
+          "url": "https://www.ncl.ac.uk/press/articles/archive/2016/11/wildfires"
+        }
       ],
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["エンディング"],
+      "used": [
+        "エンディング"
+      ],
       "check": "要旨（Europe PMC）で6,900万人と11,880（6,153–17,270）、ニューカッスル大学の発表で「約6,000人に1人」を確認。論文の本文に国別の死者数はない"
     },
     {
@@ -83,11 +108,18 @@
       "date": "2016-09-19",
       "url": "https://unearthed.greenpeace.org/2016/09/19/haze-indonesia-forest-fires-caused-100000-deaths-2015/",
       "more": [
-        { "title": "69m people breathed toxic smoke from 2015 Indonesian fires: study", "publisher": "Mongabay", "date": "2016-11-22", "url": "https://news.mongabay.com/2016/11/69m-people-breathed-toxic-smoke-from-2015-indonesian-fires-study/" }
+        {
+          "title": "69m people breathed toxic smoke from 2015 Indonesian fires: study",
+          "publisher": "Mongabay",
+          "date": "2016-11-22",
+          "url": "https://news.mongabay.com/2016/11/69m-people-breathed-toxic-smoke-from-2015-indonesian-fires-study/"
+        }
       ],
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["第2幕"],
+      "used": [
+        "第2幕"
+      ],
       "check": "Unearthed「公式発表では19人」、Mongabay「政府は火災が直接の原因の死者を24人としている」を確認"
     },
     {
@@ -116,13 +148,30 @@
       "date": "2015-11-27",
       "url": "https://svs.gsfc.nasa.gov/30699",
       "more": [
-        { "title": "Singapore slams Indonesia over haze response as schools shut", "publisher": "Malay Mail", "date": "2015-09-25", "url": "https://www.malaymail.com/news/world/2015/09/25/singapore-slams-indonesia-over-haze-response-as-schools-shut/976245" },
-        { "title": "Singapore schools close for first time as haze hits hazardous levels", "publisher": "The Star", "date": "2015-09-25", "url": "https://thestar.com.my/news/regional/2015/09/25/singapore-schools-close-1st-time-haze" },
-        { "title": "SINGAPORE SENDS NOTICES TO FOUR INDONESIAN COMPANIES AND SEEKS INFORMATION FROM SINGAPORE-LISTED APP", "publisher": "National Archives of Singapore（MSE_20150925001）", "date": "2015-09-25", "url": "https://www.nas.gov.sg/archivesonline/data/pdfdoc/MSE_20150925001.pdf" }
+        {
+          "title": "Singapore slams Indonesia over haze response as schools shut",
+          "publisher": "Malay Mail",
+          "date": "2015-09-25",
+          "url": "https://www.malaymail.com/news/world/2015/09/25/singapore-slams-indonesia-over-haze-response-as-schools-shut/976245"
+        },
+        {
+          "title": "Singapore schools close for first time as haze hits hazardous levels",
+          "publisher": "The Star",
+          "date": "2015-09-25",
+          "url": "https://thestar.com.my/news/regional/2015/09/25/singapore-schools-close-1st-time-haze"
+        },
+        {
+          "title": "SINGAPORE SENDS NOTICES TO FOUR INDONESIAN COMPANIES AND SEEKS INFORMATION FROM SINGAPORE-LISTED APP",
+          "publisher": "National Archives of Singapore（MSE_20150925001）",
+          "date": "2015-09-25",
+          "url": "https://www.nas.gov.sg/archivesonline/data/pdfdoc/MSE_20150925001.pdf"
+        }
       ],
       "accessed": "2026-10-18",
       "status": "corrected",
-      "used": ["第1幕"],
+      "used": [
+        "第1幕"
+      ],
       "check": "341（9月25日午前5時）・317（9月24日午後8時）・全小中学校の休校・高齢者などへのマスク配布をNASAで確認。3時間値であることはThe Star（317）で確認。依頼書の「S国で初めて全小中学校が休校」は不正確：Malay Mailは「ヘイズを理由にした休校は前例がない」、政府声明は「前回は2003年のSARS」"
     },
     {
@@ -136,12 +185,24 @@
       "date": "2016-02",
       "url": "https://hdl.handle.net/10986/23840",
       "more": [
-        { "title": "The Cost of Fire", "publisher": "World Bank Open Knowledge Repository", "url": "https://openknowledge.worldbank.org/entities/publication/391e19f4-18f7-56c2-8c28-bb89cc9e7d6f" },
-        { "title": "Indonesia Wildfires Cost $16.1 Billion in 2015: World Bank", "publisher": "BenarNews", "date": "2015-12-15", "url": "https://www.benarnews.org/english/news/indonesian/indonesia-fires-12152015170230.html" }
+        {
+          "title": "The Cost of Fire",
+          "publisher": "World Bank Open Knowledge Repository",
+          "url": "https://openknowledge.worldbank.org/entities/publication/391e19f4-18f7-56c2-8c28-bb89cc9e7d6f"
+        },
+        {
+          "title": "Indonesia Wildfires Cost $16.1 Billion in 2015: World Bank",
+          "publisher": "BenarNews",
+          "date": "2015-12-15",
+          "url": "https://www.benarnews.org/english/news/indonesian/indonesia-fires-12152015170230.html"
+        }
       ],
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["第3幕", "エンディング"],
+      "used": [
+        "第3幕",
+        "エンディング"
+      ],
       "check": "世界銀行のリポジトリの要旨（APIで取得）で161億ドル・GDPの2%・260万ha・B島の4倍・利益が一部に集中することを確認。依頼書にあったPDFのリンクは404。BenarNewsが伝える別の報告（Indonesia Economic Quarterly）は「GDPの1.9%」「B島の4.5倍」"
     },
     {
@@ -157,7 +218,9 @@
       "more": [],
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["エンディング"],
+      "used": [
+        "エンディング"
+      ],
       "check": "記事中の「9〜10月の26日間、米国経済全体の1日の排出を上回った（WRI）」を確認"
     },
     {
@@ -171,12 +234,23 @@
       "date": "2015-09-25",
       "url": "https://www.nas.gov.sg/archivesonline/data/pdfdoc/MSE_20150925001.pdf",
       "more": [
-        { "title": "Transboundary Haze Pollution Act 2014 (No. 24 of 2014).", "publisher": "UNEP Law and Environment Assistance Platform", "url": "https://leap.unep.org/en/countries/sg/national-legislation/transboundary-haze-pollution-act-2014-no-24-2014" },
-        { "title": "Singapore moves against Indonesian firms over haze", "publisher": "The Star", "date": "2015-09-26", "url": "https://www.thestar.com.my/News/Regional/2015/09/26/Singapore-moves-against-Indonesian-firms-over-haze/" }
+        {
+          "title": "Transboundary Haze Pollution Act 2014 (No. 24 of 2014).",
+          "publisher": "UNEP Law and Environment Assistance Platform",
+          "url": "https://leap.unep.org/en/countries/sg/national-legislation/transboundary-haze-pollution-act-2014-no-24-2014"
+        },
+        {
+          "title": "Singapore moves against Indonesian firms over haze",
+          "publisher": "The Star",
+          "date": "2015-09-26",
+          "url": "https://www.thestar.com.my/News/Regional/2015/09/26/Singapore-moves-against-Indonesian-firms-over-haze/"
+        }
       ],
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["第1幕"],
+      "used": [
+        "第1幕"
+      ],
       "check": "政府発表（PDF）で4社への予防措置通知（9月25日）、法律の施行日（2014年9月25日）、「ヘイズ汚染」の定義、9月1日・10日・14日の働きかけを確認。罰金額（1日10万S$、合計200万S$）はThe Starで確認。The Starの「5社」は、情報提出を求められたS国の上場企業を含めた数"
     },
     {
@@ -190,11 +264,18 @@
       "date": "2026-10-03",
       "url": "https://www.businesstoday.com.my/2026/10/03/singapore-continues-to-record-unhealthy-air-levels/",
       "more": [
-        { "title": "Normal, elevated, high, very high: New bands for one-hour PM2.5 readings in Singapore", "publisher": "Malay Mail", "date": "2016-06-27", "url": "https://www.malaymail.com/news/world/2016/06/27/normal-elevated-high-very-high-new-bands-for-one-hour-pm2.5-readings-in-sin/1150147" }
+        {
+          "title": "Normal, elevated, high, very high: New bands for one-hour PM2.5 readings in Singapore",
+          "publisher": "Malay Mail",
+          "date": "2016-06-27",
+          "url": "https://www.malaymail.com/news/world/2016/06/27/normal-elevated-high-very-high-new-bands-for-one-hour-pm2.5-readings-in-sin/1150147"
+        }
       ],
       "accessed": "2026-10-18",
       "status": "blocked",
-      "used": ["第1幕"],
+      "used": [
+        "第1幕"
+      ],
       "check": "Malay Mail（2016年）で1時間PM2.5の帯、3時間PSIの廃止、2015年10月19日の471を確認。Business Today はボット対策（Cloudflare）で開けず、24時間PSIの帯は他の報道で同じ区分を確認したのみ。タイトルはURLから推定"
     },
     {
@@ -208,11 +289,17 @@
       "date": "2019-09-18",
       "url": "https://www.malaymail.com/news/malaysia/2019/09/18/99-more-schools-ordered-to-close-in-selangor/1791589",
       "more": [
-        { "title": "Air Pollutant Index Management System (APIMS)", "publisher": "Department of Environment Malaysia", "url": "https://eqms.doe.gov.my/APIMS/main" }
+        {
+          "title": "Air Pollutant Index Management System (APIMS)",
+          "publisher": "Department of Environment Malaysia",
+          "url": "https://eqms.doe.gov.my/APIMS/main"
+        }
       ],
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["エピローグ"],
+      "used": [
+        "エピローグ"
+      ],
       "check": "記事で帯の区分と「APIが200を超えたため休校」を確認。「危険」の境目は記事では「300 or above」"
     },
     {
@@ -243,7 +330,10 @@
       "more": [],
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["第2幕", "第3幕"],
+      "used": [
+        "第2幕",
+        "第3幕"
+      ],
       "check": "「PM10の日平均が、この2週間ほど1,000µg/m³超」「土曜日（10月24日）、国家防災庁が6州で50万人超」「エルニーニョによる長い乾季」を確認。記事中の「350µg/m³超で危険」はPM10の基準"
     },
     {
@@ -259,7 +349,9 @@
       "more": [],
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["第2幕"],
+      "used": [
+        "第2幕"
+      ],
       "check": "PM10 1889.06µg/m³（金曜＝10月16日）、休校、「少なくとも25日」、PM10の帯の区分を確認"
     },
     {
@@ -273,11 +365,18 @@
       "date": "2015-10-17",
       "url": "https://www.thejakartapost.com/news/2015/10/17/haze-sickens-half-a-million-six-provinces-kalimantan-sumatra",
       "more": [
-        { "title": "Prolonged haze kills baby", "publisher": "The Jakarta Post", "date": "2015-11-05", "url": "https://www.thejakartapost.com/news/2015/11/05/prolonged-haze-kills-baby" }
+        {
+          "title": "Prolonged haze kills baby",
+          "publisher": "The Jakarta Post",
+          "date": "2015-11-05",
+          "url": "https://www.thejakartapost.com/news/2015/11/05/prolonged-haze-kills-baby"
+        }
       ],
       "accessed": "2026-10-18",
       "status": "corrected",
-      "used": ["第2幕"],
+      "used": [
+        "第2幕"
+      ],
       "check": "425,377（10月16日時点、保健相）、前の週の307,358、30トン超の物資を確認。11月5日の記事で、国家防災庁の「6州で50万人超」を確認"
     },
     {
@@ -291,12 +390,24 @@
       "date": "2019-09-23",
       "url": "https://www.unicef.org.uk/press-releases/indonesia-10-million-children-at-risk-from-air-pollution-due-to-wild-forest-fires/",
       "more": [
-        { "title": "Indonesian forest fires putting 10 million children at risk – United Nations", "publisher": "Rappler", "date": "2019-09-24", "url": "https://www.rappler.com/?p=240910" },
-        { "title": "‘Children worst hit by haze from Indonesian forest fires’", "publisher": "SciDev.Net", "date": "2019-09-29", "url": "https://www.scidev.net/asia-pacific/?p=65130" }
+        {
+          "title": "Indonesian forest fires putting 10 million children at risk – United Nations",
+          "publisher": "Rappler",
+          "date": "2019-09-24",
+          "url": "https://www.rappler.com/?p=240910"
+        },
+        {
+          "title": "‘Children worst hit by haze from Indonesian forest fires’",
+          "publisher": "SciDev.Net",
+          "date": "2019-09-29",
+          "url": "https://www.scidev.net/asia-pacific/?p=65130"
+        }
       ],
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["第2幕"],
+      "used": [
+        "第2幕"
+      ],
       "check": "UNICEFのプレスリリース（2019年9月23日）で約1,000万人・5歳未満240万人を確認。「避難も治療も空気清浄機の購入もできない」はSciDev.NetにあるUNICEFのM国代表の発言"
     },
     {
@@ -312,7 +423,9 @@
       "more": [],
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["エピローグ"],
+      "used": [
+        "エピローグ"
+      ],
       "check": "2,459校、APIが200を超えたこと、「200万人近い生徒」を確認"
     },
     {
@@ -328,7 +441,9 @@
       "more": [],
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["第3幕"],
+      "used": [
+        "第3幕"
+      ],
       "check": "「機械の約3分の1」「10の村のうち9つで火が唯一の方法」を確認。「1haあたり200〜595ドル」は文の組み立てから焼く方の額と読めるが、原論文では未確認。ゲームでは比率だけを使い、金額はゲーム上の設定"
     },
     {
@@ -344,7 +459,9 @@
       "more": [],
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["第3幕"],
+      "used": [
+        "第3幕"
+      ],
       "check": "紹介ページの要旨で、身長（標準偏差の半分）、約100万人の月収の4%、機械開墾の社会的純便益と生産者の私的コストを確認"
     },
     {
@@ -360,7 +477,9 @@
       "more": [],
       "accessed": "2026-10-18",
       "status": "corrected",
-      "used": ["第3幕"],
+      "used": [
+        "第3幕"
+      ],
       "check": "本文を確認。14,500件と3,200件はI国全体ではなく東部の1つの州（パプア州）の数字。かわりに同じ記事の、K島中部とS島南部の数字を使った"
     },
     {
@@ -376,14 +495,16 @@
       "more": [],
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["第3幕"],
+      "used": [
+        "第3幕"
+      ],
       "check": "「事業地の内側で3〜4倍」「約3分の2が泥炭地」を確認。依頼書のURL（/blog/...）は /insights/... に移っている"
     },
     {
       "id": "D-23",
-      "value": "8",
-      "unit": "社",
-      "label": "2013年、I国の当局が焼き払いで調べた14社のうち、8社がM国資本と報じられた。環境団体は、I国・M国・S国の企業が持つアブラヤシの事業地で、数百の火災地点を確認したと発表",
+      "value": "数百",
+      "unit": "",
+      "label": "2013年、環境団体は、I国・M国・S国などの企業が持つアブラヤシの事業地で、数百の火災地点を確認したと発表",
       "note": "",
       "title": "Clarity needed on companies behind the haze",
       "publisher": "Eco-Business",
@@ -392,14 +513,16 @@
       "more": [],
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["第3幕"],
-      "check": "「14社のうち8社がM国資本」「I国・M国・S国の企業の事業地で数百の火災地点」を確認"
+      "used": [
+        "第3幕"
+      ],
+      "check": "「I国・M国・S国の企業の事業地で数百の火災地点」を確認。記事には特定の国の資本の社数も書かれているが、一つの国を名指しする形になるためゲームでは使っていない"
     },
     {
       "id": "D-24",
       "value": "",
       "unit": "",
-      "label": "2026年10月、M国の農園グループやS国に関係する企業が、火災地点が見つかった事業地と関係していると、環境団体の報告で指摘された（報告は、火をつけたことや違法行為を直接示すものではない、としている）",
+      "label": "2026年10月、環境団体の報告で、火災地点が見つかった事業地と、複数の国の企業との関係が指摘された（報告は、火をつけたことや違法行為を直接示すものではない、としている）",
       "note": "報告の発表は10月5日",
       "title": "Haze: Malaysian, Singaporean firms under investigation",
       "publisher": "New Straits Times",
@@ -408,7 +531,9 @@
       "more": [],
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["第3幕"],
+      "used": [
+        "第3幕"
+      ],
       "check": "報告の内容と「火をつけたことや違法行為を直接非難するものではない」という記述を確認"
     },
     {
@@ -424,7 +549,9 @@
       "more": [],
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["第4幕"],
+      "used": [
+        "第4幕"
+      ],
       "check": "41ページの「2020年の輸入量は約68万トン」「両国からの輸入が輸入総量の99%」を確認。タイトルは農林水産省の成果物一覧で確認"
     },
     {
@@ -438,11 +565,17 @@
       "date": "2025-10-24",
       "url": "https://research.wur.nl/en/publications/does-palm-oil-really-rule-the-supermarket-an-assessment-of-three-/",
       "more": [
-        { "title": "Does palm oil really rule the supermarket? An assessment of three Western supermarket chains", "publisher": "IOP Publishing（本文）", "url": "https://doi.org/10.1088/2976-601X/ae12f6" }
+        {
+          "title": "Does palm oil really rule the supermarket? An assessment of three Western supermarket chains",
+          "publisher": "IOP Publishing（本文）",
+          "url": "https://doi.org/10.1088/2976-601X/ae12f6"
+        }
       ],
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["第4幕"],
+      "used": [
+        "第4幕"
+      ],
       "check": "要旨で約1,600品目・7.9%・最大40%を確認。「切り替えても問題はほかへ移る」「表示が産地を見えにくくしている」は要旨ではなく本文で確認"
     },
     {
@@ -458,7 +591,9 @@
       "more": [],
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["第4幕"],
+      "used": [
+        "第4幕"
+      ],
       "check": "1ページ目の「2013年から2019年にかけて、東南アジアのパーム油部門に62億米ドルの融資」を確認"
     },
     {
@@ -474,7 +609,10 @@
       "more": [],
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["エピローグ"],
+      "used": [
+        "エピローグ",
+        "第5幕"
+      ],
       "check": "38,511（10月13日時点、ASMC）と2015年の58,106を確認"
     },
     {
@@ -488,11 +626,18 @@
       "date": "2026-10-15",
       "url": "https://www.thevibes.com/articles/world/128364/indonesia-records-277075-respiratory-infections-as-forest-fires-fuel-haze-crisis",
       "more": [
-        { "title": "Indonesia intensifies monitoring of haze-related respiratory infections", "publisher": "Ghana News Agency（Xinhua）", "date": "2026-10-15", "url": "https://gna.org.gh/2026/10/indonesia-intensifies-monitoring-of-haze-related-respiratory-infections/" }
+        {
+          "title": "Indonesia intensifies monitoring of haze-related respiratory infections",
+          "publisher": "Ghana News Agency（Xinhua）",
+          "date": "2026-10-15",
+          "url": "https://gna.org.gh/2026/10/indonesia-intensifies-monitoring-of-haze-related-respiratory-infections/"
+        }
       ],
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["エピローグ"],
+      "used": [
+        "エピローグ"
+      ],
       "check": "277,075件・7州・5歳以下62,400件（22.5%）を確認。日付（10月12日時点）はGhana News Agencyで確認"
     },
     {
@@ -508,7 +653,9 @@
       "more": [],
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["エピローグ"],
+      "used": [
+        "エピローグ"
+      ],
       "check": "895,657ha（1月〜8月末）、Nusantara Atlas、2019年同期比34%増を確認"
     },
     {
@@ -522,11 +669,19 @@
       "date": "2026-10-10",
       "url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/10/10/haze-in-singapore-air-quality-unhealthy-across-the-island",
       "more": [
-        { "title": "Indonesia’s Wildfire Haze Shuts Malaysian Schools, Pushes Singapore Pollution To 2026 High", "publisher": "Outlook India", "date": "2026-10-09", "url": "https://www.outlookindia.com/international/indonesias-wildfire-haze-shuts-malaysian-schools-pushes-singapore-pollution-to-2026-high" }
+        {
+          "title": "Indonesia’s Wildfire Haze Shuts Malaysian Schools, Pushes Singapore Pollution To 2026 High",
+          "publisher": "Outlook India",
+          "date": "2026-10-09",
+          "url": "https://www.outlookindia.com/international/indonesias-wildfire-haze-shuts-malaysian-schools-pushes-singapore-pollution-to-2026-high"
+        }
       ],
       "accessed": "2026-10-18",
       "status": "corrected",
-      "used": ["エピローグ"],
+      "used": [
+        "エピローグ",
+        "第5幕"
+      ],
       "check": "Outlook Indiaで「10月9日正午に181（その時点の今年最高）」とM国の休校、The Starで「10月9日午後5〜8時に中部で192」を確認し、192に更新"
     },
     {
@@ -542,7 +697,9 @@
       "more": [],
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["エピローグ"],
+      "used": [
+        "エピローグ"
+      ],
       "check": "「月曜日（10月12日）から補助を開始」「前回使われたのは2015年」を確認"
     },
     {
@@ -558,8 +715,118 @@
       "more": [],
       "accessed": "2026-10-18",
       "status": "ok",
-      "used": ["エピローグ"],
+      "used": [
+        "エピローグ"
+      ],
       "check": "記事の該当部分を確認"
+    },
+    {
+      "id": "D-36",
+      "value": "8",
+      "unit": "か所",
+      "label": "2026年10月1日午前10時、M国の半島部の8か所でAPIが「不健康」。API：0–50 良好／51–100 普通／101–200 不健康／201–300 非常に不健康／300超 危険",
+      "note": "M国環境局の大気汚染指数システム（APIMS）による",
+      "title": "Eight areas in Peninsular Malaysia record unhealthy API as at 10am",
+      "publisher": "The Star",
+      "date": "2026-10-01",
+      "url": "https://www.thestar.com.my/news/nation/2026/10/01/eight-areas-in-peninsular-malaysia-record-unhealthy-api-as-at-10am",
+      "more": [],
+      "accessed": "2026-10-19",
+      "status": "ok",
+      "used": [
+        "第5幕"
+      ],
+      "check": "8か所が不健康（10時）、帯の区分を確認"
+    },
+    {
+      "id": "D-37",
+      "value": "154",
+      "unit": "",
+      "label": "2026年10月8日午後7時、P州の3か所の観測所でAPIが「不健康」（154、151、125）",
+      "note": "",
+      "title": "Haze: Slight improvement with fewer areas recording unhealthy API as of 7pm",
+      "publisher": "The Star",
+      "date": "2026-10-08",
+      "url": "https://www.thestar.com.my/news/nation/2026/10/08/haze-slight-improvement-with-fewer-areas-recording-unhealthy-api-as-of-7pm",
+      "more": [],
+      "accessed": "2026-10-19",
+      "status": "ok",
+      "used": [
+        "第5幕"
+      ],
+      "check": "ペナン州の Minden 154、Seberang Perai 151、Seberang Jaya 125（午後7時）を確認"
+    },
+    {
+      "id": "D-38",
+      "value": "3",
+      "unit": "か所",
+      "label": "2026年10月8日朝、P州の3か所でAPIが「不健康」。教育省は、APIが100を超えたら学校の外での活動をやめ、200を超えたら休校するよう指示",
+      "note": "",
+      "title": "Haze persists as 38 areas record unhealthy API, Segamat highest at 187",
+      "publisher": "Malay Mail",
+      "date": "2026-10-08",
+      "url": "https://www.malaymail.com/news/malaysia/2026/10/08/haze-persists-as-38-areas-record-unhealthy-api-segamat-highest-at-187/238182",
+      "more": [],
+      "accessed": "2026-10-19",
+      "status": "ok",
+      "used": [
+        "第5幕"
+      ],
+      "check": "「ペナンで3か所」と教育省の指示を確認"
+    },
+    {
+      "id": "D-39",
+      "value": "150",
+      "unit": "",
+      "label": "2026年10月9日、M国の6つの州・地域などで休校。P州の学校はいつも通り。APIが150を3日続けて超えた地域は12日から休校",
+      "note": "",
+      "title": "Haze worsens in Malaysia: Nine areas breach 180 API, Seremban still the worst at 189",
+      "publisher": "Malay Mail",
+      "date": "2026-10-09",
+      "url": "https://www.malaymail.com/news/malaysia/2026/10/09/haze-worsens-in-malaysia-nine-areas-breach-180-api-seremban-still-the-worst-at-189/238393",
+      "more": [],
+      "accessed": "2026-10-19",
+      "status": "ok",
+      "used": [
+        "第5幕"
+      ],
+      "check": "休校した州・地域、ペナンの学校が通常どおりであること、150を3日続けて超えた場合の決まりを確認"
+    },
+    {
+      "id": "D-40",
+      "value": "49",
+      "unit": "",
+      "label": "2026年10月11日午前10時、P州の2か所の観測所でAPIが「良好」（49、25）",
+      "note": "",
+      "title": "Haze: Situation improves, 14 areas with unhealthy API as at 10am",
+      "publisher": "The Star",
+      "date": "2026-10-11",
+      "url": "https://www.thestar.com.my/news/nation/2026/10/11/haze-situation-improves-14-areas-with-unhealthy-api-as-at-10am",
+      "more": [],
+      "accessed": "2026-10-19",
+      "status": "ok",
+      "used": [
+        "第5幕"
+      ],
+      "check": "ペナン州の Minden 49、Balik Pulau 25 を確認"
+    },
+    {
+      "id": "D-41",
+      "value": "150未満",
+      "unit": "",
+      "label": "2026年10月15日午後2時、P州のすべての観測所でAPIが150未満。16日も授業はいつも通りだが、外での活動は延期。マスクをすすめる（P州教育局）",
+      "note": "",
+      "title": "Haze: Schools In S'gor, Pahang, N. Sembilan, Putrajaya To Operate As Usual Tomorrow",
+      "publisher": "BERNAMA",
+      "date": "2026-10-15",
+      "url": "https://www.bernama.com/en/news.php?id=2620967",
+      "more": [],
+      "accessed": "2026-10-19",
+      "status": "ok",
+      "used": [
+        "第5幕"
+      ],
+      "check": "ペナン州教育局の発表（150未満、外での活動の延期、マスク）を確認"
     }
   ]
 }
