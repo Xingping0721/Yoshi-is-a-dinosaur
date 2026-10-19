@@ -13,7 +13,8 @@ import { endingScenes } from './acts/ending.js';
 import { setImages } from './images.js';
 import { epilogueScenes } from './acts/epilogue.js';
 
-const PROGRESS_KEY = 'psi-progress-v1';
+// v2: Acts 1–4 became interactive and keep different state from v1, so old saves are not resumed.
+const PROGRESS_KEY = 'psi-progress-v2';
 const $ = id => document.getElementById(id);
 
 const app = {
@@ -23,12 +24,12 @@ const app = {
     current: null,      // { screen, index, state }
 };
 
-// The acts, in order. Each builds its scenes from the loaded data.
+// The acts, in order. Each builds its scenes from the loaded data; h.onReplay restarts that act.
 const ACTS = [
-    { key: 'act1', scenes: d => act1Scenes({ psiDays: d.psi.days, assumptions: d.assumptions }), state: d => newAct1State(d.assumptions) },
-    { key: 'act2', scenes: d => act2Scenes({ psiDays: d.psi.days }), state: () => newAct2State() },
-    { key: 'act3', scenes: d => act3Scenes({ assumptions: d.assumptions }), state: d => newAct3State(d.assumptions) },
-    { key: 'act4', scenes: d => act4Scenes({ assumptions: d.assumptions }), state: () => newAct4State() },
+    { key: 'act1', scenes: (d, h) => act1Scenes({ psiDays: d.psi.days, assumptions: d.assumptions }, h), state: d => newAct1State(d.assumptions) },
+    { key: 'act2', scenes: (d, h) => act2Scenes({ psiDays: d.psi.days, assumptions: d.assumptions }, h), state: d => newAct2State(d.assumptions) },
+    { key: 'act3', scenes: (d, h) => act3Scenes({ assumptions: d.assumptions }, h), state: d => newAct3State(d.assumptions) },
+    { key: 'act4', scenes: (d, h) => act4Scenes({ assumptions: d.assumptions }, h), state: () => newAct4State() },
     { key: 'ending', scenes: () => endingScenes(), state: () => ({}) },
     { key: 'act5', scenes: () => act5Scenes(), state: () => newAct5State() },
     {
@@ -59,7 +60,8 @@ function moneyText(key, n) {
 // Header, footer and the extinguish button follow what each scene asks for.
 function applyChrome(scene, state) {
     const chrome = scene.chrome || {};
-    const reading = scene.reading !== undefined ? scene.reading : scene.psi;
+    const given = scene.reading !== undefined ? scene.reading : scene.psi;
+    const reading = typeof given === 'function' ? given(state) : given;
 
     if (chrome.meter && chrome.meter !== app.meterKey) {
         app.meter.configure(chrome.meter);
@@ -70,8 +72,9 @@ function applyChrome(scene, state) {
     else if (reading !== undefined) app.meter.set(reading);
 
     $('extinguish').hidden = !chrome.extinguish;
-    $('date').textContent = scene.date ? formatDate(scene.date) : '';
-    $('date').hidden = !scene.date;
+    const date = typeof scene.date === 'function' ? scene.date(state) : scene.date;
+    $('date').textContent = date ? formatDate(date) : '';
+    $('date').hidden = !date;
 
     const sub = $('money');
     if (chrome.money) {
@@ -92,7 +95,7 @@ function applyChrome(scene, state) {
         sub.hidden = true;
     }
 
-    $('top').hidden = !(chrome.meter || chrome.money || scene.date || scene.counter || chrome.extinguish);
+    $('top').hidden = !(chrome.meter || chrome.money || date || scene.counter || chrome.extinguish);
 
     const footer = $('event');
     if (scene.event) {
@@ -138,7 +141,12 @@ function playScenes(screen, scenes, index, state, onFinish) {
 
 function startAct(i, index = 0, state) {
     const act = ACTS[i];
-    const scenes = act.scenes(app.data);
+    const scenes = act.scenes(app.data, {
+        onReplay: () => {
+            app.meterKey = null;
+            startAct(i);
+        },
+    });
     const s = state || act.state(app.data);
     playScenes(act.key, scenes, Math.min(index, scenes.length - 1), s, () => {
         if (i + 1 < ACTS.length) startAct(i + 1);

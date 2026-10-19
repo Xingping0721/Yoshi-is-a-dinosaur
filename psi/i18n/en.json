@@ -50,6 +50,13 @@
     "listSep": ", ",
     "numLabel": "{text} (source {id})"
   },
+  "play": {
+    "replay": "Replay this act",
+    "cause": {
+      "yours": "Your decision",
+      "outside": "Outside your control"
+    }
+  },
   "title": {
     "heading": "PSI",
     "sub": "(working title)",
@@ -59,7 +66,7 @@
       "Countries are called Country I, Country S and Country M. You can find their real names at the end, in “Data and sources”.",
       "Numbers about deaths and children's health appear. The scenes themselves are not shown."
     ],
-    "time": "Time: 20–30 minutes",
+    "time": "Time: 30–40 minutes",
     "start": "Start",
     "resume": "Continue",
     "restart": "Start over",
@@ -120,7 +127,6 @@
     "unknown": "Source not found: {id}"
   },
   "act1": {
-    "moneyLabel": "Money for haze protection",
     "card": {
       "kicker": "Act 1",
       "title": "In a Country S housing estate",
@@ -134,7 +140,7 @@
             "assumption": true
           },
           {
-            "text": "This month, you can spend {money} on protecting your family from the haze.",
+            "text": "For September and October, you can spend {money} on protecting your family from the haze.",
             "assumption": true
           }
         ]
@@ -150,173 +156,64 @@
             "source": "D-11"
           }
         ]
+      },
+      {
+        "paras": [
+          {
+            "text": "How to play: each turn runs from a day when something happened until the day before the next event. Seeing only that day's value, you shop and set your household rules for “Unhealthy” days, then live through those days.",
+            "assumption": true
+          },
+          {
+            "text": "You won't know the later days' values until you live through them. The values are the real ones from 2015.",
+            "source": "D-01"
+          },
+          {
+            "text": "Your goal is to avoid as much smoke as you can while keeping an eye on both money and daily life. The points do not say whether you are a good parent; they are a yardstick for comparing different rules.",
+            "assumption": true
+          }
+        ]
       }
     ],
     "days": {
       "2015-09-01": {
         "story": "Morning. The buildings in the distance look a little hazy.",
-        "event": "Country S's environment agency chief wrote to Country I for the first time to express concern about this haze.",
-        "choices": {
-          "send": {
-            "label": "Send your child to school as usual",
-            "result": "Your child ran out of the door."
-          },
-          "app": {
-            "label": "Check the air quality in an app",
-            "result": "The “Moderate” band. A normal day, it seems."
-          }
-        }
+        "event": "Country S's environment agency chief wrote to Country I for the first time to express concern about this haze."
       },
       "2015-09-10": {
         "story": "It is white outside the window. There is a burnt smell.",
-        "event": "Country S's environment minister sent a letter to Country I's minister of environment and forestry.",
-        "choices": {
-          "window": {
-            "label": "Close the windows",
-            "result": "You closed the windows. The room is a little hot and stuffy."
-          },
-          "mask": {
-            "label": "Buy a box of N95 masks ({price})",
-            "result": "You bought a box. They are a little big for your child's face.",
-            "soldOut": "The shelf in the shop was empty."
-          },
-          "play": {
-            "label": "Keep your child from playing outside",
-            "result": "The plan to meet at the park was put off again."
-          }
-        }
+        "event": "Country S's environment minister sent a letter to Country I's minister of environment and forestry."
       },
       "2015-09-14": {
         "story": "Your child says their eyes are itchy.",
-        "event": "Country S's environment minister spoke with Country I's minister and offered again to help put out the fires.",
-        "choices": {
-          "clinic": {
-            "label": "Take your child to the clinic",
-            "result": "You came home with eye drops."
-          },
-          "purifier": {
-            "label": "Buy an air purifier ({price})",
-            "result": "You carried the box home and put it in the bedroom."
-          },
-          "wait": {
-            "label": "Wait and see",
-            "result": "By evening, your child had stopped rubbing their eyes."
-          }
-        }
+        "event": "Country S's environment minister spoke with Country I's minister and offered again to help put out the fires."
       },
       "2015-09-24": {
         "story": "Just after 8 p.m. A message arrives on your phone. There will be no school tomorrow.",
-        "event": "At 8 p.m., the 3-hr PSI reached 317. The education ministry decided to close all primary and secondary schools the next day.",
-        "choices": {
-          "tell": {
-            "label": "Tell your child",
-            "result": "For a moment your child was happy. Then they looked out of the window."
-          },
-          "count": {
-            "label": "Count the masks at home",
-            "result": "Half the box is still left.",
-            "none": "There is not a single mask at home."
-          },
-          "shop": {
-            "label": "Go out to buy masks ({price})",
-            "result": "You managed to buy a box.",
-            "soldOut": "The shelf in the shop was empty."
-          }
-        }
+        "event": "At 8 p.m., the 3-hr PSI reached 317. The education ministry decided to close all primary and secondary schools the next day."
       },
       "2015-09-25": {
         "story": "No school today. You can barely see the block across the way.",
-        "event": "At 5 a.m., the 3-hr PSI reached 341. All primary and secondary schools closed because of the haze. It had never happened before.",
-        "choices": {
-          "shop": {
-            "label": "Go and look for N95 masks ({price})",
-            "result": "There was one box left.",
-            "soldOut": "You tried three shops. All of them were sold out."
-          },
-          "handout": {
-            "label": "Go and get the free masks being handed out",
-            "result": "The masks were for {{older people and people who need support|D-07}}. Your household was not eligible."
-          },
-          "home": {
-            "label": "Stay at home",
-            "result": "All day indoors. Your child is watching videos on a tablet."
-          }
-        }
+        "event": "At 5 a.m., the 3-hr PSI reached 341. All primary and secondary schools closed because of the haze. It had never happened before."
       },
       "2015-09-26": {
         "story": "Saturday. You can see the block across the way better than yesterday.",
-        "event": "The day before, the government of Country S sent legal notices to four companies in Country I suspected of being involved in the fires.",
-        "choices": {
-          "news": {
-            "label": "Read the news",
-            "result": "You read the article to the end. Nowhere does it say when the smoke will stop."
-          },
-          "out": {
-            "label": "Go out to buy bread",
-            "result": "You wore a mask and hurried home.",
-            "noMask": "You had no mask, and hurried home."
-          }
-        }
+        "event": "The day before, the government of Country S sent legal notices to four companies in Country I suspected of being involved in the fires."
       },
       "2015-10-08": {
         "story": "The sky is blue.",
-        "event": "The highest 24-hr PSI was {psi}. The first “Moderate” day since {since}.",
-        "choices": {
-          "park": {
-            "label": "Take your child to the park",
-            "result": "Your child ran around for an hour."
-          },
-          "open": {
-            "label": "Open all the windows",
-            "result": "The wind blows through. The smell leaves the room."
-          }
-        }
+        "event": "The highest 24-hr PSI was {psi}. The first “Moderate” day since {since}."
       },
       "2015-10-19": {
         "story": "Another white morning.",
-        "event": "The 1-hr PM2.5 concentration reached 471µg/m³, the highest 1-hour value in Country S in 2015.",
-        "choices": {
-          "purifierOn": {
-            "label": "Turn the air purifier up to full",
-            "result": "The motor hummed all day."
-          },
-          "purifier": {
-            "label": "Buy an air purifier ({price})",
-            "result": "You carried the box home and put it in the bedroom."
-          },
-          "stay": {
-            "label": "Stay shut in at home",
-            "result": "You drew the curtains and turned on the lights at midday."
-          }
-        }
+        "event": "The 1-hr PM2.5 concentration reached 471µg/m³, the highest 1-hour value in Country S in 2015."
       },
       "2015-10-24": {
         "story": "Saturday. You cancelled the weekend plans again.",
-        "event": "The highest 24-hr PSI was {psi}. Day {nth} this autumn in the “Very unhealthy” band or above.",
-        "choices": {
-          "game": {
-            "label": "Play a board game with your child",
-            "result": "Your child won three times."
-          },
-          "call": {
-            "label": "Call your parent who lives far away",
-            "result": "“How is it over there?” they asked. You could not quite answer."
-          }
-        }
+        "event": "The highest 24-hr PSI was {psi}. Day {nth} this autumn in the “Very unhealthy” band or above."
       },
       "2015-10-30": {
         "story": "The colour outside the window is back to normal.",
-        "event": "The highest 24-hr PSI was {psi}. Back in the “Moderate” band.",
-        "choices": {
-          "open": {
-            "label": "Open the windows",
-            "result": "The sounds from outside came into the room."
-          },
-          "walk": {
-            "label": "Go for a walk with your child",
-            "result": "Your child pointed at the sky."
-          }
-        }
+        "event": "The highest 24-hr PSI was {psi}. Back in the “Moderate” band."
       }
     },
     "end": [
@@ -381,6 +278,99 @@
         }
       ],
       "next": "On to Act 2"
+    },
+    "plan": {
+      "kicker": "Turn {n}/{total}",
+      "title": "{from} – {to} ({n} days)",
+      "titleOne": "{from} (1 day)",
+      "shopTitle": "Buy",
+      "buyBox": "Buy a box of N95 masks",
+      "buyBoxCost": "{price} · {n} days' worth",
+      "buyPurifier": "Buy an air purifier",
+      "owned": "You have one",
+      "soldOut": "Sold out (game setting)",
+      "boughtNow": "Bought this turn: {list}",
+      "boughtBox": "a box of masks",
+      "boughtPurifier": "an air purifier",
+      "rulesTitle": "Rules",
+      "rulesLead": "Your rules only apply on “Unhealthy” days or worse. They carry over to the next turn until you change them.",
+      "mask": "Wear a mask when going out",
+      "maskHint": "Uses 1 mask a day",
+      "skip": "No outdoor play",
+      "skipHint": "Strain +1",
+      "close": "Keep the windows closed",
+      "closeHint": "Hot and stuffy: strain +1",
+      "purifier": "Run the air purifier",
+      "purifierHint": "In a closed room",
+      "noPurifier": "You don't have an air purifier",
+      "needClose": "Only works with the windows closed",
+      "preview": "With these rules, each “Unhealthy” day: smoke points {smoke} ({smokeVery} on days of 201+) / strain {strain} / masks {masks}",
+      "noMasks": "You have no masks. As things stand, the mask rule won't be used.",
+      "run": "Live through these {n} days",
+      "runOne": "Live through this day",
+      "maskMark": "M",
+      "stripUnknown": "You won't know the other days' values until you live through them.",
+      "stripDone": "Real values from 2015 (D-01). “M” marks days a mask was used."
+    },
+    "status": {
+      "money": "Money",
+      "masks": "Masks",
+      "masksN": "{n}",
+      "purifier": "Air purifier",
+      "yes": "Yes",
+      "no": "No",
+      "smoke": "Smoke points",
+      "strain": "Strain"
+    },
+    "result": {
+      "summary": "Of {n} days, {bad} were “Unhealthy” or worse. Smoke points +{smoke}, strain +{strain}, {used} masks used.",
+      "allClear": "Every day was “Moderate” or better. Your rules were not needed.",
+      "schoolClosed": "School was closed on {date}, so there was no school trip.",
+      "ranOut": "You ran out of masks on {date}."
+    },
+    "rules": {
+      "title": "Rules (game settings)",
+      "lines": [
+        "“Unhealthy” days (101–200) count once; “Very unhealthy” or worse (201+) count twice. “Moderate” or better counts zero.",
+        "Going out for school or shopping: {trip} ({tripMasked} with a mask).",
+        "Outdoor play: {play} ({playMasked} with a mask, 0 if you skip it, but strain +{strainSkip}).",
+        "At home: windows open {homeOpen}, closed {homeClosed} (strain +{strainClose}), closed with the air purifier {homePurifier}.",
+        "A box of masks costs {boxPrice} and lasts {box} days. An air purifier costs {purifierPrice}.",
+        "Smoke points are a way of comparing rules. They do not measure health effects, or how well masks or air purifiers really work."
+      ]
+    },
+    "outcome": {
+      "title": "After two months",
+      "lead": "Smoke points {smoke}, strain {strain}. Money left: {money}.",
+      "barNone": "If you had done nothing",
+      "barYou": "Your rules",
+      "barAll": "Every precaution in the game (if money were no object)",
+      "barNote": "Calculated on the real values for the same two months. Even with every precaution, smoke points do not reach zero.",
+      "whyTitle": "Why it turned out this way",
+      "cMasks": "Masks were used on {n} of the {bad} days that were “Unhealthy” or worse.",
+      "cClose": "“Unhealthy” days with the windows closed: {n}.",
+      "cSkip": "Days without outdoor play: {n}.",
+      "cPurifier": "You bought an air purifier in the turn starting {date} and used it on {n} days.",
+      "cRanOut": "You ran out of masks on {date}.",
+      "cDays": "{{{bad} days|D-01}} were “Unhealthy” or worse, {{{very}|D-01}} of them “Very unhealthy” or worse. The smoke came from fires outside the country.",
+      "cSoldOut": "Masks were sold out from September 24 to 26 (game setting).",
+      "cFloor": "Under any rules, the smoke that comes into the home never reaches zero. Putting out the fires was not something a household in Country S could do.",
+      "reviewTitle": "Your decisions",
+      "reviewHead": [
+        "Period",
+        "Rules",
+        "Bought",
+        "Smoke",
+        "Strain"
+      ],
+      "lesson": "Your rules and spending changed your smoke points. But they could not change the number of “Unhealthy” days. That was decided by fires across the border, and by the system that produces them."
+    },
+    "review": {
+      "mask": "Mask",
+      "skip": "No play",
+      "close": "Windows closed",
+      "purifier": "Purifier",
+      "none": "No rules"
     }
   },
   "act2": {
@@ -413,61 +403,35 @@
             "text": "This is a different index, in different units, from Country S's 24-hr PSI in Act 1. Even on the same scale, the two cannot simply be compared."
           }
         ]
+      },
+      {
+        "paras": [
+          {
+            "text": "How to play: each day is split into blocks of time. Assign them to work, looking after your child, the house and so on.",
+            "assumption": true
+          },
+          {
+            "text": "Your goal is to keep the household going for three days while protecting your family from the smoke as much as you can. Some options are not open to you.",
+            "assumption": true
+          }
+        ]
       }
     ],
     "days": {
       "2015-10-16": {
         "story": "It is morning, but dark outside. The smell of smoke has soaked into the house.",
         "event": "P City closed its schools. Counting from September, schools had been closed for at least 25 days.",
-        "counter": "425,377 cases (up to October 16; 307,358 the week before)",
-        "choices": {
-          "purifier": {
-            "label": "Buy an air purifier",
-            "reason": "You cannot afford it (game setting)"
-          },
-          "mask": {
-            "label": "Go and get the free masks being handed out",
-            "result": "The masks had not arrived yet. The health ministry said it had sent {{more than 30 tonnes|D-16}} of supplies, such as masks and medicine, to eight provinces."
-          },
-          "inside": {
-            "label": "Keep your child indoors",
-            "result": "You stuffed wet cloths into the gaps around the windows."
-          }
-        }
+        "counter": "425,377 cases (up to October 16; 307,358 the week before)"
       },
       "2015-10-24": {
         "story": "Your child has been coughing for three days.",
         "event": "National disaster agency: more than 500,000 people in six provinces have had acute respiratory infections.",
-        "counter": "Over 500,000 people (announced October 24)",
-        "choices": {
-          "clinic": {
-            "label": "Take your child to the clinic",
-            "result": "The clinic is far away. It took half a day to go and come back with medicine."
-          },
-          "purifier": {
-            "label": "Buy an air purifier",
-            "reason": "You cannot afford it (game setting)"
-          },
-          "wait": {
-            "label": "Wait and see at home",
-            "result": "Your child kept coughing through the night."
-          }
-        }
+        "counter": "Over 500,000 people (announced October 24)"
       },
       "2015-10-26": {
         "story": "The family next door is loading their car.",
         "event": "P City's daily average PM10 has been above 1,000µg/m³ for about two weeks. Some residents are leaving town.",
-        "counter": "Over 500,000 people (announced October 24)",
-        "choices": {
-          "leave": {
-            "label": "Leave town and stay with relatives",
-            "result": "You have no relatives in another town to turn to. There was nowhere to go. {{Some people hesitated to leave with their children because they had no relatives elsewhere|D-14}}."
-          },
-          "stay": {
-            "label": "Stay at home",
-            "result": "You stayed in town."
-          }
-        }
+        "counter": "Over 500,000 people (announced October 24)"
       }
     },
     "compare": {
@@ -525,6 +489,112 @@
         }
       ],
       "next": "On to Act 3"
+    },
+    "plan": {
+      "kicker": "Day {n}/{total}",
+      "title": "{date}",
+      "slotsTitle": "Today's time: {n} of {total} blocks left",
+      "slotsLabel": "Today's time. {n} of {total} blocks left",
+      "undo": "Undo one",
+      "noTime": "Not enough time",
+      "end": "End the day",
+      "preview": "As planned: money {money} / smoke points +{smoke} / childcare {care} blocks (needed: {need})",
+      "careWarn": "Not enough childcare. A neighbour will have to cover the rest (unmet needs +1).",
+      "moneyWarn": "As planned, you will be short of money at the end of the day (you will have to borrow; unmet needs +1)."
+    },
+    "act": {
+      "work": {
+        "label": "Work outside",
+        "short": "Work",
+        "cost": "1 block · money +1",
+        "note": "Outdoor smoke: smoke points +2"
+      },
+      "care": {
+        "label": "Look after your child",
+        "short": "Care",
+        "cost": "1 block",
+        "note": "{n} blocks needed each day"
+      },
+      "seal": {
+        "label": "Seal the window gaps with wet cloths",
+        "short": "Seal",
+        "cost": "1 block · once only",
+        "note": "Fewer indoor smoke points from now on",
+        "done": "Done"
+      },
+      "clinic": {
+        "label": "Take your child to the clinic",
+        "short": "Clinic",
+        "cost": "{n} blocks · money −{fee}",
+        "note": "Far away. 2 of the blocks also count as childcare",
+        "done": "Done"
+      },
+      "masks": {
+        "label": "Go and get the free masks being handed out",
+        "short": "Handout",
+        "cost": "1 block",
+        "note": "You won't know whether they have arrived until you go",
+        "checked": "Checked on {date}"
+      },
+      "purifier": {
+        "label": "Buy an air purifier",
+        "reason": "You cannot afford it (game setting)"
+      },
+      "leave": {
+        "label": "Leave town and stay with relatives",
+        "reason": "You have no relatives in another town to turn to (game setting)"
+      }
+    },
+    "status": {
+      "money": "Money",
+      "smoke": "Smoke points",
+      "unmet": "Unmet needs"
+    },
+    "unmet": {
+      "care": "Not enough childcare; a neighbour stepped in.",
+      "money": "You were {n} short and had to borrow.",
+      "clinic": "You could not take your child to the clinic."
+    },
+    "notes": {
+      "clinic": "The clinic is far away. It took half a day to go and come back with medicine.",
+      "masks": "The masks had not arrived yet. The health ministry said it had sent {{more than 30 tonnes|D-16}} of supplies, such as masks and medicine, to eight provinces.",
+      "seal": "You stuffed wet cloths into the gaps around the windows."
+    },
+    "result": {
+      "summary": "Today: money {money}, smoke points +{smoke}."
+    },
+    "rules": {
+      "title": "Rules (game settings)",
+      "lines": [
+        "A day has {blocks} blocks. Living costs {cost} money a day (food and so on).",
+        "Working outside: each block earns +{wage} money and adds +{outside} smoke points.",
+        "Indoor smoke points: {homeOpen} a day, {homeSealed} after the windows are sealed. Staying in never makes it zero.",
+        "A small child needs {care} blocks of care a day.",
+        "The clinic is far away: {clinicBlocks} blocks and {clinicFee} money ({clinicCare} of the blocks also count as care).",
+        "All of these numbers are game settings. Smoke points do not measure health effects."
+      ]
+    },
+    "outcome": {
+      "title": "After three days",
+      "lead": "Smoke points {smoke}, money left {money}, unmet needs {unmet}.",
+      "whyTitle": "Why it turned out this way",
+      "cWork": "You worked outside for {n} blocks: smoke points +{smoke}.",
+      "cSealed": "You sealed the windows and cut the indoor smoke points.",
+      "cNotSealed": "You did not seal the windows.",
+      "cHome": "Even indoors, {n} smoke points built up.",
+      "cPurifier": "You could not buy an air purifier (game setting). {{UNICEF|D-17}} points out that children from poor families cannot buy air purifiers.",
+      "cMasks": "The free masks never arrived (game setting). The health ministry said it had sent {{more than 30 tonnes|D-16}} of supplies to eight provinces.",
+      "cLeave": "You had no relatives to turn to (game setting). {{Some people hesitated to leave town because they had no relatives elsewhere|D-14}}.",
+      "cAir": "P City's PM10 was {{1,889µg/m³|D-15}} (October 16). By Country I's standard, above 350 is “Hazardous”.",
+      "reviewTitle": "Your decisions",
+      "reviewHead": [
+        "Day",
+        "How you spent the time",
+        "Money",
+        "Smoke",
+        "Unmet needs"
+      ],
+      "lesson": "However you divided your time, smoke stayed in the home. The options most likely to cut it (an air purifier, leaving town) were never open to this family. What individual effort can change here is very small."
     }
   },
   "act3": {
@@ -533,52 +603,32 @@
       "title": "Who lit the fire?",
       "period": "In a village in Country I, in the dry season"
     },
-    "moneyLabel": "Money in hand",
     "intro": [
       {
         "paras": [
           {
-            "text": "You are a small farmer in a village in Country I. You have to clear a new field before the dry season ends.",
+            "text": "You are a small farmer in a village in Country I. You have to clear a new field during the dry season and plant it before the deadline.",
             "assumption": true
           },
           {
-            "text": "You have {money} in hand. The amounts are a unit that exists only in this game.",
+            "text": "The amounts are a unit that exists only in this game. Each time you choose a job for the week, a week passes.",
             "assumption": true
           }
         ]
       }
     ],
-    "choose": {
-      "story": "How will you clear the field?",
-      "choices": {
-        "burn": {
-          "label": "Clear it by burning ({price})",
-          "result": "You set the fire. The field was ready in no time."
-        },
-        "machine": {
-          "label": "Clear it with machines ({price})",
-          "result": "You hired the machines. Almost no money was left."
-        }
+    "after": [
+      {
+        "paras": [
+          {
+            "text": "{{In 9 of the 10 villages studied, fire was the only way to clear land|D-19}}."
+          },
+          {
+            "text": "From here, the view pulls back from your field."
+          }
+        ]
       }
-    },
-    "after": {
-      "burn": [
-        {
-          "text": "{{Clearing land by burning is estimated to cost about a third of clearing it with machines|D-19}}."
-        },
-        {
-          "text": "{{In 9 of the 10 villages studied, fire was the only way to clear land|D-19}}."
-        }
-      ],
-      "machine": [
-        {
-          "text": "One study found that {{clearing with machines is better for society as a whole|D-20}}."
-        },
-        {
-          "text": "But the same study also points out that {{producers are unwilling to bear that higher cost themselves|D-20}}. {{Burning costs about a third as much as machines|D-19}}."
-        }
-      ]
-    },
+    ],
     "zoomKicker": "Pulling back  {n}/{total}",
     "levels": [
       "Field",
@@ -687,6 +737,152 @@
         }
       ],
       "next": "On to Act 4"
+    },
+    "farm": {
+      "title": "Which farm?",
+      "lead": "Farmers' situations are not all the same. Choose one. You can try the other afterwards.",
+      "money": "Money in hand: {money}",
+      "mineral": {
+        "label": "A field on ordinary soil",
+        "note": "4 weeks of work to clear by hand. Fire does not spread easily"
+      },
+      "peat": {
+        "label": "A field next to drained peatland",
+        "note": "6 weeks of work to clear by hand. Fire spreads easily once it is dry"
+      },
+      "note": "The two farms are game settings. {{Much peatland is drained and dried before it is set on fire|D-21}}.",
+      "start": "Start on this farm"
+    },
+    "status": {
+      "week": "Week",
+      "weekOf": "Week {n}",
+      "money": "Money",
+      "dry": "Dryness",
+      "field": "Field",
+      "ready": "Cleared",
+      "progress": "{n}/{need}",
+      "smoke": "Smoke"
+    },
+    "dryness": {
+      "1": "Damp",
+      "2": "Dry",
+      "3": "Parched"
+    },
+    "weekShort": "Wk {n}",
+    "season": {
+      "title": "Week {n}: what will you do this week?",
+      "overTitle": "End of the season",
+      "deadline": "Planting by week {n} gives the biggest harvest (game setting).",
+      "weekTitle": "This week's job (choosing one ends the week)",
+      "extraTitle": "Arrangements (take no time)",
+      "extraLead": "You can arrange money at any point during the week.",
+      "toResult": "See the result"
+    },
+    "do": {
+      "burn": {
+        "label": "Clear it by burning",
+        "short": "Burn",
+        "cost": "{cost} · done this week",
+        "tooWet": "Still too damp to burn",
+        "riskHigh": "At this dryness, the fire will spread beyond the field",
+        "riskLow": "Right now, the fire will burn out inside the field"
+      },
+      "machine": {
+        "label": "Hire a machine",
+        "short": "Machine",
+        "cost": "{cost} · done this week",
+        "note": "No smoke",
+        "notYet": "Machines can be hired from week {n}",
+        "needLoan": "Not enough money (a loan would cover it)"
+      },
+      "hand": {
+        "label": "Clear it by hand",
+        "short": "By hand",
+        "cost": "No outside wages (−{wage}) · {n} more weeks",
+        "note": "Progress {n}/{need}"
+      },
+      "firebreak": {
+        "label": "Make a firebreak",
+        "short": "Firebreak",
+        "cost": "No outside wages (−{wage})",
+        "note": "Fire is less likely to spread when you burn",
+        "done": "Done"
+      },
+      "work": {
+        "label": "Work for wages",
+        "short": "Wage work",
+        "cost": "Money +{wage}",
+        "note": "The field does not move forward"
+      },
+      "helpers": {
+        "label": "Hire helpers",
+        "cost": "{cost}",
+        "note": "Hand clearing moves 2 steps a week",
+        "done": "Hired"
+      },
+      "loan": {
+        "label": "Take a loan",
+        "cost": "+{amount} (repay {repay} after the harvest)",
+        "note": "Lets you hire a machine",
+        "done": "Taken"
+      },
+      "plant": "Plant",
+      "fight": {
+        "short": "Fire-fighting"
+      }
+    },
+    "week": {
+      "burned": "The fire burned out inside the field. There was smoke.",
+      "escaped": "The fire caught the parched grass and spread onto the neighbouring land. There was a lot of smoke.",
+      "escapedPeat": "The fire got into the dry peat and kept smouldering underground. Smoke came out for weeks.",
+      "machine": "You cleared the field with a machine. It cost a lot of money.",
+      "hand": "Clearing by hand ({n}/{need}).",
+      "handDone": "You finished clearing the field by hand.",
+      "firebreak": "You cut the grass around the field and made a firebreak.",
+      "work": "You worked for wages and earned money. The field did not move forward.",
+      "fight": "It took the family a week to put out the spreading fire. No outside wages (−{wage}), and planting slipped."
+    },
+    "rules": {
+      "title": "Rules (game settings)",
+      "lines": [
+        "You plant in the week after the field is cleared. Planting by week {deadline} gives a harvest of {full}; one week late {late1}; two or more weeks late {late2}.",
+        "Burning: {burn}. Machine: {machine} (from week {machineWeek}). The ratio, burning costing about a third of machines, is from a source (D-19); the amounts are game settings.",
+        "By hand: {hand} weeks of work on this farm. Hiring helpers ({helpers}) makes it 2 steps a week. Weeks spent clearing by hand or on a firebreak earn no outside wages (−{wage}).",
+        "Dryness: in week 1 it is too damp to burn. It gets drier every week.",
+        "When fire spreads: in parched weeks it spreads. On peatland it also spreads in dry weeks. With a firebreak, it only spreads on peatland in parched weeks. Putting out a spreading fire takes the following week (no outside wages, and planting slips).",
+        "Smoke units: {smallSmoke} if the fire burns out inside the field, {bigSmoke} if it spreads, {peatSmoke} if it gets into peat. Smoke does not cost you money. The people around you breathe it.",
+        "Your family needs {need} from this season to get through the year. Loan: +{loan}, repay {repay} after the harvest."
+      ]
+    },
+    "outcome": {
+      "title": "After the season",
+      "lead": "{farm}: income this season {net} (needed: {need}). Smoke from your field: {smoke} units.",
+      "met": "Enough for your family's year.",
+      "notMet": "Not enough for your family's year.",
+      "smokeNote": "Smoke units are a game count. They do not represent a real amount of smoke.",
+      "whyTitle": "Why it turned out this way",
+      "c_burn": "You burned in week {week}.",
+      "c_machine": "You cleared with a machine in week {week}.",
+      "c_hand": "You cleared by hand and finished in week {week}.",
+      "cNone": "You could not clear the field in time.",
+      "cOnTime": "You planted in week {week}; the harvest was {harvest}.",
+      "cLate": "Planting slipped to week {week}, and the harvest fell to {harvest}.",
+      "cWages": "Outside wages you gave up: {n}.",
+      "cLoan": "Interest on the loan: {n}.",
+      "cEscaped": "The fire spread beyond your field. The smoke and the burned land were borne by the people around you, not by you.",
+      "cRatio": "{{Clearing land by burning costs about a third of clearing it with machines|D-19}}.",
+      "cDry": "{{In 2015, El Niño made the dry season last longer|D-14}}.",
+      "cPeat": "{{Much peatland is drained and dried before it is set on fire|D-21}}.",
+      "cMachine": "Machines could only be hired from week 2 (game setting).",
+      "reviewTitle": "Your decisions",
+      "reviewHead": [
+        "Week",
+        "What you did",
+        "Dryness",
+        "Result"
+      ],
+      "lesson": "Burning is the cheapest and fastest. Behind that cheapness, the harm from the smoke moves to people outside the field. {{Clearing with machines is better for society as a whole|D-20}}, but {{producers are unwilling to bear that higher cost themselves|D-20}}.",
+      "tryOther": "Try the other farm too, and see how the paths open to you change."
     }
   },
   "act4": {
@@ -703,7 +899,7 @@
             "assumption": true
           },
           {
-            "text": "Choose {min}–{max} items from the shelf to put in your basket.",
+            "text": "Choose {min}–{max} items from the shelf to put in your basket. Then pick one product and investigate how its ingredients connect to the fires. You can make {n} checks.",
             "assumption": true
           }
         ]
@@ -742,41 +938,7 @@
       {
         "paras": [
           {
-            "text": "{{Japan imports about 680,000 tonnes of palm oil a year|D-26}} (2020). {{99% of it comes from Country M and Country I|D-26}}."
-          }
-        ]
-      },
-      {
-        "paras": [
-          {
-            "text": "One study looked at the ingredient labels of {{about 1,600 food products at three supermarket chains in Europe and Australia|D-27}}."
-          },
-          {
-            "text": "{{Palm oil was clearly listed on 7.9%|D-27}}. {{Even counting oils with vague labels, it was at most about 40%|D-27}}."
-          }
-        ]
-      },
-      {
-        "paras": [
-          {
-            "text": "When a label just says “vegetable oil”, you cannot tell which plant it came from, where, or how it was produced. {{The study points out that labelling makes it harder to see where ingredients come from|D-27}}."
-          },
-          {
-            "text": "{{The same study also points out that switching from palm oil to another oil does not solve the problem; it only moves it elsewhere|D-27}}."
-          }
-        ]
-      },
-      {
-        "paras": [
-          {
-            "text": "Money flows too. {{Japanese financial institutions lent US$6.2 billion to the palm oil sector in Southeast Asia in 2013–2019|D-28}} (an NGO investigation)."
-          }
-        ]
-      },
-      {
-        "paras": [
-          {
-            "text": "Part of the problem is that you cannot see where, or how, things were made."
+            "text": "Part of the problem is that you cannot see where, or how, things were made. With the information available now, you can neither blame any single product nor declare it unconnected."
           }
         ]
       }
@@ -802,6 +964,133 @@
         }
       ],
       "next": "On to the ending"
+    },
+    "pick": {
+      "title": "Which one will you investigate?",
+      "lead": "Choose one of the marked products.",
+      "leadNone": "None of the products in your basket got a mark. Choose one of the marked products on the shelf.",
+      "start": "Start investigating"
+    },
+    "inv": {
+      "title": "Investigating: {product}",
+      "lead": "Each clue you open uses one check ({n} in all). The clues you open fill in the chain above.",
+      "checksLeft": "Checks left",
+      "found": "Clues opened",
+      "cluesTitle": "Clues",
+      "cost": "Uses 1 check",
+      "noChecks": "No checks left",
+      "conclude": "Reach a conclusion",
+      "concludeEarly": "Reach a conclusion ({n} checks left)"
+    },
+    "chain": {
+      "title": "The chain",
+      "contains": "Product → does it contain palm oil?",
+      "origin": "Palm oil → which country does it come from?",
+      "plantation": "Country → which plantation or concession?",
+      "fires": "Plantation or concession → fires",
+      "money": "(Money) Japanese financial institutions → the palm oil sector",
+      "legend": "“Verified” means confirmed in a source. “Pattern” is an overall tendency. “Reported” means there is a report but not proof. “Uncertain” and “Unknown” mean the clue cannot settle it."
+    },
+    "state": {
+      "unchecked": "Not checked yet",
+      "verified": "Verified",
+      "pattern": "Pattern verified",
+      "claim": "Reported (not proof)",
+      "uncertain": "Uncertain",
+      "unknown": "Unknown (not disclosed)"
+    },
+    "kind": {
+      "verified": "Verified fact",
+      "pattern": "Overall pattern",
+      "claim": "Report (not proof)",
+      "uncertain": "Uncertain",
+      "unknown": "Unknown",
+      "context": "Background"
+    },
+    "clue": {
+      "label": {
+        "ask": "Read the ingredient label",
+        "title": "The label",
+        "text": "The label on {product} just says “vegetable oil and fat”. You cannot tell from this whether it is palm oil."
+      },
+      "imports": {
+        "ask": "Look up where Japan's palm oil comes from",
+        "title": "Import statistics",
+        "text": "{{Japan imports about 680,000 tonnes of palm oil a year|D-26}} (2020). {{99% of it comes from Country M and Country I|D-26}}."
+      },
+      "maker": {
+        "ask": "Ask the manufacturer",
+        "title": "The manufacturer's reply",
+        "text": "The reply: “We do not disclose where our ingredients come from.” Which plantation the oil came from is unknown."
+      },
+      "alerts": {
+        "ask": "Look at analysis of where fires happen",
+        "title": "Fire alert analysis",
+        "text": "{{Fire alerts were 3–4 times denser inside concessions than outside them|D-22}} (a 2013 analysis). But this is an overall pattern; it does not connect to the ingredients of any single product."
+      },
+      "report": {
+        "ask": "Read an environmental group's report",
+        "title": "Environmental group report",
+        "text": "{{In October 2026, a report linked concessions where fire hotspots were found to companies from several countries|D-24}}. The report says this does not directly show who set the fires. From this report, you cannot trace the ingredients of {product}."
+      },
+      "finance": {
+        "ask": "Follow the money",
+        "title": "Finance investigation",
+        "text": "{{Japanese financial institutions lent US$6.2 billion to the palm oil sector in Southeast Asia in 2013–2019|D-28}} (an NGO investigation)."
+      },
+      "switching": {
+        "ask": "Read research on ingredient labelling",
+        "title": "Labelling research",
+        "text": "{{At three supermarket chains in Europe and Australia, palm oil was clearly listed on 7.9% of about 1,600 food products|D-27}}. {{Even counting oils with vague labels, it was at most about 40%|D-27}}. {{The same study points out that switching from palm oil to another oil does not solve the problem; it only moves it elsewhere|D-27}}."
+      }
+    },
+    "end": {
+      "title": "Conclusion",
+      "lead": "What is your conclusion about {product} and the fires that caused the haze?",
+      "options": {
+        "caused": "{product} caused the fires.",
+        "probable": "If {product} contains palm oil, the oil most likely came from Country M or Country I. But a link to specific fires cannot be shown.",
+        "none": "{product} has nothing to do with the fires.",
+        "insufficient": "There is not enough evidence to say anything."
+      },
+      "openTitle": "Questions still unanswered",
+      "reviewTitle": "What you investigated",
+      "reviewHead": [
+        "Clue",
+        "Link",
+        "What it showed"
+      ],
+      "skipped": "Clues you did not open: {list}"
+    },
+    "verdict": {
+      "fits": "Fits the evidence",
+      "partly": "Partly fits",
+      "overclaims": "Claims more than the evidence shows",
+      "unsupported": "Not supported by your evidence",
+      "contradicted": "Contradicts your evidence"
+    },
+    "feedback": {
+      "caused": {
+        "overclaims": "None of the clues trace the product to a specific plantation (the “country → plantation” link is unknown). There is not enough evidence to call it the cause."
+      },
+      "probable": {
+        "fits": "The import statistics (D-26) support the link as far as the country. You also stated the limit clearly: it cannot be traced to specific fires.",
+        "unsupported": "The conclusion itself is plausible, but you did not look up where the oil comes from, so your own evidence does not support it."
+      },
+      "none": {
+        "contradicted": "The clues you found (import statistics, analysis of where fires happen) show a connection at the level of countries and the sector. You cannot say there is no connection.",
+        "unsupported": "You have no clue that shows there is no connection either. Not having checked is not evidence that something isn't there."
+      },
+      "insufficient": {
+        "fits": "Your clues could not settle any of the links. “We don't know” is an honest conclusion.",
+        "partly": "For this product, that is true. But you did verify connections at the level of countries and the sector (where the oil comes from, more fires inside concessions). The evidence is missing between the product and the fires, not for the whole question."
+      }
+    },
+    "open": {
+      "contains": "Does this product contain palm oil?",
+      "origin": "Which country did this product's oil come from?",
+      "plantation": "Which plantation or concession produced it?",
+      "fires": "Were there fires on that plantation or concession? Who set them?"
     }
   },
   "ending": {
@@ -895,10 +1184,10 @@
     "assumptionsTitle": "Game settings",
     "assumptionsLead": "The following are not real data. They are settings that move the game along.",
     "assumptions": [
-      "Act 1: the family, the money for haze protection (S$300), the prices of masks and the air purifier, the days masks are sold out, and not being eligible for the free masks",
-      "Act 2: the family, not being able to buy an air purifier, the free masks not arriving, and having no relatives elsewhere",
-      "Act 3: the money in hand, and the amounts for burning and for machines (only the ratio of about 1/3 is a number from D-19)",
-      "Act 4: the products on the shelf, and the palm oil mark (an example of products whose ingredients are often listed as vegetable oil or fat)",
+      "Act 1: the family, the money for haze protection (S$300), the prices of masks and the air purifier, how many days a box lasts, the days masks are sold out, not being eligible for the free masks, and how smoke points and strain are counted (only the daily 24-hr PSI values are real, from D-01)",
+      "Act 2: the family, the blocks of time in a day, the money units, income and costs, smoke points, not being able to buy an air purifier, the free masks not arriving, and having no relatives elsewhere",
+      "Act 3: the two farms, the money in hand, the weeks and the deadline, dryness, when fire spreads, the harvest and the money the family needs, the loan, and smoke units (only the ratio of about 1/3 between burning and machines is a number from D-19)",
+      "Act 4: the products on the shelf and the palm oil mark, the number of checks, the label wording and the manufacturer's reply (the other clues come from sources)",
       "Act 5: the setting of a person living in P State, and the story text. The “based on an interview” text paraphrases the words of a person living in P State",
       "All story text (the parts marked “Game setting”) is fiction"
     ],

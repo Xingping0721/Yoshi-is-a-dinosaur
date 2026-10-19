@@ -16,7 +16,21 @@
     "maskHandoutEligible": false,
     "notes": {
       "maskSoldOutDays": "マスクが売り切れる日はゲーム上の設定。2015年の品切れを伝える資料は未確認（TODO.md）",
-      "maskHandoutEligible": "配布の対象（高齢者や支援が必要な人）は D-07 による。プレイヤーの家が対象外なのはゲーム上の設定"
+      "maskHandoutEligible": "配布の対象（高齢者や支援が必要な人）は D-07 による。プレイヤーの家が対象外なのはゲーム上の設定",
+      "masksPerBox": "1箱で5日分（子どもが外に出る日に1枚）はゲーム上の設定",
+      "points": "煙ポイントとがまんポイントは、決まりの違いを比べるためのゲーム上の数え方。健康への影響の大きさや、マスク・空気清浄機の効果を表すものではない。日々の値（24時間PSI）だけが D-01、帯の区切りが D-11、9月25日の休校が D-07"
+    },
+    "masksPerBox": 5,
+    "points": {
+      "trip": 2,
+      "tripMasked": 1,
+      "play": 2,
+      "playMasked": 1,
+      "homeOpen": 4,
+      "homeClosed": 3,
+      "homePurifier": 1,
+      "strainSkip": 1,
+      "strainClose": 1
     }
   },
   "act2": {
@@ -26,42 +40,149 @@
     "relativesElsewhere": false,
     "notes": {
       "canBuyPurifier": "空気清浄機が買えないのはゲーム上の設定。貧しい家庭の子どもが空気清浄機を買えないという指摘は D-17（2019年）",
-      "relativesElsewhere": "親戚がいないのはゲーム上の設定。親戚がいないために町を出るのをためらった人がいたことは D-14"
+      "relativesElsewhere": "親戚がいないのはゲーム上の設定。親戚がいないために町を出るのをためらった人がいたことは D-14",
+      "blocks": "1日の時間のコマ、お金の単位、収入、費用、煙ポイントはすべてゲーム上の設定。PM10 の値（D-14、D-15）、休校（D-15）、患者数（D-16）、物資の配布（D-16）、親戚がいないためにためらった人がいたこと（D-14）だけが資料による"
+    },
+    "blocks": 4,
+    "savings": 2,
+    "dailyCost": 2,
+    "wage": 1,
+    "careNeed": 2,
+    "clinic": {
+      "blocks": 3,
+      "fee": 1,
+      "care": 2
+    },
+    "smoke": {
+      "outsidePerBlock": 2,
+      "homeOpen": 3,
+      "homeSealed": 2
     }
   },
   "act3": {
-    "money": 400,
+    "farms": {
+      "mineral": {
+        "money": 400,
+        "handWork": 4,
+        "peat": false
+      },
+      "peat": {
+        "money": 150,
+        "handWork": 6,
+        "peat": true
+      }
+    },
     "cost": {
       "burn": 100,
-      "machine": 300
+      "machine": 300,
+      "helpers": 100
+    },
+    "wage": 50,
+    "need": 400,
+    "deadline": 4,
+    "maxWeeks": 6,
+    "machineFrom": 2,
+    "dryness": [
+      1,
+      2,
+      3,
+      3,
+      3,
+      3
+    ],
+    "harvest": [
+      600,
+      400,
+      200
+    ],
+    "loan": {
+      "amount": 200,
+      "repay": 260
+    },
+    "smoke": {
+      "controlled": 2,
+      "escaped": 10,
+      "escapedPeat": 20
     },
     "notes": {
-      "cost": "金額はゲーム上の設定。焼く方が機械の約3分の1という比だけを D-19 から使っている"
+      "cost": "金額・週・乾き具合・収穫・家族に必要なお金・煙の単位はゲーム上の設定。焼く費用が機械の約3分の1という比だけを D-19 から使っている",
+      "dryness": "乾季が進むほど乾くこと、2015年はエルニーニョで乾季が長引いたこと（D-14）、排水された泥炭地が燃えやすいこと（D-21）をゲームの決まりにした。燃え広がる条件そのものは資料の数字ではない",
+      "farms": "2つの畑はゲーム上の設定。農家がみな同じではないことを示すために置いた"
     }
   },
   "act4": {
     "minItems": 5,
     "maxItems": 8,
     "products": [
-      { "id": "chips", "palm": true },
-      { "id": "apple", "palm": false },
-      { "id": "noodles", "palm": true },
-      { "id": "chocolate", "palm": true },
-      { "id": "rice", "palm": false },
-      { "id": "margarine", "palm": true },
-      { "id": "detergent", "palm": true },
-      { "id": "milk", "palm": false },
-      { "id": "cookies", "palm": true },
-      { "id": "croquette", "palm": true },
-      { "id": "eggs", "palm": false },
-      { "id": "bun", "palm": true },
-      { "id": "shampoo", "palm": true },
-      { "id": "tofu", "palm": false },
-      { "id": "icecream", "palm": true },
-      { "id": "creamer", "palm": true }
+      {
+        "id": "chips",
+        "palm": true
+      },
+      {
+        "id": "apple",
+        "palm": false
+      },
+      {
+        "id": "noodles",
+        "palm": true
+      },
+      {
+        "id": "chocolate",
+        "palm": true
+      },
+      {
+        "id": "rice",
+        "palm": false
+      },
+      {
+        "id": "margarine",
+        "palm": true
+      },
+      {
+        "id": "detergent",
+        "palm": true
+      },
+      {
+        "id": "milk",
+        "palm": false
+      },
+      {
+        "id": "cookies",
+        "palm": true
+      },
+      {
+        "id": "croquette",
+        "palm": true
+      },
+      {
+        "id": "eggs",
+        "palm": false
+      },
+      {
+        "id": "bun",
+        "palm": true
+      },
+      {
+        "id": "shampoo",
+        "palm": true
+      },
+      {
+        "id": "tofu",
+        "palm": false
+      },
+      {
+        "id": "icecream",
+        "palm": true
+      },
+      {
+        "id": "creamer",
+        "palm": true
+      }
     ],
     "notes": {
-      "products": "商品と印はゲーム上の設定。印（palm: true）は「原材料に植物油脂などと書かれることが多い商品」の例で、実際には商品ごとに違う。表示名は i18n/ja.json の act4.products"
-    }
+      "products": "商品と印はゲーム上の設定。印（palm: true）は「原材料に植物油脂などと書かれることが多い商品」の例で、実際には商品ごとに違う。表示名は i18n/ja.json の act4.products",
+      "checks": "調べられる回数（4回）、ラベルの書き方、メーカーの返事はゲーム上の設定。ほかの手がかりは資料（D-22、D-24、D-26、D-27、D-28）による"
+    },
+    "checks": 4
   }
 }
