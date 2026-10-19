@@ -1,15 +1,13 @@
 // Epilogue: the same thing, now. Figures come from data/now.json, which carries its own date.
-import { t } from '../i18n.js';
-import { el, rich, sourceChip } from '../ui.js';
+import { t, local } from '../i18n.js';
+import { el, rich, sourceChip, longDate } from '../ui.js';
 import { nextButton } from '../scenes.js';
 
-function dateText(iso) {
-    const [y, m, d] = iso.split('-').map(Number);
-    return t('common.dateShort', { y, m, d });
-}
+// Values in now.json may be given per language ({ "ja": …, "en": … }).
+const localVars = vars => Object.fromEntries(Object.entries(vars).map(([k, v]) => [k, local(v)]));
 
 export function epilogueScenes({ now }, { onSources, onRestart }) {
-    const asOf = t('epilogue.asOf', { date: dateText(now.asOf) });
+    const asOf = t('epilogue.asOf', { date: longDate(now.asOf) });
 
     const figures = {
         type: 'node',
@@ -20,10 +18,10 @@ export function epilogueScenes({ now }, { onSources, onRestart }) {
             el('p', { class: 'para' }, rich(t('epilogue.past'))),
             el('ul', { class: 'now-list' }, now.items.map(item => el('li', { class: 'now-item' },
                 el('div', { class: 'now-head' },
-                    el('span', { class: 'now-date' }, t('epilogue.itemDate', { date: dateText(item.date) })),
+                    el('span', { class: 'now-date' }, t('epilogue.itemDate', { date: longDate(item.date) })),
                     sourceChip(item.id),
                 ),
-                el('p', { class: 'now-text' }, rich(t(`epilogue.items.${item.id}`, item.vars))),
+                el('p', { class: 'now-text' }, rich(t(`epilogue.items.${item.id}`, localVars(item.vars)))),
             ))),
             nextButton(null, ctx.next),
         ),

@@ -1,6 +1,6 @@
 // Source sheet (one source) and the full "data and sources" screen.
 import { el } from './ui.js';
-import { t } from './i18n.js';
+import { t, getLang } from './i18n.js';
 import { allImages } from './images.js';
 
 let byId = new Map();
@@ -25,13 +25,25 @@ export function initSources(list) {
     });
 }
 
+// label / note / check in the current language (sources.json keeps English under "en").
+const text = (s, key) => (getLang() !== 'ja' && s.en && s.en[key]) || s[key];
+const statusLine = s => t('sheet.statusLine', { label: t('sheet.statusLabel'), status: t('sheet.status')[s.status] || s.status });
+// Publishers are shown as in the original; only our own notes and full-width punctuation change in English.
+function pubLine(item) {
+    let pub = item.publisher;
+    if (getLang() !== 'ja' && pub) {
+        pub = ((item.en && item.en.publisher) || pub).replace(/\s*（/g, ' (').replace(/）/g, ')').replace(/・/g, ', ');
+    }
+    return [pub, item.date].filter(Boolean).join(t('common.gap'));
+}
+
 export const getSource = id => byId.get(id);
 export const allSources = () => [...byId.values()];
 
 function linkBlock(item) {
     return el('div', { class: 'orig-block' },
         item.title ? el('p', { class: 'orig-title' }, item.title) : null,
-        el('p', { class: 'orig-pub' }, [item.publisher, item.date].filter(Boolean).join('　')),
+        el('p', { class: 'orig-pub' }, pubLine(item)),
         el('a', { class: 'orig-link', href: item.url, target: '_blank', rel: 'noopener noreferrer' }, `${t('common.openSource')} ↗`),
     );
 }
@@ -49,11 +61,11 @@ export function openSource(id, trigger) {
         ? [head(t('common.source')), el('h2', { id: 'sheetTitle' }, t('sheet.unknown', { id })), closeBottom]
         : [
             head(`${t('common.source')} ${s.id}`),
-            el('h2', { id: 'sheetTitle' }, s.label),
-            s.note ? el('p', { class: 'note' }, s.note) : null,
+            el('h2', { id: 'sheetTitle' }, text(s, 'label')),
+            s.note ? el('p', { class: 'note' }, text(s, 'note')) : null,
             linkBlock(s),
             ...(s.more || []).map(linkBlock),
-            el('p', { class: 'meta-line' }, `${t('sheet.statusLabel')}：${t('sheet.status')[s.status] || s.status}`),
+            el('p', { class: 'meta-line' }, statusLine(s)),
             s.accessed ? el('p', { class: 'meta-line' }, t('sheet.accessed', { date: s.accessed })) : null,
             s.licence ? el('p', { class: 'meta-line' }, t('sheet.licence', { licence: s.licence })) : null,
             closeBottom,
@@ -88,18 +100,21 @@ export function renderSourceList({ accessed }, onBack) {
         el('p', { class: 'para small' }, T.licenceD02),
 
         el('h2', { class: 'section-title' }, T.listTitle),
+        T.checkLang ? el('p', { class: 'para small' }, T.checkLang) : null,
         el('ul', { class: 'src-list' }, items.map(s => el('li', { class: 'src-item', id: `src-${s.id}` },
             el('h3', {}, s.id),
-            el('p', { class: 'src-label' }, s.label),
-            s.note ? el('p', { class: 'src-note' }, s.note) : null,
+            el('p', { class: 'src-label' }, text(s, 'label')),
+            s.note ? el('p', { class: 'src-note' }, text(s, 'note')) : null,
             ...[s, ...(s.more || [])].map(link => el('div', { class: 'src-link' },
                 link.title ? el('p', { class: 'orig-title' }, link.title) : null,
-                el('p', { class: 'orig-pub' }, [link.publisher, link.date].filter(Boolean).join('　')),
+                el('p', { class: 'orig-pub' }, pubLine(link)),
                 el('a', { class: 'orig-link', href: link.url, target: '_blank', rel: 'noopener noreferrer' }, link.url),
             )),
-            el('p', { class: 'meta-line' }, s.used && s.used.length ? t('sourcesScreen.usedIn', { where: s.used.join('・') }) : T.notUsed),
-            el('p', { class: 'meta-line' }, `${t('sheet.statusLabel')}：${t('sheet.status')[s.status] || s.status}`),
-            s.check ? el('p', { class: 'meta-line' }, t('sourcesScreen.check', { text: s.check })) : null,
+            el('p', { class: 'meta-line' }, s.used && s.used.length
+                ? t('sourcesScreen.usedIn', { where: s.used.map(act => t(`${act}.card.kicker`)).join(t('common.listSep')) })
+                : T.notUsed),
+            el('p', { class: 'meta-line' }, statusLine(s)),
+            s.check ? el('p', { class: 'meta-line' }, t('sourcesScreen.check', { text: text(s, 'check') })) : null,
             s.accessed ? el('p', { class: 'meta-line' }, t('sheet.accessed', { date: s.accessed })) : null,
             s.licence ? el('p', { class: 'meta-line' }, t('sheet.licence', { licence: s.licence })) : null,
         ))),
@@ -111,7 +126,7 @@ export function renderSourceList({ accessed }, onBack) {
             img.kind === 'photo'
                 ? el('div', { class: 'src-link' },
                     el('p', { class: 'orig-title' }, img.original),
-                    el('p', { class: 'orig-pub' }, [img.creator, img.taken].filter(Boolean).join('　')),
+                    el('p', { class: 'orig-pub' }, [img.creator, img.taken].filter(Boolean).join(t('common.gap'))),
                     el('p', { class: 'orig-pub' }, img.licenseUrl
                         ? el('a', { href: img.licenseUrl, target: '_blank', rel: 'noopener noreferrer' }, img.license)
                         : img.license),

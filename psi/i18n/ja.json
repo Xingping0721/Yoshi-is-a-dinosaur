@@ -3,6 +3,10 @@
   "meta": {
     "title": "PSI（仮題）"
   },
+  "lang": {
+    "toggle": "English",
+    "toggleLabel": "Show in English"
+  },
   "common": {
     "next": "次へ",
     "nextDay": "次の日へ",
@@ -21,12 +25,30 @@
       "金",
       "土"
     ],
+    "months": [
+      "1月",
+      "2月",
+      "3月",
+      "4月",
+      "5月",
+      "6月",
+      "7月",
+      "8月",
+      "9月",
+      "10月",
+      "11月",
+      "12月"
+    ],
     "date": "{y}年{m}月{d}日（{w}）",
     "dateShort": "{y}年{m}月{d}日",
+    "monthDay": "{m}月{d}日",
     "money": "S${n}",
     "notEnoughMoney": "お金が足りない",
     "people": "{n}人",
-    "testimony": "聞き取りをもとにした話（言い換えています）"
+    "testimony": "聞き取りをもとにした話（言い換えています）",
+    "gap": "　",
+    "listSep": "・",
+    "numLabel": "{text}（出典 {id}）"
   },
   "title": {
     "heading": "PSI",
@@ -85,6 +107,7 @@
   },
   "sheet": {
     "statusLabel": "確認",
+    "statusLine": "{label}：{status}",
     "status": {
       "ok": "元の資料で数字を確認しました",
       "corrected": "元の資料を確認し、表現を直しました",
@@ -367,6 +390,7 @@
       "period": "2015年10月"
     },
     "counterLabel": "急性呼吸器感染症（I国の6州）",
+    "readingOver": "1,000超",
     "intro": [
       {
         "paras": [
@@ -467,6 +491,8 @@
       "title": "2015年のヘイズによる、I国の死者",
       "official": "公式発表",
       "estimate": "研究による推計（早期死亡）",
+      "officialValue": "{{19人|D-05}}",
+      "estimateValue": "{{91,600人|D-03}}",
       "note": "推計には幅があります。方法によって、数字は大きく変わります。最後に、もう一度見ます。"
     },
     "after": [
@@ -791,6 +817,11 @@
         "M": "M国",
         "S": "S国"
       },
+      "values": {
+        "I": "{{91,600人|D-03}}",
+        "M": "{{6,500人|D-03}}",
+        "S": "{{2,200人|D-03}}"
+      },
       "note": "モデルによる推計です。3か国の合計は{{100,300人|D-03}}。この推計では、{{10人のうち9人|D-03}}がI国の人でした。"
     },
     "range": [
@@ -860,6 +891,7 @@
     "usedIn": "使った場面：{where}",
     "notUsed": "ゲームでは使っていません",
     "check": "確認したこと：{text}",
+    "checkLang": "",
     "assumptionsTitle": "ゲーム上の設定",
     "assumptionsLead": "次のものは実在のデータではなく、ゲームを進めるための設定です。",
     "assumptions": [
@@ -911,6 +943,7 @@
       "title": "遠いはずの煙",
       "period": "2026年10月、M国 P州"
     },
+    "readingBelow": "150未満",
     "intro": [
       {
         "paras": [

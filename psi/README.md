@@ -22,7 +22,13 @@ python3 -m http.server 8000
 # ブラウザで http://localhost:8000/ を開く
 ```
 
-外部のCDNやフォントは使っていないので、オフラインでも動きます。進み具合はブラウザの `localStorage` に保存されます（保存できない環境でも遊べます）。広告・アクセス解析・Cookie はありません。
+外部のCDNやフォントは使っていないので、オフラインでも動きます。
+
+### 日本語と英語
+
+タイトル画面と「データと出典」画面の右上のボタンで、日本語と英語を切りかえられます。選んだ言葉はブラウザの `localStorage` に保存されます。最初に開いたときは、ブラウザの言語設定が英語なら英語、それ以外は日本語で表示します。URL の末尾に `?lang=en`（または `?lang=ja`）をつけると、その言葉で開きます（英語で見てほしい人に送るとき用）。
+
+英語版でも、国や地域の伏せ方（Country I／Country S／Country M、P City、P State、K Island など）、数字、出典 id、場面の流れは日本語版と同じです。進み具合はブラウザの `localStorage` に保存されます（保存できない環境でも遊べます）。広告・アクセス解析・Cookie はありません。
 
 ## 公開手順（GitHub Pages）
 
@@ -51,7 +57,7 @@ psi/
 │   ├─ scenes.js        … 場面の描き方（選択肢の日、ひと息、2つのメーター、棒、視点を引く図）
 │   ├─ meter.js         … 汚染メーター
 │   ├─ sources.js       … 出典シートと「データと出典」画面
-│   ├─ ui.js / i18n.js  … 共通の道具と文言
+│   ├─ ui.js / i18n.js  … 共通の道具と文言（言葉の切りかえ）
 │   ├─ images.js        … 場面の中の写真とイラスト
 │   └─ acts/act1.js 〜 act5.js, ending.js, epilogue.js
 ├─ assets/img/          … 写真（Wikimedia Commons、幅960px）とイラスト（SVG）
@@ -61,8 +67,10 @@ psi/
 │   ├─ now.json          … エピローグ用の数字（asOf つき）
 │   ├─ assumptions.json  … ゲーム上の設定
 │   └─ images.json       … 画像の一覧（ファイル、作者、ライセンス）
-├─ i18n/ja.json          … 画面の文言すべて
-└─ scripts/build_psi.js  … D-01 から s_psi_2015.json を作るスクリプト
+├─ i18n/ja.json          … 画面の文言すべて（日本語）
+├─ i18n/en.json          … 同じ構成の英語版
+├─ scripts/build_psi.js  … D-01 から s_psi_2015.json を作るスクリプト
+└─ scripts/check_i18n.js … ja.json と en.json の食い違いを調べるスクリプト
 ```
 
 ## データの更新方法
@@ -81,11 +89,23 @@ data.gov.sg の API から履歴データを読み、2015年8〜11月につい�
 1. `data/now.json` の各項目の `vars`（数字）と `date`（その数字の時点）を書きかえる。
 2. ファイル全体の `asOf`（まとめた日）を書きかえる。画面に「〇年〇月〇日時点でまとめた数字です」と出ます。
 3. `data/sources.json` の同じ id の `label`・`url`・`title`・`accessed`・`check` を直す。
-4. 文の言い回しを変えるときは `i18n/ja.json` の `epilogue.items` を直す。
+4. 文の言い回しを変えるときは `i18n/ja.json` と `i18n/en.json` の `epilogue.items` を直す。
+5. 日本語と英語で書き方が変わる値（例：「約89.6万ha」と "about 896,000 ha"）は、`vars` に `{ "ja": …, "en": … }` と書く。
 
 ### そのほかの数字
 
 ゲームの文は `i18n/ja.json` にあり、`{{表示する文字|D-xx}}` と書いた部分が、タップで出典が開く数字になります。数字を変えるときは、必ず元の資料を開いて確かめ、`sources.json` の `check` に確認した内容を書いてください。
+
+### 英語の文を直すとき
+
+- 画面の文言を変えたら、`i18n/en.json` の同じ場所も直す。キーの構成、`{name}`、`{{…|D-xx}}` の出典 id は日本語版とそろえる。
+- 出典の説明（`label`・`note`・`check`）を変えたら、`data/sources.json` の同じ項目の `en` も直す。
+- 直したあと、次のスクリプトで食い違いがないか確かめる。
+
+```sh
+cd psi
+node scripts/check_i18n.js
+```
 
 ## データのライセンス
 

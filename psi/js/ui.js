@@ -1,5 +1,5 @@
 // Small DOM helpers shared by every screen.
-import { t, fill } from './i18n.js';
+import { t, fill, getLang } from './i18n.js';
 
 export function el(tag, attrs = {}, ...children) {
     const node = document.createElement(tag);
@@ -38,7 +38,7 @@ export function numButton(text, id) {
         class: 'num',
         href: `#${id}`,
         'data-source': id,
-        'aria-label': `${text}（${t('common.source')} ${id}）`,
+        'aria-label': t('common.numLabel', { text, id }),
     }, text, el('span', { class: 'sid', 'aria-hidden': 'true' }, id));
 }
 
@@ -55,20 +55,23 @@ export function assumptionTag() {
     return el('span', { class: 'tag' }, t('common.assumption'));
 }
 
-// "2015-09-25" -> "2015年9月25日（金）"
-export function formatDate(iso) {
+// Date parts for the common.date* patterns: {y} {m} {d}, {mon} (month name) and {w} (weekday).
+function dateVars(iso) {
     const [y, m, d] = iso.split('-').map(Number);
     const w = t('common.weekdays')[new Date(Date.UTC(y, m - 1, d)).getUTCDay()];
-    return t('common.date', { y, m, d, w });
+    return { y, m, d, w, mon: t('common.months')[m - 1] };
 }
 
-// "2015-09-21" -> "9月21日"
-export function shortDate(iso) {
-    const [, m, d] = iso.split('-').map(Number);
-    return `${m}月${d}日`;
-}
+// "2015-09-25" -> "2015年9月25日（金）" / "Fri, September 25, 2015"
+export const formatDate = iso => t('common.date', dateVars(iso));
 
-export const formatNumber = n => Number(n).toLocaleString('ja-JP');
+// "2015-09-25" -> "2015年9月25日" / "September 25, 2015"
+export const longDate = iso => t('common.dateShort', dateVars(iso));
+
+// "2015-09-21" -> "9月21日" / "September 21"
+export const shortDate = iso => t('common.monthDay', dateVars(iso));
+
+export const formatNumber = n => Number(n).toLocaleString(getLang() === 'en' ? 'en-US' : 'ja-JP');
 
 export const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

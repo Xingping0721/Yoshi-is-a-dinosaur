@@ -1,5 +1,5 @@
 {
-  "note": "label / note はゲーム内で表示する文（国名は I国・S国・M国）。title / publisher / url は元の資料のまま。status: ok=数字を確認済み、corrected=確認して表現を修正、blocked=リンク先を自動では開けず未確認、unused=ゲームでは使っていない。used はその数字を使っている場面。",
+  "note": "label / note はゲーム内で表示する文（国名は I国・S国・M国）。title / publisher / url は元の資料のまま。status: ok=数字を確認済み、corrected=確認して表現を修正、blocked=リンク先を自動では開けず未確認、unused=ゲームでは使っていない。used はその数字を使っている場面（act1〜act5・ending・epilogue）。en は label・note・check（と、こちらで補った publisher の注記）の英訳（英語表示のときに使う）。",
   "sources": [
     {
       "id": "D-01",
@@ -21,10 +21,15 @@
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "第1幕",
-        "第2幕"
+        "act1",
+        "act2"
       ],
-      "check": "APIから全108,864件のうち2015年8〜11月の122日分を取得（1日120件＝24時間×5地域、欠損なし）。データの収録期間は2014-04-01〜2026-08-31"
+      "check": "APIから全108,864件のうち2015年8〜11月の122日分を取得（1日120件＝24時間×5地域、欠損なし）。データの収録期間は2014-04-01〜2026-08-31",
+      "en": {
+        "label": "Historical data for Country S's 24-hr PSI (5 regions, hourly). The 2015 peak was 322 (south) on September 25",
+        "note": "For each day from August to November 2015, the game uses the highest of the values for the 5 regions over 24 hours",
+        "check": "Fetched the 122 days of August–November 2015 out of 108,864 records via the API (120 records a day = 24 hours × 5 regions, none missing). The data covers 2014-04-01 to 2026-08-31"
+      }
     },
     {
       "id": "D-02",
@@ -40,7 +45,12 @@
       "accessed": "2026-10-18",
       "status": "unused",
       "used": [],
-      "check": "データセット名、ライセンス（CC BY 4.0）、月単位であること、2024年12月31日までのデータであることを確認"
+      "check": "データセット名、ライセンス（CC BY 4.0）、月単位であること、2024年12月31日までのデータであることを確認",
+      "en": {
+        "label": "Monthly average concentrations of air pollutants in Country M (PM2.5, PM10 and others)",
+        "note": "Monthly data. This game does not use its numbers",
+        "check": "Confirmed the dataset name, the licence (CC BY 4.0), that it is monthly, and that it runs to December 31, 2024"
+      }
     },
     {
       "id": "D-03",
@@ -68,10 +78,15 @@
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "第2幕",
-        "エンディング"
+        "act2",
+        "ending"
       ],
-      "check": "論文の要旨で3か国合計100,300、本文3.4節で国別の内訳と2006年の値を確認。推計の対象は7〜10月の火災期（依頼書の例にあった「火災後の数か月の影響も含む」は確認できず、使っていない）"
+      "check": "論文の要旨で3か国合計100,300、本文3.4節で国別の内訳と2006年の値を確認。推計の対象は7〜10月の火災期（依頼書の例にあった「火災後の数か月の影響も含む」は確認できず、使っていない）",
+      "en": {
+        "label": "Premature deaths from the haze of September–October 2015 are estimated at 100,300 in three countries (Country I 91,600 / Country M 6,500 / Country S 2,200). For 2006, 37,600 (Country I 34,600 / Country M 2,300 / Country S 700)",
+        "note": "A model estimate based on exposure to smoke during the July–October 2015 fire season",
+        "check": "Confirmed the three-country total of 100,300 in the abstract, and the breakdown by country and the 2006 values in section 3.4. The estimate covers the July–October fire season (the brief's note \"includes effects in the months after the fires\" could not be confirmed and is not used)"
+      }
     },
     {
       "id": "D-04",
@@ -93,9 +108,14 @@
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "エンディング"
+        "ending"
       ],
-      "check": "要旨（Europe PMC）で6,900万人と11,880（6,153–17,270）、ニューカッスル大学の発表で「約6,000人に1人」を確認。論文の本文に国別の死者数はない"
+      "check": "要旨（Europe PMC）で6,900万人と11,880（6,153–17,270）、ニューカッスル大学の発表で「約6,000人に1人」を確認。論文の本文に国別の死者数はない",
+      "en": {
+        "label": "In autumn 2015, 69 million people in three countries were exposed to unhealthy air. Deaths from short-term effects are estimated at 11,880 (range 6,153–17,270), about 1 in 6,000 of those exposed",
+        "note": "An estimate that looks only at short-term effects during the fires (September–October). The paper gives no breakdown by country",
+        "check": "Confirmed 69 million and 11,880 (6,153–17,270) in the abstract (Europe PMC), and \"about 1 in 6,000\" in Newcastle University's announcement. The paper gives no deaths by country"
+      }
     },
     {
       "id": "D-05",
@@ -118,9 +138,14 @@
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "第2幕"
+        "act2"
       ],
-      "check": "Unearthed「公式発表では19人」、Mongabay「政府は火災が直接の原因の死者を24人としている」を確認"
+      "check": "Unearthed「公式発表では19人」、Mongabay「政府は火災が直接の原因の死者を24人としている」を確認",
+      "en": {
+        "label": "Deaths from the 2015 haze according to the government of Country I: 19 (24 in another report)",
+        "note": "News reports",
+        "check": "Confirmed Unearthed (\"officially 19\") and Mongabay (\"the government puts deaths directly caused by the fires at 24\")"
+      }
     },
     {
       "id": "D-06",
@@ -135,7 +160,11 @@
       "accessed": "2026-10-18",
       "status": "blocked",
       "used": [],
-      "check": "リンク先がボット対策（AWS WAF）で自動取得できず。数字は他の報道（NBC News 2013年など）で同じ値を確認したのみ。このゲームでは使っていない"
+      "check": "リンク先がボット対策（AWS WAF）で自動取得できず。数字は他の報道（NBC News 2013年など）で同じ値を確認したのみ。このゲームでは使っていない",
+      "en": {
+        "label": "The highest 3-hr PSI on record in Country S was 401 (June 21, 2013). The previous record was 226 in 1997",
+        "check": "The page is behind bot protection (AWS WAF) and could not be fetched automatically. The numbers were only matched against other reports (NBC News 2013 and others). Not used in this game"
+      }
     },
     {
       "id": "D-07",
@@ -170,9 +199,14 @@
       "accessed": "2026-10-18",
       "status": "corrected",
       "used": [
-        "第1幕"
+        "act1"
       ],
-      "check": "341（9月25日午前5時）・317（9月24日午後8時）・全小中学校の休校・高齢者などへのマスク配布をNASAで確認。3時間値であることはThe Star（317）で確認。依頼書の「S国で初めて全小中学校が休校」は不正確：Malay Mailは「ヘイズを理由にした休校は前例がない」、政府声明は「前回は2003年のSARS」"
+      "check": "341（9月25日午前5時）・317（9月24日午後8時）・全小中学校の休校・高齢者などへのマスク配布をNASAで確認。3時間値であることはThe Star（317）で確認。依頼書の「S国で初めて全小中学校が休校」は不正確：Malay Mailは「ヘイズを理由にした休校は前例がない」、政府声明は「前回は2003年のSARS」",
+      "en": {
+        "label": "On September 25, 2015, the 3-hr PSI reached 341 (the year's highest). At 8 p.m. the night before, the 3-hr PSI was 317 and the education ministry decided to close all primary and secondary schools. Masks were handed out to older people and people who need support",
+        "note": "Closing all schools because of haze was unprecedented. The previous time all schools closed was during SARS in 2003",
+        "check": "Confirmed 341 (5 a.m., September 25), 317 (8 p.m., September 24), the closure of all primary and secondary schools and the mask handout to older people and others on NASA. Confirmed these are 3-hour values in The Star (317). The brief's \"first time all schools closed in Country S\" is inaccurate: Malay Mail says closing for haze was unprecedented, and the government statement says the previous time was SARS in 2003"
+      }
     },
     {
       "id": "D-08",
@@ -200,10 +234,14 @@
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "第3幕",
-        "エンディング"
+        "act3",
+        "ending"
       ],
-      "check": "世界銀行のリポジトリの要旨（APIで取得）で161億ドル・GDPの2%・260万ha・B島の4倍・利益が一部に集中することを確認。依頼書にあったPDFのリンクは404。BenarNewsが伝える別の報告（Indonesia Economic Quarterly）は「GDPの1.9%」「B島の4.5倍」"
+      "check": "世界銀行のリポジトリの要旨（APIで取得）で161億ドル・GDPの2%・260万ha・B島の4倍・利益が一部に集中することを確認。依頼書にあったPDFのリンクは404。BenarNewsが伝える別の報告（Indonesia Economic Quarterly）は「GDPの1.9%」「B島の4.5倍」",
+      "en": {
+        "label": "The 2015 fires cost Country I's economy US$16.1 billion (about 2% of GDP). About 2.6 million ha burned (about four times the size of B Island). Fire brings large economic gains to a limited group while the great majority of people in Country I are harmed",
+        "check": "Confirmed US$16.1 billion, 2% of GDP, 2.6 million ha, four times B Island, and gains concentrated in a few hands in the abstract in the World Bank repository (fetched via its API). The PDF link in the brief returned 404. Another report covered by BenarNews (Indonesia Economic Quarterly) gives \"1.9% of GDP\" and \"4.5 times B Island\""
+      }
     },
     {
       "id": "D-09",
@@ -219,9 +257,13 @@
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "エンディング"
+        "ending"
       ],
-      "check": "記事中の「9〜10月の26日間、米国経済全体の1日の排出を上回った（WRI）」を確認"
+      "check": "記事中の「9〜10月の26日間、米国経済全体の1日の排出を上回った（WRI）」を確認",
+      "en": {
+        "label": "On 26 days in September–October 2015, Country I's daily greenhouse gas emissions exceeded the daily emissions of the entire US economy (WRI analysis)",
+        "check": "Confirmed \"on 26 days in September–October, more than the daily emissions of the entire US economy (WRI)\" in the article"
+      }
     },
     {
       "id": "D-10",
@@ -249,9 +291,14 @@
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "第1幕"
+        "act1"
       ],
-      "check": "政府発表（PDF）で4社への予防措置通知（9月25日）、法律の施行日（2014年9月25日）、「ヘイズ汚染」の定義、9月1日・10日・14日の働きかけを確認。罰金額（1日10万S$、合計200万S$）はThe Starで確認。The Starの「5社」は、情報提出を求められたS国の上場企業を含めた数"
+      "check": "政府発表（PDF）で4社への予防措置通知（9月25日）、法律の施行日（2014年9月25日）、「ヘイズ汚染」の定義、9月1日・10日・14日の働きかけを確認。罰金額（1日10万S$、合計200万S$）はThe Starで確認。The Starの「5社」は、情報提出を求められたS国の上場企業を含めた数",
+      "en": {
+        "label": "Country S's Transboundary Haze Pollution Act (2014): companies that contribute to haze pollution in Country S can be fined up to S$100,000 a day, up to S$2 million in total. On September 25, 2015, preventive measures notices were sent to four companies in Country I",
+        "note": "\"Haze pollution\" under this law means a 24-hr PSI of 101 or more lasting 24 hours or longer. It happened four times between September 10 and 25, 2015. Separately from the four companies, a notice asking for information was also sent to one company listed in Country S",
+        "check": "Confirmed in the government announcement (PDF) the preventive measures notices to four companies (September 25), the date the law took effect (September 25, 2014), the definition of \"haze pollution\", and the approaches on September 1, 10 and 14. Confirmed the fines (S$100,000 a day, S$2 million in total) in The Star. The Star's \"five companies\" includes the company listed in Country S that was asked for information"
+      }
     },
     {
       "id": "D-11",
@@ -274,9 +321,14 @@
       "accessed": "2026-10-18",
       "status": "blocked",
       "used": [
-        "第1幕"
+        "act1"
       ],
-      "check": "Malay Mail（2016年）で1時間PM2.5の帯、3時間PSIの廃止、2015年10月19日の471を確認。Business Today はボット対策（Cloudflare）で開けず、24時間PSIの帯は他の報道で同じ区分を確認したのみ。タイトルはURLから推定"
+      "check": "Malay Mail（2016年）で1時間PM2.5の帯、3時間PSIの廃止、2015年10月19日の471を確認。Business Today はボット対策（Cloudflare）で開けず、24時間PSIの帯は他の報道で同じ区分を確認したのみ。タイトルはURLから推定",
+      "en": {
+        "label": "Country S's indices: 24-hr PSI (0–50 Good / 51–100 Moderate / 101–200 Unhealthy / 201–300 Very unhealthy / 301 and above Hazardous). 1-hr PM2.5 bands (55 or below normal / 56–150 elevated / 151–250 high / 251 and above very high, in µg/m³). The 3-hr PSI was discontinued in 2016",
+        "note": "The highest 1-hr PM2.5 in Country S in 2015 was 471 on October 19",
+        "check": "Confirmed the 1-hr PM2.5 bands, the end of the 3-hr PSI, and 471 on October 19, 2015 in Malay Mail (2016). Business Today could not be opened because of bot protection (Cloudflare); the 24-hr PSI bands were only matched against the same bands in other reports. The title is inferred from the URL"
+      }
     },
     {
       "id": "D-12",
@@ -298,9 +350,13 @@
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "エピローグ"
+        "epilogue"
       ],
-      "check": "記事で帯の区分と「APIが200を超えたため休校」を確認。「危険」の境目は記事では「300 or above」"
+      "check": "記事で帯の区分と「APIが200を超えたため休校」を確認。「危険」の境目は記事では「300 or above」",
+      "en": {
+        "label": "Country M's API (0–50 Good / 51–100 Moderate / 101–200 Unhealthy / 201–300 Very unhealthy / 300 and above Hazardous). Schools close in areas where the API goes above 200",
+        "check": "Confirmed the bands and \"schools closed because the API went above 200\" in the article. The article puts the \"Hazardous\" threshold at \"300 or above\""
+      }
     },
     {
       "id": "D-13",
@@ -315,7 +371,12 @@
       "accessed": "2026-10-18",
       "status": "blocked",
       "used": [],
-      "check": "ボット対策（Cloudflare）で開けず、ウェブアーカイブにも記録なし。同じ時期の報道では、P市の「汚染指数」として PM10 の濃度（µg/m³）が伝えられていることが多い"
+      "check": "ボット対策（Cloudflare）で開けず、ウェブアーカイブにも記録なし。同じ時期の報道では、P市の「汚染指数」として PM10 の濃度（µg/m³）が伝えられていることが多い",
+      "en": {
+        "label": "A report that in October 2015 the pollution index in P City, the provincial capital on K Island in Country I, was above 1,500 for most of the day, and above 2,400 the day before",
+        "note": "The original article could not be checked, so this game does not use its numbers",
+        "check": "Could not be opened because of bot protection (Cloudflare), and there is no copy in the web archive. Reports from the same period mostly give P City's \"pollution index\" as a PM10 concentration (µg/m³)"
+      }
     },
     {
       "id": "D-14",
@@ -331,10 +392,15 @@
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "第2幕",
-        "第3幕"
+        "act2",
+        "act3"
       ],
-      "check": "「PM10の日平均が、この2週間ほど1,000µg/m³超」「土曜日（10月24日）、国家防災庁が6州で50万人超」「エルニーニョによる長い乾季」を確認。記事中の「350µg/m³超で危険」はPM10の基準"
+      "check": "「PM10の日平均が、この2週間ほど1,000µg/m³超」「土曜日（10月24日）、国家防災庁が6州で50万人超」「エルニーニョによる長い乾季」を確認。記事中の「350µg/m³超で危険」はPM10の基準",
+      "en": {
+        "label": "In October 2015, P City's daily average PM10 stayed above 1,000µg/m³ for about two weeks. Some residents left town. On October 24, the national disaster agency announced that more than 500,000 people in six provinces had acute respiratory infections. El Niño made the dry season last longer",
+        "note": "It also reports people who hesitated to leave town because they had no relatives elsewhere",
+        "check": "Confirmed \"daily average PM10 above 1,000µg/m³ for about the past two weeks\", \"on Saturday (October 24) the national disaster agency said over 500,000 in six provinces\" and \"a long dry season due to El Niño\". The article's \"above 350µg/m³ is hazardous\" is the PM10 standard"
+      }
     },
     {
       "id": "D-15",
@@ -350,9 +416,14 @@
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "第2幕"
+        "act2"
       ],
-      "check": "PM10 1889.06µg/m³（金曜＝10月16日）、休校、「少なくとも25日」、PM10の帯の区分を確認"
+      "check": "PM10 1889.06µg/m³（金曜＝10月16日）、休校、「少なくとも25日」、PM10の帯の区分を確認",
+      "en": {
+        "label": "On October 16, 2015, P City's PM10 reached 1,889µg/m³. The city closed its schools; schools had been closed for at least 25 days since September. Country I's standard: PM10 below 50 Good / 50–150 Moderate / 150–250 Unhealthy / 250–350 Very unhealthy / above 350 Hazardous (µg/m³)",
+        "note": "The article gives the upper limit of \"Very unhealthy\" as \"3500\", which is taken to be a typo for 350",
+        "check": "Confirmed PM10 1889.06µg/m³ (Friday = October 16), the school closures, \"at least 25 days\", and the PM10 bands"
+      }
     },
     {
       "id": "D-16",
@@ -375,9 +446,14 @@
       "accessed": "2026-10-18",
       "status": "corrected",
       "used": [
-        "第2幕"
+        "act2"
       ],
-      "check": "425,377（10月16日時点、保健相）、前の週の307,358、30トン超の物資を確認。11月5日の記事で、国家防災庁の「6州で50万人超」を確認"
+      "check": "425,377（10月16日時点、保健相）、前の週の307,358、30トン超の物資を確認。11月5日の記事で、国家防災庁の「6州で50万人超」を確認",
+      "en": {
+        "label": "Acute respiratory infections (ISPA): 425,377 cases in six provinces of Country I (as of October 16, health minister). 307,358 the week before. Later it passed 500,000 people (national disaster agency). The health ministry sent more than 30 tonnes of supplies such as masks and medicine to eight provinces",
+        "note": "The brief said \"all of Country I\", but the numbers in the original article are for six provinces",
+        "check": "Confirmed 425,377 (as of October 16, health minister), 307,358 the week before, and over 30 tonnes of supplies. Confirmed the national disaster agency's \"over 500,000 in six provinces\" in an article of November 5"
+      }
     },
     {
       "id": "D-17",
@@ -406,9 +482,14 @@
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "第2幕"
+        "act2"
       ],
-      "check": "UNICEFのプレスリリース（2019年9月23日）で約1,000万人・5歳未満240万人を確認。「避難も治療も空気清浄機の購入もできない」はSciDev.NetにあるUNICEFのM国代表の発言"
+      "check": "UNICEFのプレスリリース（2019年9月23日）で約1,000万人・5歳未満240万人を確認。「避難も治療も空気清浄機の購入もできない」はSciDev.NetにあるUNICEFのM国代表の発言",
+      "en": {
+        "label": "In 2019, about 10 million children lived in the areas most affected by the fires, about 2.4 million of them under five (UNICEF). Children from poor families cannot evacuate, get treatment, or buy air purifiers",
+        "note": "The second part is a statement by UNICEF's representative in Country M",
+        "check": "Confirmed about 10 million and 2.4 million under five in the UNICEF press release (September 23, 2019). \"Cannot evacuate, get treatment or buy air purifiers\" is a statement by UNICEF's representative in Country M on SciDev.Net"
+      }
     },
     {
       "id": "D-18",
@@ -424,9 +505,14 @@
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "エピローグ"
+        "epilogue"
       ],
-      "check": "2,459校、APIが200を超えたこと、「200万人近い生徒」を確認"
+      "check": "2,459校、APIが200を超えたこと、「200万人近い生徒」を確認",
+      "en": {
+        "label": "In September 2019, 2,459 schools in areas of Country M where the API went above 200 closed, affecting about 2 million students",
+        "note": "The exact number of students in the article is 1,732,842",
+        "check": "Confirmed 2,459 schools, the API going above 200, and \"nearly 2 million students\""
+      }
     },
     {
       "id": "D-19",
@@ -442,9 +528,14 @@
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "第3幕"
+        "act3"
       ],
-      "check": "「機械の約3分の1」「10の村のうち9つで火が唯一の方法」を確認。「1haあたり200〜595ドル」は文の組み立てから焼く方の額と読めるが、原論文では未確認。ゲームでは比率だけを使い、金額はゲーム上の設定"
+      "check": "「機械の約3分の1」「10の村のうち9つで火が唯一の方法」を確認。「1haあたり200〜595ドル」は文の組み立てから焼く方の額と読めるが、原論文では未確認。ゲームでは比率だけを使い、金額はゲーム上の設定",
+      "en": {
+        "label": "Clearing land by burning is estimated to cost about a third of clearing it with machines. In 9 of the 10 villages studied, fire was the only way to clear land",
+        "note": "An article introducing the research. The original study is Edwards et al. (2020), Fight fire with finance (TNP2K Working Paper)",
+        "check": "Confirmed \"about a third of machines\" and \"fire was the only method in 9 of 10 villages\". \"US$200–595 per ha\" reads from the sentence as the cost of burning, but was not checked in the original paper. The game uses only the ratio; the amounts are game settings"
+      }
     },
     {
       "id": "D-20",
@@ -460,9 +551,14 @@
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "第3幕"
+        "act3"
       ],
-      "check": "紹介ページの要旨で、身長（標準偏差の半分）、約100万人の月収の4%、機械開墾の社会的純便益と生産者の私的コストを確認"
+      "check": "紹介ページの要旨で、身長（標準偏差の半分）、約100万人の月収の4%、機械開墾の社会的純便益と生産者の私的コストを確認",
+      "en": {
+        "label": "Children exposed to the 1997 haze before birth were half a standard deviation shorter for their age at 17. That is equivalent to a drop of about 4% in the average monthly earnings of about one million workers. Clearing with machines has a larger net benefit for society, but producers are unwilling to bear the private cost",
+        "check": "Confirmed in the summary on the introduction page: height (half a standard deviation), 4% of monthly earnings for about one million workers, and the net social benefit of mechanical clearing versus producers' private cost",
+        "publisher": "Tan-Soo & Pattanayak, PNAS 116(12) (Duke University summary page)"
+      }
     },
     {
       "id": "D-21",
@@ -478,9 +574,14 @@
       "accessed": "2026-10-18",
       "status": "corrected",
       "used": [
-        "第3幕"
+        "act3"
       ],
-      "check": "本文を確認。14,500件と3,200件はI国全体ではなく東部の1つの州（パプア州）の数字。かわりに同じ記事の、K島中部とS島南部の数字を使った"
+      "check": "本文を確認。14,500件と3,200件はI国全体ではなく東部の1つの州（パプア州）の数字。かわりに同じ記事の、K島中部とS島南部の数字を使った",
+      "en": {
+        "label": "In 2015, fire alerts in central K Island and southern S Island passed 27,000 (each province averaged about 5,500 in the previous five years). More than 60% of the 2015 fires in both provinces were on peatland. In southern S Island, half of the fires were inside pulpwood and wood fibre concessions. In central K Island, every year since 2001, oil palm concessions had the most fire alerts. Wet forests and peatland do not burn easily on their own; much of it is drained before being set on fire. The 2015 drought was caused by El Niño",
+        "note": "The brief's \"14,500 fire alerts (about 3,200 a year on average)\" is not used, because in this article those numbers are for one eastern province only",
+        "check": "Checked the full text. 14,500 and 3,200 are figures for one eastern province (Papua), not all of Country I. The figures for central K Island and southern S Island from the same article are used instead"
+      }
     },
     {
       "id": "D-22",
@@ -496,9 +597,14 @@
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "第3幕"
+        "act3"
       ],
-      "check": "「事業地の内側で3〜4倍」「約3分の2が泥炭地」を確認。依頼書のURL（/blog/...）は /insights/... に移っている"
+      "check": "「事業地の内側で3〜4倍」「約3分の2が泥炭地」を確認。依頼書のURL（/blog/...）は /insights/... に移っている",
+      "en": {
+        "label": "(Analysis of the 2013 fires) Fire alerts were 3–4 times denser inside pulpwood and oil palm concessions than outside. About two thirds of the fires were on peatland",
+        "note": "A 2013 analysis",
+        "check": "Confirmed \"3–4 times inside concessions\" and \"about two thirds on peatland\". The URL in the brief (/blog/...) has moved to /insights/..."
+      }
     },
     {
       "id": "D-23",
@@ -514,9 +620,13 @@
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "第3幕"
+        "act3"
       ],
-      "check": "「I国・M国・S国の企業の事業地で数百の火災地点」を確認。記事には特定の国の資本の社数も書かれているが、一つの国を名指しする形になるためゲームでは使っていない"
+      "check": "「I国・M国・S国の企業の事業地で数百の火災地点」を確認。記事には特定の国の資本の社数も書かれているが、一つの国を名指しする形になるためゲームでは使っていない",
+      "en": {
+        "label": "In 2013, environmental groups announced that they had found hundreds of fire hotspots on oil palm concessions held by companies from Country I, Country M, Country S and elsewhere",
+        "check": "Confirmed \"hundreds of fire hotspots on concessions of companies from Country I, Country M and Country S\". The article also gives the number of companies with capital from one particular country, but the game does not use it because it would single out one country"
+      }
     },
     {
       "id": "D-24",
@@ -532,9 +642,14 @@
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "第3幕"
+        "act3"
       ],
-      "check": "報告の内容と「火をつけたことや違法行為を直接非難するものではない」という記述を確認"
+      "check": "報告の内容と「火をつけたことや違法行為を直接非難するものではない」という記述を確認",
+      "en": {
+        "label": "In October 2026, a report by environmental groups pointed to links between concessions where fire hotspots were found and companies from several countries (the report says it does not directly show who set the fires or any illegal act)",
+        "note": "The report was published on October 5",
+        "check": "Confirmed the content of the report and the statement that it \"does not directly accuse anyone of setting fires or of illegal acts\""
+      }
     },
     {
       "id": "D-26",
@@ -550,9 +665,15 @@
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "第4幕"
+        "act4"
       ],
-      "check": "41ページの「2020年の輸入量は約68万トン」「両国からの輸入が輸入総量の99%」を確認。タイトルは農林水産省の成果物一覧で確認"
+      "check": "41ページの「2020年の輸入量は約68万トン」「両国からの輸入が輸入総量の99%」を確認。タイトルは農林水産省の成果物一覧で確認",
+      "en": {
+        "label": "Japan imports about 680,000 tonnes of palm oil (2020). 99% comes from Country M and Country I",
+        "note": "Page 41 of the report",
+        "check": "Confirmed \"imports in 2020 were about 680,000 tonnes\" and \"imports from the two countries were 99% of total imports\" on page 41. Confirmed the title in the Ministry of Agriculture, Forestry and Fisheries' list of commissioned reports",
+        "publisher": "Commissioned study for the Ministry of Agriculture, Forestry and Fisheries of Japan"
+      }
     },
     {
       "id": "D-27",
@@ -568,15 +689,22 @@
         {
           "title": "Does palm oil really rule the supermarket? An assessment of three Western supermarket chains",
           "publisher": "IOP Publishing（本文）",
-          "url": "https://doi.org/10.1088/2976-601X/ae12f6"
+          "url": "https://doi.org/10.1088/2976-601X/ae12f6",
+          "en": {
+            "publisher": "IOP Publishing (full text)"
+          }
         }
       ],
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "第4幕"
+        "act4"
       ],
-      "check": "要旨で約1,600品目・7.9%・最大40%を確認。「切り替えても問題はほかへ移る」「表示が産地を見えにくくしている」は要旨ではなく本文で確認"
+      "check": "要旨で約1,600品目・7.9%・最大40%を確認。「切り替えても問題はほかへ移る」「表示が産地を見えにくくしている」は要旨ではなく本文で確認",
+      "en": {
+        "label": "A study of the ingredient labels of about 1,600 food products at three supermarket chains in Europe and Australia found that palm oil (including palm kernel oil) was clearly listed on 7.9%. Even counting oils with vague labels, it was at most about 40%. Commonly quoted figures have little basis. Switching from palm oil to another oil does not solve the problem but moves it elsewhere. Labelling makes it harder to see where ingredients come from",
+        "check": "Confirmed about 1,600 products, 7.9% and at most 40% in the abstract. \"Switching moves the problem elsewhere\" and \"labelling hides where ingredients come from\" were confirmed in the main text, not the abstract"
+      }
     },
     {
       "id": "D-28",
@@ -592,9 +720,14 @@
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "第4幕"
+        "act4"
       ],
-      "check": "1ページ目の「2013年から2019年にかけて、東南アジアのパーム油部門に62億米ドルの融資」を確認"
+      "check": "1ページ目の「2013年から2019年にかけて、東南アジアのパーム油部門に62億米ドルの融資」を確認",
+      "en": {
+        "label": "Japanese financial institutions lent US$6.2 billion to the palm oil sector in Southeast Asia in 2013–2019 (an NGO investigation)",
+        "note": "An investigation by NGOs",
+        "check": "Confirmed \"US$6.2 billion in loans to the Southeast Asian palm oil sector from 2013 to 2019\" on page 1"
+      }
     },
     {
       "id": "D-30",
@@ -610,10 +743,15 @@
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "エピローグ",
-        "第5幕"
+        "epilogue",
+        "act5"
       ],
-      "check": "38,511（10月13日時点、ASMC）と2015年の58,106を確認"
+      "check": "38,511（10月13日時点、ASMC）と2015年の58,106を確認",
+      "en": {
+        "label": "Fire hotspots on K Island and S Island in Country I: 38,511 (ASMC count). The most since 2015 (58,106 in 2015)",
+        "note": "As of October 13, 2026",
+        "check": "Confirmed 38,511 (as of October 13, ASMC) and 58,106 for 2015"
+      }
     },
     {
       "id": "D-31",
@@ -636,9 +774,14 @@
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "エピローグ"
+        "epilogue"
       ],
-      "check": "277,075件・7州・5歳以下62,400件（22.5%）を確認。日付（10月12日時点）はGhana News Agencyで確認"
+      "check": "277,075件・7州・5歳以下62,400件（22.5%）を確認。日付（10月12日時点）はGhana News Agencyで確認",
+      "en": {
+        "label": "277,075 cases of acute respiratory infection in seven provinces of Country I, 62,400 (22.5%) of them in children aged five and under (Country I's health ministry)",
+        "note": "As of October 12, 2026",
+        "check": "Confirmed 277,075 cases, seven provinces, and 62,400 (22.5%) aged five and under. Confirmed the date (as of October 12) in Ghana News Agency"
+      }
     },
     {
       "id": "D-32",
@@ -654,9 +797,14 @@
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "エピローグ"
+        "epilogue"
       ],
-      "check": "895,657ha（1月〜8月末）、Nusantara Atlas、2019年同期比34%増を確認"
+      "check": "895,657ha（1月〜8月末）、Nusantara Atlas、2019年同期比34%増を確認",
+      "en": {
+        "label": "About 896,000 ha burned in Country I in January–August 2026 (independent monitor Nusantara Atlas). 34% more than the same period in 2019",
+        "note": "As of the end of August 2026. The article's figure is 895,657 ha",
+        "check": "Confirmed 895,657 ha (January to end of August), Nusantara Atlas, and 34% more than the same period in 2019"
+      }
     },
     {
       "id": "D-33",
@@ -679,10 +827,15 @@
       "accessed": "2026-10-18",
       "status": "corrected",
       "used": [
-        "エピローグ",
-        "第5幕"
+        "epilogue",
+        "act5"
       ],
-      "check": "Outlook Indiaで「10月9日正午に181（その時点の今年最高）」とM国の休校、The Starで「10月9日午後5〜8時に中部で192」を確認し、192に更新"
+      "check": "Outlook Indiaで「10月9日正午に181（その時点の今年最高）」とM国の休校、The Starで「10月9日午後5〜8時に中部で192」を確認し、192に更新",
+      "en": {
+        "label": "On October 9, 2026, Country S's 24-hr PSI reached 192, the highest this year (central region, 5–8 p.m.). On the same day, schools closed in several states of Country M",
+        "note": "The 181 in the brief was the value at noon on the same day",
+        "check": "Confirmed in Outlook India \"181 at noon on October 9 (the year's highest at that point)\" and the school closures in Country M, and in The Star \"192 in the central region at 5–8 p.m. on October 9\"; updated to 192"
+      }
     },
     {
       "id": "D-34",
@@ -698,9 +851,13 @@
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "エピローグ"
+        "epilogue"
       ],
-      "check": "「月曜日（10月12日）から補助を開始」「前回使われたのは2015年」を確認"
+      "check": "「月曜日（10月12日）から補助を開始」「前回使われたのは2015年」を確認",
+      "en": {
+        "label": "On October 12, 2026, Country S began subsidising medical costs related to the haze. The last time this was done was in 2015",
+        "check": "Confirmed \"subsidies start on Monday (October 12)\" and \"last used in 2015\""
+      }
     },
     {
       "id": "D-35",
@@ -716,9 +873,13 @@
       "accessed": "2026-10-18",
       "status": "ok",
       "used": [
-        "エピローグ"
+        "epilogue"
       ],
-      "check": "記事の該当部分を確認"
+      "check": "記事の該当部分を確認",
+      "en": {
+        "label": "Ten years after 2015. An analysis finds that the ability to put out fires once they start has improved, but the incentives to burn and the weak systems for preventing fires remain",
+        "check": "Confirmed the relevant part of the article"
+      }
     },
     {
       "id": "D-36",
@@ -734,9 +895,14 @@
       "accessed": "2026-10-19",
       "status": "ok",
       "used": [
-        "第5幕"
+        "act5"
       ],
-      "check": "8か所が不健康（10時）、帯の区分を確認"
+      "check": "8か所が不健康（10時）、帯の区分を確認",
+      "en": {
+        "label": "At 10 a.m. on October 1, 2026, the API was \"Unhealthy\" in 8 places on the peninsula of Country M. API: 0–50 Good / 51–100 Moderate / 101–200 Unhealthy / 201–300 Very unhealthy / above 300 Hazardous",
+        "note": "From the Air Pollutant Index Management System (APIMS) of Country M's Department of Environment",
+        "check": "Confirmed 8 places unhealthy (10 a.m.) and the bands"
+      }
     },
     {
       "id": "D-37",
@@ -752,9 +918,13 @@
       "accessed": "2026-10-19",
       "status": "ok",
       "used": [
-        "第5幕"
+        "act5"
       ],
-      "check": "ペナン州の Minden 154、Seberang Perai 151、Seberang Jaya 125（午後7時）を確認"
+      "check": "ペナン州の Minden 154、Seberang Perai 151、Seberang Jaya 125（午後7時）を確認",
+      "en": {
+        "label": "At 7 p.m. on October 8, 2026, the API was \"Unhealthy\" at 3 monitoring stations in P State (154, 151, 125)",
+        "check": "Confirmed Minden 154, Seberang Perai 151 and Seberang Jaya 125 in Penang (7 p.m.)"
+      }
     },
     {
       "id": "D-38",
@@ -770,9 +940,13 @@
       "accessed": "2026-10-19",
       "status": "ok",
       "used": [
-        "第5幕"
+        "act5"
       ],
-      "check": "「ペナンで3か所」と教育省の指示を確認"
+      "check": "「ペナンで3か所」と教育省の指示を確認",
+      "en": {
+        "label": "On the morning of October 8, 2026, the API was \"Unhealthy\" in 3 places in P State. The education ministry told schools to stop outdoor activities when the API is above 100 and to close when it is above 200",
+        "check": "Confirmed \"3 places in Penang\" and the education ministry's instructions"
+      }
     },
     {
       "id": "D-39",
@@ -788,9 +962,13 @@
       "accessed": "2026-10-19",
       "status": "ok",
       "used": [
-        "第5幕"
+        "act5"
       ],
-      "check": "休校した州・地域、ペナンの学校が通常どおりであること、150を3日続けて超えた場合の決まりを確認"
+      "check": "休校した州・地域、ペナンの学校が通常どおりであること、150を3日続けて超えた場合の決まりを確認",
+      "en": {
+        "label": "On October 9, 2026, schools closed in 6 states and territories of Country M, among others. Schools in P State were open as usual. Areas where the API stays above 150 for 3 days in a row close schools from the 12th",
+        "check": "Confirmed the states and territories where schools closed, that schools in Penang were open as usual, and the rule for 3 days above 150"
+      }
     },
     {
       "id": "D-40",
@@ -806,9 +984,13 @@
       "accessed": "2026-10-19",
       "status": "ok",
       "used": [
-        "第5幕"
+        "act5"
       ],
-      "check": "ペナン州の Minden 49、Balik Pulau 25 を確認"
+      "check": "ペナン州の Minden 49、Balik Pulau 25 を確認",
+      "en": {
+        "label": "At 10 a.m. on October 11, 2026, the API was \"Good\" at 2 monitoring stations in P State (49, 25)",
+        "check": "Confirmed Minden 49 and Balik Pulau 25 in Penang"
+      }
     },
     {
       "id": "D-41",
@@ -824,9 +1006,13 @@
       "accessed": "2026-10-19",
       "status": "ok",
       "used": [
-        "第5幕"
+        "act5"
       ],
-      "check": "ペナン州教育局の発表（150未満、外での活動の延期、マスク）を確認"
+      "check": "ペナン州教育局の発表（150未満、外での活動の延期、マスク）を確認",
+      "en": {
+        "label": "At 2 p.m. on October 15, 2026, the API was below 150 at all monitoring stations in P State. Classes on the 16th ran as usual but outdoor activities were postponed and masks recommended (P State education department)",
+        "check": "Confirmed the Penang state education department's announcement (below 150, outdoor activities postponed, masks)"
+      }
     }
   ]
 }

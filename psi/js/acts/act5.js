@@ -8,7 +8,7 @@ const DAYS = [
     { date: '2026-10-09', reading: { value: null, display: '—', source: 'D-39' }, event: 'D-39', choices: ['neighbour', 'check'] },
     { date: '2026-10-11', reading: { value: 49, source: 'D-40' }, event: 'D-40', photo: 'act5-sky', choices: ['open', 'app'] },
     { date: '2026-10-13', reading: { value: null, display: '—', source: 'D-30' }, event: 'D-30', choices: ['close', 'send'] },
-    { date: '2026-10-15', reading: { value: null, display: '150未満', source: 'D-41' }, event: 'D-41', choices: ['mask', 'nomask'] },
+    { date: '2026-10-15', reading: { value: null, display: 'act5.readingBelow', source: 'D-41' }, event: 'D-41', choices: ['mask', 'nomask'] },
 ];
 
 export function newAct5State() {
@@ -22,7 +22,9 @@ export function act5Scenes() {
             type: 'day',
             chrome: { meter: 'm_api' },
             date: day.date,
-            reading: day.reading,
+            reading: day.reading.display && day.reading.display.startsWith('act5.')
+                ? { ...day.reading, display: t(day.reading.display) }
+                : day.reading,
             photo: day.photo,
             story: texts.story,
             event: { text: texts.event, source: day.event },

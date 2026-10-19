@@ -1,5 +1,5 @@
 // Boot, screen flow and saved progress.
-import { setDict, t } from './i18n.js';
+import { setDict, t, LANGS, getLang, initialLang, saveLang } from './i18n.js';
 import { el, rich, sourceChip, assumptionTag, formatDate, formatNumber, toast, load, save, remove, reducedMotion } from './ui.js';
 import { createMeter, clearHaze } from './meter.js';
 import { initSources, renderSourceList } from './sources.js';
@@ -76,15 +76,15 @@ function applyChrome(scene, state) {
     const sub = $('money');
     if (chrome.money) {
         sub.replaceChildren(
-            `${t(`${chrome.money}.moneyLabel`)} ${moneyText(chrome.money, state.money)}　`,
+            `${t(`${chrome.money}.moneyLabel`)} ${moneyText(chrome.money, state.money)}${t('common.gap')}`,
             assumptionTag(),
         );
         sub.hidden = false;
     } else if (scene.counter) {
         sub.replaceChildren(
-            el('span', {}, `${scene.counter.label}　`),
+            el('span', {}, `${scene.counter.label}${t('common.gap')}`),
             el('b', {}, scene.counter.text),
-            '　',
+            t('common.gap'),
             sourceChip(scene.counter.source),
         );
         sub.hidden = false;
@@ -153,7 +153,41 @@ function restart() {
 
 function showSources() {
     hideChrome();
-    mount(renderSourceList({ assumptions: app.data.assumptions, accessed: app.data.psi.generated }, showTitle));
+    const screen = renderSourceList({ assumptions: app.data.assumptions, accessed: app.data.psi.generated }, showTitle);
+    screen.prepend(langRow(showSources));
+    mount(screen);
+}
+
+async function loadDict(code) {
+    setDict(await loadJSON(`i18n/${code}.json`), code);
+    document.title = t('meta.title');
+}
+
+// Switches between Japanese and English, then redraws the screen it was pressed on.
+function langRow(redraw) {
+    const other = LANGS.find(code => code !== getLang());
+    const btn = el('button', { class: 'btn lang-toggle', type: 'button', lang: other, 'aria-label': t('lang.toggleLabel') }, t('lang.toggle'));
+    btn.addEventListener('click', async () => {
+        btn.disabled = true;
+        try {
+            await loadDict(other);
+        } catch (err) {
+            console.error(err);
+            btn.disabled = false;
+            return;
+        }
+        saveLang(other);
+        // Keep a shared ?lang= link in step with the choice.
+        const url = new URL(window.location.href);
+        if (url.searchParams.has('lang')) {
+            url.searchParams.set('lang', other);
+            history.replaceState(null, '', url);
+        }
+        app.meterKey = null;
+        setExtinguishLabel();
+        redraw();
+    });
+    return el('div', { class: 'lang-row' }, btn);
 }
 
 function resume(progress) {
@@ -179,6 +213,7 @@ function showTitle() {
         : [el('button', { class: 'btn primary wide', type: 'button', onclick: () => startAct(0) }, t('title.start'))];
 
     mount(el('section', { class: 'scene title-screen' },
+        langRow(showTitle),
         el('h1', { class: 'wordmark' }, t('title.heading'), el('small', {}, t('title.sub'))),
         strip,
         el('p', { class: 'lead' }, t('title.lead')),
@@ -191,11 +226,15 @@ function showTitle() {
     ));
 }
 
-function setupExtinguish() {
-    const btn = $('extinguish');
+function setExtinguishLabel() {
     const icon = el('span', { 'aria-hidden': 'true', class: 'ext-icon' });
     icon.innerHTML = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="6" height="9.5" rx="2"/><path d="M7 5V3h2v2M9 3h3l1 1.5"/></svg>';
-    btn.replaceChildren(icon, t('extinguish.label'));
+    $('extinguish').replaceChildren(icon, t('extinguish.label'));
+}
+
+function setupExtinguish() {
+    const btn = $('extinguish');
+    setExtinguishLabel();
     // Looks pressable, but never does anything except say so.
     btn.addEventListener('click', () => {
         if (app.current && app.current.state && 'tries' in app.current.state) {
@@ -208,12 +247,17 @@ function setupExtinguish() {
 
 async function boot() {
     const main = $('main');
+    const lang = initialLang();
     try {
-        setDict(await loadJSON('i18n/ja.json'));
+        await loadDict(lang).catch(err => {
+            if (lang === 'ja') throw err;
+            console.error(err);
+            return loadDict('ja');
+        });
     } catch (err) {
         // Without the text file there is no translated message to show.
         console.error(err);
-        main.textContent = 'Could not load i18n/ja.json. Serve this folder over HTTP (e.g. python3 -m http.server).';
+        main.textContent = 'Could not load the text files in i18n/. Serve this folder over HTTP (e.g. python3 -m http.server).';
         return;
     }
     try {
@@ -231,7 +275,6 @@ async function boot() {
         main.textContent = t('common.loadError');
         return;
     }
-    document.title = t('meta.title');
     initSources(app.data.sources);
     app.meter = createMeter($('meter'));
     setupExtinguish();

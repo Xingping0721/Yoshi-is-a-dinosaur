@@ -1,0 +1,1102 @@
+{
+  "_format": "{{shown text|D-xx}} is a sourced number or fact (tap to open the source). {name} is a value filled in by the program. Keep the key tree, the {{…|D-xx}} markers and the {name} placeholders the same as ja.json.",
+  "meta": {
+    "title": "PSI (working title)"
+  },
+  "lang": {
+    "toggle": "日本語",
+    "toggleLabel": "日本語で表示する"
+  },
+  "common": {
+    "next": "Next",
+    "nextDay": "Next day",
+    "close": "Close",
+    "source": "Source",
+    "openSource": "Open the original page",
+    "assumption": "Game setting",
+    "event": "On this day",
+    "loadError": "Could not load the data. If you opened the file directly, serve this folder over HTTP instead (e.g. python3 -m http.server).",
+    "weekdays": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "months": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "date": "{w}, {mon} {d}, {y}",
+    "dateShort": "{mon} {d}, {y}",
+    "monthDay": "{mon} {d}",
+    "money": "S${n}",
+    "notEnoughMoney": "Not enough money",
+    "people": "{n} people",
+    "testimony": "Based on an interview (paraphrased)",
+    "gap": "  ",
+    "listSep": ", ",
+    "numLabel": "{text} (source {id})"
+  },
+  "title": {
+    "heading": "PSI",
+    "sub": "(working title)",
+    "lead": "In the autumn of 2015, smoke from forest and peatland fires (haze) covered a large part of Southeast Asia. In this game, you follow those weeks from several different positions.",
+    "rules": [
+      "Every number comes from real statistics and research. Tap an underlined number to open its source.",
+      "Countries are called Country I, Country S and Country M. You can find their real names at the end, in “Data and sources”.",
+      "Numbers about deaths and children's health appear. The scenes themselves are not shown."
+    ],
+    "time": "Time: 20–30 minutes",
+    "start": "Start",
+    "resume": "Continue",
+    "restart": "Start over",
+    "sources": "Data and sources"
+  },
+  "meter": {
+    "s_psi": {
+      "label": "Country S | 24-hr PSI (highest of the day)",
+      "bands": [
+        "Good",
+        "Moderate",
+        "Unhealthy",
+        "Very unhealthy",
+        "Hazardous"
+      ]
+    },
+    "p_pm10": {
+      "label": "P City | PM10 (µg/m³)",
+      "bands": [
+        "Good",
+        "Moderate",
+        "Unhealthy",
+        "Very unhealthy",
+        "Hazardous"
+      ],
+      "note": "Measured against Country I's standard. It cannot simply be compared with Country S's PSI."
+    },
+    "band": "Band: {band}",
+    "over": "Off the scale",
+    "m_api": {
+      "label": "Country M, P State | API (values confirmed in news reports)",
+      "bands": [
+        "Good",
+        "Moderate",
+        "Unhealthy",
+        "Very unhealthy",
+        "Hazardous"
+      ],
+      "note": "Days without a value confirmed in news reports show “—”."
+    }
+  },
+  "extinguish": {
+    "label": "Put out the fire",
+    "message": "There is nothing you can do about it from Country S."
+  },
+  "sheet": {
+    "statusLabel": "Checked",
+    "statusLine": "{label}: {status}",
+    "status": {
+      "ok": "The number was checked against the original",
+      "corrected": "The original was checked and the wording corrected",
+      "unverified": "Not checked yet",
+      "blocked": "The original page could not be opened automatically",
+      "unused": "This game does not use its numbers"
+    },
+    "accessed": "Accessed: {date}",
+    "licence": "Licence: {licence}",
+    "unknown": "Source not found: {id}"
+  },
+  "act1": {
+    "moneyLabel": "Money for haze protection",
+    "card": {
+      "kicker": "Act 1",
+      "title": "In a Country S housing estate",
+      "period": "September–October 2015"
+    },
+    "intro": [
+      {
+        "paras": [
+          {
+            "text": "You are a parent living in a housing estate in Country S. Your child is in the third year of primary school.",
+            "assumption": true
+          },
+          {
+            "text": "This month, you can spend {money} on protecting your family from the haze.",
+            "assumption": true
+          }
+        ]
+      },
+      {
+        "paras": [
+          {
+            "text": "The meter at the top of the screen is Country S's air pollution index, the “24-hr PSI”. It shows the highest value recorded that day in any of five regions.",
+            "source": "D-01"
+          },
+          {
+            "text": "There are five bands: 0–50 Good / 51–100 Moderate / 101–200 Unhealthy / 201–300 Very unhealthy / 301 and above Hazardous.",
+            "source": "D-11"
+          }
+        ]
+      }
+    ],
+    "days": {
+      "2015-09-01": {
+        "story": "Morning. The buildings in the distance look a little hazy.",
+        "event": "Country S's environment agency chief wrote to Country I for the first time to express concern about this haze.",
+        "choices": {
+          "send": {
+            "label": "Send your child to school as usual",
+            "result": "Your child ran out of the door."
+          },
+          "app": {
+            "label": "Check the air quality in an app",
+            "result": "The “Moderate” band. A normal day, it seems."
+          }
+        }
+      },
+      "2015-09-10": {
+        "story": "It is white outside the window. There is a burnt smell.",
+        "event": "Country S's environment minister sent a letter to Country I's minister of environment and forestry.",
+        "choices": {
+          "window": {
+            "label": "Close the windows",
+            "result": "You closed the windows. The room is a little hot and stuffy."
+          },
+          "mask": {
+            "label": "Buy a box of N95 masks ({price})",
+            "result": "You bought a box. They are a little big for your child's face.",
+            "soldOut": "The shelf in the shop was empty."
+          },
+          "play": {
+            "label": "Keep your child from playing outside",
+            "result": "The plan to meet at the park was put off again."
+          }
+        }
+      },
+      "2015-09-14": {
+        "story": "Your child says their eyes are itchy.",
+        "event": "Country S's environment minister spoke with Country I's minister and offered again to help put out the fires.",
+        "choices": {
+          "clinic": {
+            "label": "Take your child to the clinic",
+            "result": "You came home with eye drops."
+          },
+          "purifier": {
+            "label": "Buy an air purifier ({price})",
+            "result": "You carried the box home and put it in the bedroom."
+          },
+          "wait": {
+            "label": "Wait and see",
+            "result": "By evening, your child had stopped rubbing their eyes."
+          }
+        }
+      },
+      "2015-09-24": {
+        "story": "Just after 8 p.m. A message arrives on your phone. There will be no school tomorrow.",
+        "event": "At 8 p.m., the 3-hr PSI reached 317. The education ministry decided to close all primary and secondary schools the next day.",
+        "choices": {
+          "tell": {
+            "label": "Tell your child",
+            "result": "For a moment your child was happy. Then they looked out of the window."
+          },
+          "count": {
+            "label": "Count the masks at home",
+            "result": "Half the box is still left.",
+            "none": "There is not a single mask at home."
+          },
+          "shop": {
+            "label": "Go out to buy masks ({price})",
+            "result": "You managed to buy a box.",
+            "soldOut": "The shelf in the shop was empty."
+          }
+        }
+      },
+      "2015-09-25": {
+        "story": "No school today. You can barely see the block across the way.",
+        "event": "At 5 a.m., the 3-hr PSI reached 341. All primary and secondary schools closed because of the haze. It had never happened before.",
+        "choices": {
+          "shop": {
+            "label": "Go and look for N95 masks ({price})",
+            "result": "There was one box left.",
+            "soldOut": "You tried three shops. All of them were sold out."
+          },
+          "handout": {
+            "label": "Go and get the free masks being handed out",
+            "result": "The masks were for {{older people and people who need support|D-07}}. Your household was not eligible."
+          },
+          "home": {
+            "label": "Stay at home",
+            "result": "All day indoors. Your child is watching videos on a tablet."
+          }
+        }
+      },
+      "2015-09-26": {
+        "story": "Saturday. You can see the block across the way better than yesterday.",
+        "event": "The day before, the government of Country S sent legal notices to four companies in Country I suspected of being involved in the fires.",
+        "choices": {
+          "news": {
+            "label": "Read the news",
+            "result": "You read the article to the end. Nowhere does it say when the smoke will stop."
+          },
+          "out": {
+            "label": "Go out to buy bread",
+            "result": "You wore a mask and hurried home.",
+            "noMask": "You had no mask, and hurried home."
+          }
+        }
+      },
+      "2015-10-08": {
+        "story": "The sky is blue.",
+        "event": "The highest 24-hr PSI was {psi}. The first “Moderate” day since {since}.",
+        "choices": {
+          "park": {
+            "label": "Take your child to the park",
+            "result": "Your child ran around for an hour."
+          },
+          "open": {
+            "label": "Open all the windows",
+            "result": "The wind blows through. The smell leaves the room."
+          }
+        }
+      },
+      "2015-10-19": {
+        "story": "Another white morning.",
+        "event": "The 1-hr PM2.5 concentration reached 471µg/m³, the highest 1-hour value in Country S in 2015.",
+        "choices": {
+          "purifierOn": {
+            "label": "Turn the air purifier up to full",
+            "result": "The motor hummed all day."
+          },
+          "purifier": {
+            "label": "Buy an air purifier ({price})",
+            "result": "You carried the box home and put it in the bedroom."
+          },
+          "stay": {
+            "label": "Stay shut in at home",
+            "result": "You drew the curtains and turned on the lights at midday."
+          }
+        }
+      },
+      "2015-10-24": {
+        "story": "Saturday. You cancelled the weekend plans again.",
+        "event": "The highest 24-hr PSI was {psi}. Day {nth} this autumn in the “Very unhealthy” band or above.",
+        "choices": {
+          "game": {
+            "label": "Play a board game with your child",
+            "result": "Your child won three times."
+          },
+          "call": {
+            "label": "Call your parent who lives far away",
+            "result": "“How is it over there?” they asked. You could not quite answer."
+          }
+        }
+      },
+      "2015-10-30": {
+        "story": "The colour outside the window is back to normal.",
+        "event": "The highest 24-hr PSI was {psi}. Back in the “Moderate” band.",
+        "choices": {
+          "open": {
+            "label": "Open the windows",
+            "result": "The sounds from outside came into the room."
+          },
+          "walk": {
+            "label": "Go for a walk with your child",
+            "result": "Your child pointed at the sky."
+          }
+        }
+      }
+    },
+    "end": [
+      {
+        "paras": [
+          {
+            "text": "Country S has a “Transboundary Haze Pollution Act”, passed in {{2014|D-10}}."
+          },
+          {
+            "text": "Even when the fires are outside the country, companies that contribute to haze pollution in Country S can be fined up to {{S$100,000 a day|D-10}}, up to {{S$2 million in total|D-10}}."
+          }
+        ]
+      },
+      {
+        "paras": [
+          {
+            "text": "On September 25, 2015, the government of Country S sent notices to {{four companies|D-10}} in Country I."
+          },
+          {
+            "text": "To send people to put out fires. To stop burning. To submit firefighting plans."
+          }
+        ]
+      },
+      {
+        "paras": [
+          {
+            "text": "After the notices, the 24-hr PSI was still in the “Unhealthy” band or above on {{{days} days|D-01}} before the end of October."
+          }
+        ]
+      },
+      {
+        "paras": [
+          {
+            "text": "You tried to press “Put out the fire” {tries} times.",
+            "when": "tried"
+          },
+          {
+            "text": "“Put out the fire” was never pressed.",
+            "when": "notTried"
+          }
+        ]
+      }
+    ],
+    "breath": {
+      "title": "A pause",
+      "sub": "Numbers from Act 1",
+      "items": [
+        {
+          "value": "{peak}",
+          "source": "D-01",
+          "text": "The highest 24-hr PSI in Country S in 2015 (September 25)"
+        },
+        {
+          "value": "341",
+          "source": "D-07",
+          "text": "The highest 3-hr PSI on the same day"
+        },
+        {
+          "value": "{days} days",
+          "source": "D-01",
+          "text": "Days in September–October when the 24-hr PSI was in the “Unhealthy” band or above"
+        }
+      ],
+      "next": "On to Act 2"
+    }
+  },
+  "act2": {
+    "card": {
+      "kicker": "Act 2",
+      "title": "On the other side of the smoke",
+      "period": "October 2015"
+    },
+    "counterLabel": "Acute respiratory infections (6 provinces of Country I)",
+    "readingOver": "1,000+",
+    "intro": [
+      {
+        "paras": [
+          {
+            "text": "October 2015. P City, the provincial capital on K Island in Country I."
+          },
+          {
+            "text": "You are a family living in P City. You have a two-year-old child.",
+            "assumption": true
+          }
+        ]
+      },
+      {
+        "paras": [
+          {
+            "text": "The meter at the top of the screen is P City's PM10 concentration (µg/m³). By Country I's standard, below 50 is “Good” and above 350 is “Hazardous”.",
+            "source": "D-15"
+          },
+          {
+            "text": "This is a different index, in different units, from Country S's 24-hr PSI in Act 1. Even on the same scale, the two cannot simply be compared."
+          }
+        ]
+      }
+    ],
+    "days": {
+      "2015-10-16": {
+        "story": "It is morning, but dark outside. The smell of smoke has soaked into the house.",
+        "event": "P City closed its schools. Counting from September, schools had been closed for at least 25 days.",
+        "counter": "425,377 cases (up to October 16; 307,358 the week before)",
+        "choices": {
+          "purifier": {
+            "label": "Buy an air purifier",
+            "reason": "You cannot afford it (game setting)"
+          },
+          "mask": {
+            "label": "Go and get the free masks being handed out",
+            "result": "The masks had not arrived yet. The health ministry said it had sent {{more than 30 tonnes|D-16}} of supplies, such as masks and medicine, to eight provinces."
+          },
+          "inside": {
+            "label": "Keep your child indoors",
+            "result": "You stuffed wet cloths into the gaps around the windows."
+          }
+        }
+      },
+      "2015-10-24": {
+        "story": "Your child has been coughing for three days.",
+        "event": "National disaster agency: more than 500,000 people in six provinces have had acute respiratory infections.",
+        "counter": "Over 500,000 people (announced October 24)",
+        "choices": {
+          "clinic": {
+            "label": "Take your child to the clinic",
+            "result": "The clinic is far away. It took half a day to go and come back with medicine."
+          },
+          "purifier": {
+            "label": "Buy an air purifier",
+            "reason": "You cannot afford it (game setting)"
+          },
+          "wait": {
+            "label": "Wait and see at home",
+            "result": "Your child kept coughing through the night."
+          }
+        }
+      },
+      "2015-10-26": {
+        "story": "The family next door is loading their car.",
+        "event": "P City's daily average PM10 has been above 1,000µg/m³ for about two weeks. Some residents are leaving town.",
+        "counter": "Over 500,000 people (announced October 24)",
+        "choices": {
+          "leave": {
+            "label": "Leave town and stay with relatives",
+            "result": "You have no relatives in another town to turn to. There was nowhere to go. {{Some people hesitated to leave with their children because they had no relatives elsewhere|D-14}}."
+          },
+          "stay": {
+            "label": "Stay at home",
+            "result": "You stayed in town."
+          }
+        }
+      }
+    },
+    "compare": {
+      "title": "The same day, in two towns",
+      "when": "October 16, 2015",
+      "note": "The indices and units are different, so they cannot simply be compared side by side. Even so, this is how far the needle swung."
+    },
+    "end": [
+      {
+        "paras": [
+          {
+            "text": "According to the government of Country I, {{19 people|D-05}} died because of the haze in 2015. Another report says {{24|D-05}}."
+          },
+          {
+            "text": "One study estimates that the haze of September–October 2015 caused {{91,600 premature deaths|D-03}} in Country I alone."
+          }
+        ]
+      }
+    ],
+    "bars": {
+      "title": "Deaths in Country I from the 2015 haze",
+      "official": "Official figure",
+      "estimate": "Research estimate (premature deaths)",
+      "officialValue": "{{19|D-05}}",
+      "estimateValue": "{{91,600|D-03}}",
+      "note": "Estimates come with a range. The number changes a lot depending on the method. You will see this again at the end."
+    },
+    "after": [
+      {
+        "paras": [
+          {
+            "text": "In 2019, {{UNICEF|D-17}} pointed out that children from poor families cannot evacuate, get treatment, or buy air purifiers."
+          }
+        ]
+      }
+    ],
+    "breath": {
+      "title": "A pause",
+      "sub": "Numbers from Act 2",
+      "items": [
+        {
+          "value": "1,889",
+          "source": "D-15",
+          "text": "P City's PM10 concentration on October 16 (µg/m³). By Country I's standard, above 350 is “Hazardous”"
+        },
+        {
+          "value": "25 days",
+          "source": "D-15",
+          "text": "School days P City's students missed from September to mid-October (at least)"
+        },
+        {
+          "value": "425,377",
+          "source": "D-16",
+          "text": "Acute respiratory infections in 6 provinces of Country I, up to October 16"
+        }
+      ],
+      "next": "On to Act 3"
+    }
+  },
+  "act3": {
+    "card": {
+      "kicker": "Act 3",
+      "title": "Who lit the fire?",
+      "period": "In a village in Country I, in the dry season"
+    },
+    "moneyLabel": "Money in hand",
+    "intro": [
+      {
+        "paras": [
+          {
+            "text": "You are a small farmer in a village in Country I. You have to clear a new field before the dry season ends.",
+            "assumption": true
+          },
+          {
+            "text": "You have {money} in hand. The amounts are a unit that exists only in this game.",
+            "assumption": true
+          }
+        ]
+      }
+    ],
+    "choose": {
+      "story": "How will you clear the field?",
+      "choices": {
+        "burn": {
+          "label": "Clear it by burning ({price})",
+          "result": "You set the fire. The field was ready in no time."
+        },
+        "machine": {
+          "label": "Clear it with machines ({price})",
+          "result": "You hired the machines. Almost no money was left."
+        }
+      }
+    },
+    "after": {
+      "burn": [
+        {
+          "text": "{{Clearing land by burning is estimated to cost about a third of clearing it with machines|D-19}}."
+        },
+        {
+          "text": "{{In 9 of the 10 villages studied, fire was the only way to clear land|D-19}}."
+        }
+      ],
+      "machine": [
+        {
+          "text": "One study found that {{clearing with machines is better for society as a whole|D-20}}."
+        },
+        {
+          "text": "But the same study also points out that {{producers are unwilling to bear that higher cost themselves|D-20}}. {{Burning costs about a third as much as machines|D-19}}."
+        }
+      ]
+    },
+    "zoomKicker": "Pulling back  {n}/{total}",
+    "levels": [
+      "Field",
+      "Village",
+      "Concession",
+      "Peatland",
+      "Climate",
+      "Capital"
+    ],
+    "zoom": [
+      {
+        "title": "Your field",
+        "paras": [
+          {
+            "text": "The small field you cleared.",
+            "assumption": true
+          }
+        ]
+      },
+      {
+        "title": "The village",
+        "paras": [
+          {
+            "text": "Many of the village's fields are cleared the same way. {{In 9 of the 10 villages studied, fire was the only way to clear land|D-19}}."
+          }
+        ]
+      },
+      {
+        "title": "Concessions",
+        "paras": [
+          {
+            "text": "Around the village spread large pulpwood and oil palm concessions."
+          },
+          {
+            "text": "{{Fire alerts were 3–4 times denser inside concessions than outside them|D-22}} (a 2013 analysis). In central K Island, {{every year since 2001, oil palm concessions had more fire alerts than any other kind of land|D-21}}."
+          }
+        ]
+      },
+      {
+        "title": "Dried-out peatland",
+        "paras": [
+          {
+            "text": "Under your feet is peatland. Wet peatland does not burn easily on its own. {{Much of it is drained and dried before it is set on fire|D-21}}."
+          },
+          {
+            "text": "{{In 2015, more than 60% of the fires in central K Island and southern S Island were on peatland|D-21}}."
+          }
+        ]
+      },
+      {
+        "title": "El Niño",
+        "paras": [
+          {
+            "text": "{{In 2015, El Niño made the dry season last longer|D-14}}."
+          },
+          {
+            "text": "{{In 2015, fire alerts in central K Island and southern S Island passed 27,000. In the five years before, each province averaged about 5,500|D-21}}."
+          }
+        ]
+      },
+      {
+        "title": "Capital",
+        "paras": [
+          {
+            "text": "The companies that hold the concessions and invest in them are not based in just one country. {{In 2013, environmental groups found hundreds of fire hotspots on oil palm concessions held by companies from Country I, Country M, Country S and elsewhere|D-23}}."
+          },
+          {
+            "text": "{{In October 2026, too, a report linked concessions where fire hotspots were found to companies from several countries|D-24}}. The report says this does not directly show who set the fires."
+          },
+          {
+            "text": "The World Bank's analysis is that {{fire brings large economic gains to a limited group of people while harming the great majority of people in Country I|D-08}}."
+          }
+        ]
+      }
+    ],
+    "end": [
+      {
+        "paras": [
+          {
+            "text": "{{Children exposed to the 1997 haze before birth were shorter for their age at 17|D-20}}. {{That is equivalent to a drop of about 4% in the average monthly earnings of about one million workers|D-20}}."
+          },
+          {
+            "text": "The children of the people who light the fires breathe that smoke too."
+          }
+        ]
+      }
+    ],
+    "breath": {
+      "title": "A pause",
+      "sub": "Numbers from Act 3",
+      "items": [
+        {
+          "value": "About 1/3",
+          "source": "D-19",
+          "text": "The cost of clearing land by burning (compared with machines)"
+        },
+        {
+          "value": "Over 60%",
+          "source": "D-21",
+          "text": "Share of the 2015 fires in central K Island and southern S Island that were on peatland"
+        },
+        {
+          "value": "3–4 times",
+          "source": "D-22",
+          "text": "Density of fire alerts inside concessions (compared with outside; a 2013 analysis)"
+        }
+      ],
+      "next": "On to Act 4"
+    }
+  },
+  "act4": {
+    "card": {
+      "kicker": "Act 4",
+      "title": "Your shopping basket",
+      "period": "Now, in Japan"
+    },
+    "intro": [
+      {
+        "paras": [
+          {
+            "text": "You are in a supermarket in Japan.",
+            "assumption": true
+          },
+          {
+            "text": "Choose {min}–{max} items from the shelf to put in your basket.",
+            "assumption": true
+          }
+        ]
+      }
+    ],
+    "products": {
+      "chips": "Potato chips",
+      "noodles": "Instant noodles",
+      "chocolate": "Chocolate snack",
+      "cookies": "Cookies",
+      "margarine": "Margarine",
+      "bun": "Sweet bun",
+      "icecream": "Ice cream cup",
+      "croquette": "Frozen croquettes",
+      "creamer": "Coffee creamer",
+      "detergent": "Laundry detergent",
+      "shampoo": "Shampoo",
+      "apple": "Apples",
+      "rice": "Rice",
+      "milk": "Milk",
+      "eggs": "Eggs",
+      "tofu": "Tofu"
+    },
+    "shelf": {
+      "title": "Choose your items",
+      "count": "In the basket: {n} ({min}–{max} items)",
+      "checkout": "Go to the checkout"
+    },
+    "basket": {
+      "title": "In your basket",
+      "mark": "May contain palm oil",
+      "summary": "Of the {n} items you chose, {m} got a mark.",
+      "legend": "The mark is an example of “products whose ingredients are often listed as vegetable oil or fat”. In reality it differs from product to product."
+    },
+    "facts": [
+      {
+        "paras": [
+          {
+            "text": "{{Japan imports about 680,000 tonnes of palm oil a year|D-26}} (2020). {{99% of it comes from Country M and Country I|D-26}}."
+          }
+        ]
+      },
+      {
+        "paras": [
+          {
+            "text": "One study looked at the ingredient labels of {{about 1,600 food products at three supermarket chains in Europe and Australia|D-27}}."
+          },
+          {
+            "text": "{{Palm oil was clearly listed on 7.9%|D-27}}. {{Even counting oils with vague labels, it was at most about 40%|D-27}}."
+          }
+        ]
+      },
+      {
+        "paras": [
+          {
+            "text": "When a label just says “vegetable oil”, you cannot tell which plant it came from, where, or how it was produced. {{The study points out that labelling makes it harder to see where ingredients come from|D-27}}."
+          },
+          {
+            "text": "{{The same study also points out that switching from palm oil to another oil does not solve the problem; it only moves it elsewhere|D-27}}."
+          }
+        ]
+      },
+      {
+        "paras": [
+          {
+            "text": "Money flows too. {{Japanese financial institutions lent US$6.2 billion to the palm oil sector in Southeast Asia in 2013–2019|D-28}} (an NGO investigation)."
+          }
+        ]
+      },
+      {
+        "paras": [
+          {
+            "text": "Part of the problem is that you cannot see where, or how, things were made."
+          }
+        ]
+      }
+    ],
+    "breath": {
+      "title": "A pause",
+      "sub": "Numbers from Act 4",
+      "items": [
+        {
+          "value": "About 680,000 t",
+          "source": "D-26",
+          "text": "Japan's palm oil imports (2020)"
+        },
+        {
+          "value": "99%",
+          "source": "D-26",
+          "text": "Share of those imports from Country M and Country I"
+        },
+        {
+          "value": "7.9%",
+          "source": "D-27",
+          "text": "Share of food products that clearly listed palm oil as an ingredient (three supermarket chains in Europe and Australia)"
+        }
+      ],
+      "next": "On to the ending"
+    }
+  },
+  "ending": {
+    "card": {
+      "kicker": "Ending",
+      "title": "After the smoke of 2015",
+      "period": ""
+    },
+    "bars": {
+      "title": "Estimated premature deaths from the haze of September–October 2015",
+      "rows": {
+        "I": "Country I",
+        "M": "Country M",
+        "S": "Country S"
+      },
+      "values": {
+        "I": "{{91,600|D-03}}",
+        "M": "{{6,500|D-03}}",
+        "S": "{{2,200|D-03}}"
+      },
+      "note": "These are model estimates. The total for the three countries is {{100,300|D-03}}. In this estimate, {{9 in 10|D-03}} were people in Country I."
+    },
+    "range": [
+      {
+        "paras": [
+          {
+            "text": "{{Another study estimates 6,153–17,270 deaths from short-term effects during the fires alone|D-04}} (central value {{11,880|D-04}})."
+          },
+          {
+            "text": "{{In that study, 69 million people in the three countries were exposed to unhealthy air|D-04}}."
+          },
+          {
+            "text": "The numbers change a lot depending on how the estimate is made."
+          }
+        ]
+      }
+    ],
+    "economy": [
+      {
+        "paras": [
+          {
+            "text": "{{Country I's economic losses were US$16.1 billion, about 2% of GDP|D-08}}. {{About 2.6 million hectares burned, about four times the size of B Island|D-08}}."
+          },
+          {
+            "text": "{{On 26 days in September–October, Country I's daily greenhouse gas emissions were higher than the daily emissions of the entire US economy|D-09}}."
+          }
+        ]
+      }
+    ],
+    "next": "On to Act 5"
+  },
+  "epilogue": {
+    "card": {
+      "kicker": "Epilogue",
+      "title": "2026, now",
+      "period": ""
+    },
+    "lead": "This is not a story about the past.",
+    "past": "{{In September 2019, in Country M, 2,459 schools closed in areas where the Air Pollution Index (API) went above 200, affecting about 2 million students|D-18}}.",
+    "asOf": "Figures compiled as of {date}.",
+    "itemDate": "As of {date}",
+    "items": {
+      "D-30": "Fire hotspots on K Island and S Island in Country I: {hotspots}. The most since 2015 ({hotspots2015}).",
+      "D-31": "{cases} cases of acute respiratory infection in {provinces} provinces of Country I. Of these, {under5} ({share}) were children aged five and under.",
+      "D-32": "In Country I, {area} burned from January to the end of August. {vs2019} more than the same period in 2019.",
+      "D-33": "Country S's 24-hr PSI reached {psi}, the highest this year (central region). On the same day, schools closed in several states of Country M.",
+      "D-34": "Country S began subsidising medical costs for haze-related illness. The last time this was done was in 2015.",
+      "D-35": "Ten years after 2015. An analysis finds that the ability to put out fires once they start has improved, but the incentives to burn and the weak systems for preventing fires remain."
+    },
+    "linksTitle": "Air quality information (official sites)",
+    "links": {
+      "sgData": "Country S: historical 24-hr PSI data (where D-01 comes from)",
+      "sgHaze": "Country S: environment agency haze information",
+      "myApi": "Country M: Air Pollution Index (API)"
+    },
+    "endTitle": "The end",
+    "sources": "Data and sources",
+    "restart": "Play again from the start"
+  },
+  "sourcesScreen": {
+    "title": "Data and sources",
+    "lead": "The sources for the numbers in the game. Here, the names of countries and organisations and the titles of documents are shown as they appear in the originals.",
+    "licenceTitle": "Data licences",
+    "licenceD01": "Contains information from Historical 24-hr PSI accessed on {date} from data.gov.sg which is made available under the terms of the Singapore Open Data Licence version 1.0",
+    "licenceD02": "D-02 (Monthly Air Pollution, OpenDOSM) is published under CC BY 4.0. This game does not use its numbers.",
+    "listTitle": "List of sources",
+    "usedIn": "Used in: {where}",
+    "notUsed": "Not used in the game",
+    "check": "What was checked: {text}",
+    "checkLang": "The check notes were written in Japanese and translated.",
+    "assumptionsTitle": "Game settings",
+    "assumptionsLead": "The following are not real data. They are settings that move the game along.",
+    "assumptions": [
+      "Act 1: the family, the money for haze protection (S$300), the prices of masks and the air purifier, the days masks are sold out, and not being eligible for the free masks",
+      "Act 2: the family, not being able to buy an air purifier, the free masks not arriving, and having no relatives elsewhere",
+      "Act 3: the money in hand, and the amounts for burning and for machines (only the ratio of about 1/3 is a number from D-19)",
+      "Act 4: the products on the shelf, and the palm oil mark (an example of products whose ingredients are often listed as vegetable oil or fat)",
+      "Act 5: the setting of a person living in P State, and the story text. The “based on an interview” text paraphrases the words of a person living in P State",
+      "All story text (the parts marked “Game setting”) is fiction"
+    ],
+    "back": "Back",
+    "creditsTitle": "Photos and illustrations",
+    "creditsLead": "The photos come from Wikimedia Commons and are used under their respective licences."
+  },
+  "image": {
+    "photoCredit": "Photo: {creator} ({license})",
+    "illustration": "Illustration (made for this game)",
+    "missing": "(The image could not be loaded)"
+  },
+  "images": {
+    "act1-haze-city": {
+      "alt": "A city street under a white, hazy sky. The tops of tall buildings are hard to see through the smoke. Cars wait at a traffic light.",
+      "caption": "A street in a Country S city covered in haze, September 24, 2015 (real photo)."
+    },
+    "act2-haze-mosque": {
+      "alt": "Behind thick orange smoke, only the faint outline of a large building can be seen. A fence in the foreground.",
+      "caption": "A large building in P City swallowed by smoke, October 3, 2015 (real photo)."
+    },
+    "act3-plantation": {
+      "alt": "Oil palm trees stretching out beside a road.",
+      "caption": "An oil palm plantation in southern S Island (photo from 2020)."
+    },
+    "act3-burned-peat": {
+      "alt": "Blackened, burned ground stretches into the distance, with a line of dead trees. Here and there, grass is sprouting.",
+      "caption": "Peatland in southern S Island that burned in the El Niño year of 2015 (photo from 2016)."
+    },
+    "act5-haze-tower": {
+      "alt": "A dim sun and a tall tower in a hazy sky. Old house roofs in the foreground.",
+      "caption": "The centre of P State in haze, September 30, 2015. This is not a photo from 2026 (real photo)."
+    },
+    "act5-sky": {
+      "alt": "A whitish sky with something like faint clouds and the sun. You cannot tell whether it is rain clouds or smoke.",
+      "caption": "Rain clouds, or smoke?"
+    }
+  },
+  "act5": {
+    "card": {
+      "kicker": "Act 5",
+      "title": "Smoke that should be far away",
+      "period": "October 2026, P State, Country M"
+    },
+    "readingBelow": "Below 150",
+    "intro": [
+      {
+        "paras": [
+          {
+            "text": "October 2026. P State, Country M."
+          },
+          {
+            "text": "You are a person living in P State.",
+            "assumption": true
+          }
+        ]
+      },
+      {
+        "paras": [
+          {
+            "text": "The meter at the top of the screen is Country M's Air Pollution Index (API). It only shows P State values confirmed in news reports.",
+            "source": "D-36"
+          },
+          {
+            "text": "There are five bands: 0–50 Good / 51–100 Moderate / 101–200 Unhealthy / 201–300 Very unhealthy / above 300 Hazardous.",
+            "source": "D-12"
+          }
+        ]
+      }
+    ],
+    "days": {
+      "2026-10-01": {
+        "story": "In the morning, you read the news on your phone. Across the sea, forests and peatland are burning.",
+        "event": "The API was “Unhealthy” in 8 places on the peninsula of Country M (10 a.m.).",
+        "choices": {
+          "close": {
+            "label": "Close the news",
+            "result": "Outside the window, it is the usual sky."
+          },
+          "read": {
+            "label": "Read the article to the end",
+            "result": "It felt like something far away."
+          }
+        }
+      },
+      "2026-10-08": {
+        "story": "It is white outside the window. There is a burnt smell.",
+        "event": "The API was “Unhealthy” in 3 places in P State. The education ministry told schools to stop outdoor activities above 100 and to close above 200.",
+        "choices": {
+          "window": {
+            "label": "Close the windows",
+            "result": "You closed the windows. The air in the room smells a little too."
+          },
+          "laundry": {
+            "label": "Bring the laundry in",
+            "result": "The smell stayed in your shirts."
+          },
+          "run": {
+            "label": "Skip your evening run",
+            "result": "You put your shoes back by the door."
+          }
+        }
+      },
+      "2026-10-09": {
+        "story": "On the news map, the band of smoke is stretching north.",
+        "event": "Schools closed in 6 states and territories of Country M. Schools in P State are open as usual. Areas where the API stays above 150 for 3 days in a row will close schools from the 12th.",
+        "choices": {
+          "neighbour": {
+            "label": "Read the news from the neighbouring country",
+            "result": "{{In Country S too, the 24-hr PSI reached 192, the highest this year|D-33}}."
+          },
+          "check": {
+            "label": "Check P State's numbers again and again",
+            "result": "The same number as a moment ago. You opened it again anyway."
+          }
+        }
+      },
+      "2026-10-11": {
+        "story": "The sky is white. Rain clouds, or smoke? You can't tell.",
+        "event": "At 2 monitoring stations in P State, the API was back to “Good” (10 a.m.).",
+        "choices": {
+          "open": {
+            "label": "Try opening the window",
+            "result": "Is that the smell of rain, or of smoke? You can't tell."
+          },
+          "app": {
+            "label": "Look at the number in the app",
+            "result": "The number is in the “Good” band. The sky is still white."
+          }
+        }
+      },
+      "2026-10-13": {
+        "story": "You open the news again. The numbers have gone up.",
+        "event": "Fire hotspots on K Island and S Island in Country I reached 38,511. The most since 2015.",
+        "choices": {
+          "close": {
+            "label": "Close the app",
+            "result": "Even as you closed it, you felt you would open it again."
+          },
+          "send": {
+            "label": "Send the news to your family",
+            "result": "“Take care,” came the reply."
+          }
+        }
+      },
+      "2026-10-15": {
+        "story": "You have started keeping masks by the front door.",
+        "event": "The API was below 150 at all stations in P State (2 p.m.). Classes on the 16th will run as usual, but outdoor activities are postponed and masks are recommended.",
+        "choices": {
+          "mask": {
+            "label": "Go out wearing a mask",
+            "result": "Some people were wearing masks, and some were not."
+          },
+          "nomask": {
+            "label": "Go out without a mask",
+            "result": "On the way, you wondered whether to turn back."
+          }
+        }
+      }
+    },
+    "end": [
+      {
+        "paras": [
+          {
+            "text": "Every day, you read the news. You check the numbers. You look up at the sky."
+          }
+        ]
+      },
+      {
+        "paras": [
+          {
+            "text": "“The clean air is being polluted. I can't tell whether what I'm seeing now is rain or haze.”",
+            "testimony": true
+          }
+        ]
+      }
+    ],
+    "breath": {
+      "title": "A pause",
+      "sub": "Numbers from Act 5",
+      "items": [
+        {
+          "value": "154",
+          "source": "D-37",
+          "text": "The API recorded at one P State monitoring station on the evening of October 8 (“Unhealthy”)"
+        },
+        {
+          "value": "192",
+          "source": "D-33",
+          "text": "The highest 24-hr PSI in Country S this year, on October 9"
+        },
+        {
+          "value": "38,511",
+          "source": "D-30",
+          "text": "Fire hotspots on K Island and S Island in Country I, as of October 13"
+        }
+      ],
+      "next": "On to the epilogue"
+    }
+  }
+}

@@ -1,10 +1,10 @@
 {
   "asOf": "2026-10-18",
-  "note": "エピローグ用。値は各項目の date の時点のもの。asOf はこのファイルをまとめた日で、画面に表示されます。更新するときは、vars の値・date・asOf をあわせて書きかえ、sources.json の同じ id も直してください。文は i18n/ja.json の epilogue.items にあります。",
+  "note": "エピローグ用。値は各項目の date の時点のもの。asOf はこのファイルをまとめた日で、画面に表示されます。更新するときは、vars の値・date・asOf をあわせて書きかえ、sources.json の同じ id も直してください。文は i18n/ja.json と i18n/en.json の epilogue.items にあります。言葉によって書き方が変わる値は { \"ja\": …, \"en\": … } と書きます。",
   "items": [
     { "id": "D-30", "date": "2026-10-13", "vars": { "hotspots": "38,511", "hotspots2015": "58,106" } },
     { "id": "D-31", "date": "2026-10-12", "vars": { "provinces": "7", "cases": "277,075", "under5": "62,400", "share": "22.5%" } },
-    { "id": "D-32", "date": "2026-08-31", "vars": { "area": "約89.6万ha", "vs2019": "34%" } },
+    { "id": "D-32", "date": "2026-08-31", "vars": { "area": { "ja": "約89.6万ha", "en": "about 896,000 ha" }, "vs2019": "34%" } },
     { "id": "D-33", "date": "2026-10-09", "vars": { "psi": "192" } },
     { "id": "D-34", "date": "2026-10-12", "vars": {} },
     { "id": "D-35", "date": "2026-09-21", "vars": {} }
